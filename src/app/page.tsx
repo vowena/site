@@ -336,21 +336,6 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Trust signals */}
-            <div className="grid grid-cols-3 gap-6 max-w-md mx-auto">
-              <div className="text-center">
-                <p className="text-lg font-semibold text-foreground">60s</p>
-                <p className="text-[10px] text-muted">to first plan</p>
-              </div>
-              <div className="text-center">
-                <p className="text-lg font-semibold text-foreground">$0</p>
-                <p className="text-[10px] text-muted">during beta</p>
-              </div>
-              <div className="text-center">
-                <p className="text-lg font-semibold text-foreground">USDC</p>
-                <p className="text-[10px] text-muted">instant settlement</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
