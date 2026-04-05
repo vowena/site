@@ -23,10 +23,10 @@ export function Nav() {
           </Link>
           <ThemeToggle />
           <Link
-            href="https://app.vowena.xyz"
+            href="https://dashboard.vowena.xyz"
             className="inline-flex items-center h-8 px-4 text-xs font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors"
           >
-            Launch app
+            Launch dashboard
           </Link>
         </div>
 
@@ -60,10 +60,10 @@ export function Nav() {
           ))}
           <div className="pt-3 flex items-center gap-3">
             <Link
-              href="https://app.vowena.xyz"
+              href="https://dashboard.vowena.xyz"
               className="inline-flex items-center h-9 px-5 text-xs font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors"
             >
-              Launch app
+              Launch dashboard
             </Link>
             <ThemeToggle />
           </div>

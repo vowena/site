@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { VowenaSymbol } from "@/components/vowena-logo";
+import { VowenaLogo } from "@/components/vowena-logo";
 import { CopyButton } from "@/components/copy-button";
 import { CodeBlock } from "@/components/code-block";
 import { Marquee } from "@/components/marquee";
@@ -46,7 +46,7 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-8">
                 <div className="flex items-center gap-3">
-                  <Link href="https://app.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+                  <Link href="https://dashboard.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
                     Start free
                   </Link>
                   <Link href="/docs" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
@@ -220,8 +220,8 @@ export default function Home() {
               <div className="flex flex-wrap items-center gap-3 text-xs text-muted font-mono">
                 <span className="px-2 py-1 rounded bg-surface border border-border">Subscriber approves: $39.99 max</span>
                 <span className="text-accent">&#8594;</span>
-                <span className="px-2 py-1 rounded bg-success-subtle border border-success/20 text-success">You charge: $29.99</span>
-                <span className="px-2 py-1 rounded bg-error/10 border border-error/20 text-error">Disputes: 0</span>
+                <span className="px-2 py-1 rounded bg-accent-subtle border border-accent/20 text-accent">You charge: $29.99</span>
+                <span className="px-2 py-1 rounded bg-surface border border-border text-foreground">Disputes: 0</span>
               </div>
             </div>
             <div className="rounded-xl border border-border bg-elevated p-6 flex flex-col">
@@ -285,7 +285,7 @@ export default function Home() {
       </section>
 
       {/* For developers - compact */}
-      <section className="border-t border-border bg-surface">
+      <section className="border-t border-border">
         <div className="max-w-6xl mx-auto px-6 py-16 sm:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
@@ -330,7 +330,7 @@ export default function Home() {
         </div>
         <div className="max-w-6xl mx-auto px-6 py-20 sm:py-28 relative">
           <div className="max-w-3xl mx-auto text-center">
-            <VowenaSymbol className="w-10 h-10 text-accent mx-auto mb-6" />
+            <div className="flex justify-center mb-6"><VowenaLogo size="lg" /></div>
             <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
               Your first subscriber is one<br className="hidden sm:block" /> plan away
             </h2>
@@ -338,7 +338,7 @@ export default function Home() {
               Free during beta. No credit card. No KYC. Connect your Stellar wallet and create your first subscription plan in under 60 seconds.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-              <Link href="https://app.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+              <Link href="https://dashboard.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
                 Create your first plan
               </Link>
               <Link href="/pricing" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">

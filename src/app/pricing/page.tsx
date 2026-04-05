@@ -35,8 +35,8 @@ const tiers = [
       "Email notifications",
       "Priority support",
     ],
-    cta: "Launch app",
-    ctaHref: "https://app.vowena.xyz",
+    cta: "Launch dashboard",
+    ctaHref: "https://dashboard.vowena.xyz",
     highlight: true,
   },
   {

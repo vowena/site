@@ -6,7 +6,7 @@ export function HeroVisual() {
         {/* Mini sidebar */}
         <div className="w-12 bg-surface border-r border-border py-3 flex flex-col items-center gap-3 shrink-0">
           <div className="w-6 h-6 rounded-lg bg-accent flex items-center justify-center">
-            <svg className="w-3 h-3 text-white" viewBox="0 0 80 80" fill="none"><path d="M44 18C44 18 28 22 24 40C20 58 36 62 36 62" stroke="currentColor" strokeWidth="6" strokeLinecap="round" fill="none"/><circle cx="40" cy="40" r="4" fill="currentColor"/></svg>
+            <svg className="w-3 h-3 text-white" viewBox="0 0 80 80" fill="none"><path d="M44 18C44 18 28 22 24 40C20 58 36 62 36 62" stroke="currentColor" strokeWidth="6" strokeLinecap="round" fill="none"/><path d="M36 62C36 62 52 58 56 40C60 22 44 18 44 18" stroke="currentColor" strokeWidth="6" strokeLinecap="round" fill="none" opacity="0.5"/><circle cx="40" cy="40" r="4" fill="currentColor"/></svg>
           </div>
           <div className="w-6 h-1 rounded-full bg-accent/30" />
           {[1, 2, 3, 4].map((i) => (
@@ -103,7 +103,9 @@ export function DashboardFeatureCards() {
         <div className="rounded-lg border border-border bg-background p-4">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-accent-subtle flex items-center justify-center text-[10px] text-accent font-bold">A</div>
+              <div className="w-7 h-7 rounded-lg bg-accent-subtle flex items-center justify-center">
+                <svg className="w-3.5 h-3.5 text-accent" viewBox="0 0 80 80" fill="none"><path d="M44 18C44 18 28 22 24 40C20 58 36 62 36 62" stroke="currentColor" strokeWidth="5" strokeLinecap="round" fill="none"/><path d="M36 62C36 62 52 58 56 40C60 22 44 18 44 18" stroke="currentColor" strokeWidth="5" strokeLinecap="round" fill="none" opacity="0.4"/><circle cx="40" cy="40" r="3" fill="currentColor"/></svg>
+              </div>
               <div>
                 <p className="text-xs font-medium text-foreground">Acme SaaS Pro</p>
                 <p className="text-[9px] text-muted">Monthly subscription</p>
