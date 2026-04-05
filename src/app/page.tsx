@@ -4,7 +4,7 @@ import { CopyButton } from "@/components/copy-button";
 import { CodeBlock } from "@/components/code-block";
 import { Marquee } from "@/components/marquee";
 import { HeroVisual, DashboardFeatureCards } from "@/components/dashboard-preview";
-import { StellarLogo, USDCLogo, CircleLogo, MoneyGramLogo, FreighterLogo, SorobanLogo, LobstrLogo, BeansLogo } from "@/components/partner-logos";
+import { StellarLogo, USDCLogo, CircleLogo, MoneyGramLogo, SorobanLogo } from "@/components/partner-logos";
 
 const devCode = `import { VowenaClient, toStroops, NETWORKS } from "vowena"
 
@@ -91,14 +91,16 @@ export default function Home() {
         <div className="border-t border-border py-6">
           <p className="text-center text-[11px] uppercase tracking-[0.14em] text-muted mb-4">Powered by the Stellar ecosystem</p>
           <Marquee>
-            <StellarLogo className="h-7 w-auto text-muted/50" />
+            <StellarLogo className="h-7 w-auto" />
             <USDCLogo className="h-7 w-auto" />
             <CircleLogo className="h-7 w-auto" />
-            <SorobanLogo className="h-7 w-auto text-muted/50" />
+            <SorobanLogo className="h-7 w-auto text-muted" />
             <MoneyGramLogo className="h-7 w-auto" />
-            <FreighterLogo className="h-7 w-auto text-muted/50" />
-            <LobstrLogo className="h-7 w-auto" />
-            <BeansLogo className="h-7 w-auto" />
+            <StellarLogo className="h-7 w-auto" />
+            <USDCLogo className="h-7 w-auto" />
+            <CircleLogo className="h-7 w-auto" />
+            <SorobanLogo className="h-7 w-auto text-muted" />
+            <MoneyGramLogo className="h-7 w-auto" />
           </Marquee>
         </div>
       </section>
