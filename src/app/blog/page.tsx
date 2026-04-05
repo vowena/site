@@ -45,7 +45,7 @@ export default function BlogPage() {
             <Link href={`/blog/${featured.slug}`} className="group grid grid-cols-1 sm:grid-cols-2 gap-0 rounded-xl border border-border bg-elevated overflow-hidden hover:border-accent/30 transition-colors">
               {featured.cover && (
                 <div className="relative aspect-[16/10] sm:aspect-auto overflow-hidden">
-                  <Image src={featured.cover} alt={featured.title} fill className="object-cover group-hover:scale-[1.02] transition-transform duration-500" />
+                  <Image src={featured.cover} alt={featured.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-[1.02] transition-transform duration-500" />
                 </div>
               )}
               <div className="p-6 sm:p-8 flex flex-col justify-between">
@@ -87,7 +87,7 @@ export default function BlogPage() {
                 >
                   {post.cover && (
                     <div className="relative w-full aspect-[2/1] overflow-hidden">
-                      <Image src={post.cover} alt={post.title} fill className="object-cover group-hover:scale-[1.02] transition-transform duration-500" />
+                      <Image src={post.cover} alt={post.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-[1.02] transition-transform duration-500" />
                     </div>
                   )}
                   <div className="p-5 flex flex-col flex-1">

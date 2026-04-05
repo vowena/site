@@ -78,7 +78,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <section className="border-t border-border">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
             <div className="relative w-full aspect-[2.2/1] rounded-xl overflow-hidden border border-border">
-              <Image src={post.cover} alt={post.title} fill className="object-cover" priority />
+              <Image src={post.cover} alt={post.title} fill sizes="(max-width: 768px) 100vw, 768px" className="object-cover" priority />
             </div>
           </div>
         </section>
