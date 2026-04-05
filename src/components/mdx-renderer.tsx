@@ -1,7 +1,7 @@
 "use client";
 
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { highlight } from "sugar-high";
+import { highlightCode } from "./code-block";
 import { useState } from "react";
 
 function CopyBtn({ code }: { code: string }) {
@@ -21,7 +21,7 @@ function CopyBtn({ code }: { code: string }) {
   );
 }
 
-function CodeBlock({ children, className }: { children?: string; className?: string }) {
+function MdxCode({ children, className }: { children?: string; className?: string }) {
   const code = typeof children === "string" ? children.trim() : "";
 
   if (!className) {
@@ -32,25 +32,29 @@ function CodeBlock({ children, className }: { children?: string; className?: str
     );
   }
 
-  const html = highlight(code);
+  const lang = className.replace("language-", "");
+  const html = highlightCode(code, lang);
 
   return (
     <div className="relative group my-6 rounded-xl border border-border bg-surface overflow-hidden">
       <CopyBtn code={code} />
       <pre className="p-5 overflow-x-auto m-0 text-sm leading-[1.8]">
-        <code className="font-mono" dangerouslySetInnerHTML={{ __html: html }} />
+        <code
+          className={`hljs font-mono language-${lang}`}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
       </pre>
     </div>
   );
 }
 
-function Pre({ children }: { children: React.ReactNode }) {
+function MdxPre({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
 const components = {
-  code: CodeBlock as React.ComponentType<Record<string, unknown>>,
-  pre: Pre as React.ComponentType<Record<string, unknown>>,
+  code: MdxCode as React.ComponentType<Record<string, unknown>>,
+  pre: MdxPre as React.ComponentType<Record<string, unknown>>,
 };
 
 export function MdxRenderer({ source }: { source: string }) {
