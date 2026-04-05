@@ -28,7 +28,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {post.cover && (
           <div className="absolute inset-0 -z-10">
             <Image src={post.cover} alt="" fill className="object-cover" priority />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/90 to-background" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/95 to-background" />
           </div>
         )}
         {!post.cover && (
@@ -44,23 +44,22 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             Back to blog
           </Link>
 
-          <time className="font-mono text-xs text-muted block mb-3">
-            {new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
-          </time>
-
-          <h1 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight leading-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
+          <h1 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight leading-tight mb-3" style={{ letterSpacing: "-0.02em" }}>
             {post.title}
           </h1>
 
           <p className="text-secondary mb-6">{post.description}</p>
 
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-accent-subtle flex items-center justify-center text-accent text-sm font-semibold">
-              {post.author.charAt(0)}
-            </div>
-            <div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-accent-subtle flex items-center justify-center text-accent text-xs font-semibold">
+                {post.author.charAt(0)}
+              </div>
               <p className="text-sm font-medium text-foreground">{post.author}</p>
             </div>
+            <time className="font-mono text-xs text-muted">
+              {new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+            </time>
           </div>
         </div>
       </section>

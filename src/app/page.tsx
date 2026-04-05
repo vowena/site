@@ -192,8 +192,10 @@ export default function Home() {
               },
             ].map((item) => (
               <div key={item.step} className="flex flex-col">
-                <span className="font-mono text-xs text-accent mb-4">{item.step}</span>
-                <h3 className="text-base font-semibold text-foreground mb-2">{item.title}</h3>
+                <div className="flex items-center gap-2.5 mb-2">
+                  <span className="font-mono text-xs text-accent">{item.step}</span>
+                  <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>
+                </div>
                 <p className="text-sm text-muted leading-relaxed mb-6 flex-1">{item.desc}</p>
                 {item.visual}
               </div>

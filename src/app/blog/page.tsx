@@ -20,7 +20,7 @@ export default function BlogPage() {
           <h1 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.03em" }}>
             Building the future of payments
           </h1>
-          <p className="text-secondary max-w-lg">
+          <p className="text-secondary max-w-xl">
             Technical deep dives, protocol updates, and the story behind Vowena.
           </p>
         </div>
@@ -38,10 +38,10 @@ export default function BlogPage() {
               )}
               <div className="p-6 sm:p-8 flex flex-col justify-center">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-accent bg-accent-subtle px-2 py-0.5 rounded-full">Latest</span>
                   <time className="text-xs text-muted font-mono">
                     {new Date(featured.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                   </time>
+                  <span className="text-[9px] font-semibold uppercase tracking-[0.14em] text-accent">Latest</span>
                 </div>
                 <h2 className="text-lg sm:text-xl font-semibold text-foreground tracking-tight mb-2 group-hover:text-accent transition-colors" style={{ letterSpacing: "-0.02em" }}>
                   {featured.title}

@@ -93,7 +93,12 @@ export default function PricingPage() {
                   </div>
                 )}
                 <div className="mb-8">
-                  <h3 className="text-sm font-semibold text-foreground mb-4">{tier.name}</h3>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-sm font-semibold text-foreground">{tier.name}</h3>
+                    {"badge" in tier && tier.badge && (
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-success bg-success-subtle px-2 py-0.5 rounded-full">{tier.badge as string}</span>
+                    )}
+                  </div>
                   <div className="flex items-baseline gap-2 mb-4">
                     {"originalPrice" in tier && tier.originalPrice && (
                       <span className="text-lg text-muted line-through">{tier.originalPrice as string}</span>
@@ -101,10 +106,7 @@ export default function PricingPage() {
                     <span className="text-4xl font-semibold text-foreground tracking-tight">{tier.price}</span>
                     {tier.period && <span className="text-sm text-muted">{tier.period}</span>}
                   </div>
-                  {"badge" in tier && tier.badge && (
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-success bg-success-subtle px-2 py-0.5 rounded-full">{tier.badge as string}</span>
-                  )}
-                  <p className="mt-4 text-sm text-muted leading-relaxed">{tier.desc}</p>
+                  <p className="text-sm text-muted leading-relaxed">{tier.desc}</p>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   {tier.features.map((f) => (
@@ -126,22 +128,24 @@ export default function PricingPage() {
             ))}
           </div>
 
-          {/* Inline comparison - compact */}
-          <div className="mt-12 rounded-xl border border-border bg-elevated overflow-hidden">
-            <div className="px-6 py-4 border-b border-border">
-              <h2 className="text-sm font-semibold text-foreground">Why go Pro?</h2>
-            </div>
-            <div className="divide-y divide-border">
+          {/* Why go Pro? */}
+          <div className="mt-12">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-6">Why go Pro?</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                { thing: "Billing", free: "You run a keeper bot", pro: "Runs 24/7 automatically" },
-                { thing: "Analytics", free: "Query the blockchain yourself", pro: "Real-time MRR, churn, and growth dashboards" },
-                { thing: "Subscribers", free: "Build your own UI", pro: "Full management dashboard with refunds" },
-                { thing: "Support", free: "GitHub issues", pro: "Priority email support" },
-              ].map((row) => (
-                <div key={row.thing} className="grid grid-cols-3 text-sm">
-                  <div className="px-6 py-3 font-medium text-foreground">{row.thing}</div>
-                  <div className="px-6 py-3 text-muted">{row.free}</div>
-                  <div className="px-6 py-3 text-secondary">{row.pro}</div>
+                { icon: "M13 2 3 14h9l-1 8 10-12h-9l1-8z", title: "Automated billing", desc: "Charges run 24/7 on schedule. Retries failed payments during grace periods. You never touch a cron job." },
+                { icon: "M3 3v18h18", title: "Revenue analytics", desc: "MRR, churn rate, subscriber growth, failed charges. Real-time dashboards instead of raw blockchain queries." },
+                { icon: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2", title: "Subscriber management", desc: "View every subscriber, their billing history, and status. Issue refunds with one click." },
+                { icon: "M22 12h-4l-3 9L9 3l-3 9H2", title: "Monitoring and alerts", desc: "Get notified when charges fail, when subscribers churn, or when revenue milestones are hit." },
+              ].map((item) => (
+                <div key={item.title} className="rounded-xl border border-border bg-elevated p-5 flex gap-4">
+                  <div className="w-9 h-9 rounded-lg bg-accent-subtle flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d={item.icon}/></svg>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-foreground mb-1">{item.title}</h3>
+                    <p className="text-xs text-muted leading-relaxed">{item.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
