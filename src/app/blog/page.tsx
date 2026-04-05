@@ -37,21 +37,22 @@ export default function BlogPage() {
                 </div>
               )}
               <div className="p-6 sm:p-8 flex flex-col justify-center">
-                <div className="flex items-center gap-3 mb-3">
-                  <time className="text-xs text-muted font-mono">
-                    {new Date(featured.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
-                  </time>
-                  <span className="text-[9px] font-semibold uppercase tracking-[0.14em] text-accent">Latest</span>
-                </div>
                 <h2 className="text-lg sm:text-xl font-semibold text-foreground tracking-tight mb-2 group-hover:text-accent transition-colors" style={{ letterSpacing: "-0.02em" }}>
                   {featured.title}
                 </h2>
                 <p className="text-sm text-muted leading-relaxed mb-4 line-clamp-3">{featured.description}</p>
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-accent-subtle flex items-center justify-center text-[9px] text-accent font-semibold">
-                    {featured.author.charAt(0)}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-accent-subtle flex items-center justify-center text-[9px] text-accent font-semibold">
+                      {featured.author.charAt(0)}
+                    </div>
+                    <span className="text-xs text-secondary">{featured.author}</span>
+                    <span className="text-[3px] text-muted">&bull;</span>
+                    <time className="text-xs text-muted font-mono">
+                      {new Date(featured.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                    </time>
                   </div>
-                  <span className="text-xs text-secondary">{featured.author}</span>
+                  <span className="text-[9px] font-semibold uppercase tracking-[0.14em] text-accent">Latest</span>
                 </div>
               </div>
             </Link>

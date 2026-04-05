@@ -28,7 +28,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {post.cover && (
           <div className="absolute inset-0 -z-10">
             <Image src={post.cover} alt="" fill className="object-cover" priority />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/95 to-background" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/[0.85] via-background/[0.92] to-background" />
+            <div className="absolute inset-0 bg-background/[0.4]" />
           </div>
         )}
         {!post.cover && (
