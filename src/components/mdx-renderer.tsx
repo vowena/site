@@ -36,11 +36,11 @@ function MdxCode({ children, className }: { children?: string; className?: strin
   const html = highlightCode(code, lang);
 
   return (
-    <div className="relative group my-6 rounded-xl border border-border bg-surface overflow-hidden">
+    <div className="relative group my-6 rounded-xl border border-border bg-surface overflow-hidden text-[13px]">
       <CopyBtn code={code} />
-      <pre className="p-5 overflow-x-auto m-0 text-sm leading-[1.8]">
+      <pre className="m-0 p-0">
         <code
-          className={`hljs font-mono language-${lang}`}
+          className={`hljs font-mono !p-4 !bg-transparent block leading-[1.7] language-${lang}`}
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </pre>

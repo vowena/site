@@ -45,9 +45,9 @@ export function CodeBlock({
   };
 
   return (
-    <div className="rounded-xl border border-border bg-surface overflow-hidden group relative">
+    <div className="rounded-xl border border-border bg-surface overflow-hidden group relative text-[13px]">
       {showHeader && (
-        <div className="flex items-center justify-between px-4 py-2.5 border-b border-border text-xs text-muted">
+        <div className="flex items-center justify-between px-4 py-2 border-b border-border text-xs text-muted">
           <span className="font-mono">{filename || lang}</span>
           <button
             onClick={handleCopy}
@@ -62,9 +62,9 @@ export function CodeBlock({
           </button>
         </div>
       )}
-      <pre className="p-4 sm:p-5 overflow-x-auto m-0 text-sm leading-[1.8]">
+      <pre className="m-0 p-0">
         <code
-          className={`hljs font-mono language-${lang}`}
+          className={`hljs font-mono !p-4 !bg-transparent block leading-[1.7] language-${lang}`}
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </pre>
