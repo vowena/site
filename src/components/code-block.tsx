@@ -39,10 +39,12 @@ export function CodeBlock({
           </button>
         </div>
       )}
-      <div
-        className="p-4 sm:p-5 text-sm leading-[1.8] font-mono overflow-x-auto"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      <pre className="p-4 sm:p-5 text-sm leading-[1.8] overflow-x-auto m-0">
+        <code
+          className="font-mono"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      </pre>
     </div>
   );
 }

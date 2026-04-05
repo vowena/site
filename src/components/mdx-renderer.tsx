@@ -1,18 +1,14 @@
 "use client";
 
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
 import { useState } from "react";
 
 function CopyBtn({ code }: { code: string }) {
   const [copied, setCopied] = useState(false);
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
   return (
     <button
-      onClick={handleCopy}
+      onClick={async () => { await navigator.clipboard.writeText(code); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
       className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity text-muted hover:text-foreground z-10 cursor-pointer bg-elevated/80 backdrop-blur-sm rounded-md p-1.5 border border-border"
       aria-label="Copy code"
     >
@@ -25,10 +21,9 @@ function CopyBtn({ code }: { code: string }) {
   );
 }
 
-function MdxCode({ children, className }: { children?: string; className?: string }) {
+function CodeBlock({ children, className }: { children?: string; className?: string }) {
   const code = typeof children === "string" ? children.trim() : "";
 
-  // Inline code (no className means not inside a ```block```)
   if (!className) {
     return (
       <code className="text-accent bg-accent-subtle px-1.5 py-0.5 rounded text-sm font-mono">
@@ -37,27 +32,27 @@ function MdxCode({ children, className }: { children?: string; className?: strin
     );
   }
 
-  // Fenced code block with syntax highlighting
   const html = highlight(code);
 
   return (
     <div className="relative group my-6 rounded-xl border border-border bg-surface overflow-hidden">
       <CopyBtn code={code} />
       <pre className="p-5 overflow-x-auto m-0 text-sm leading-[1.8]">
-        <code
-          className="font-mono"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <code className="font-mono" dangerouslySetInnerHTML={{ __html: html }} />
       </pre>
     </div>
   );
 }
 
-function MdxPre({ children }: { children: React.ReactNode }) {
+function Pre({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
-export const mdxComponents = {
-  code: MdxCode as React.ComponentType<Record<string, unknown>>,
-  pre: MdxPre as React.ComponentType<Record<string, unknown>>,
+const components = {
+  code: CodeBlock as React.ComponentType<Record<string, unknown>>,
+  pre: Pre as React.ComponentType<Record<string, unknown>>,
 };
+
+export function MdxRenderer({ source }: { source: string }) {
+  return <MDXRemote source={source} components={components} />;
+}

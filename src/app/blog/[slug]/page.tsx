@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPost } from "@/lib/blog";
-import { mdxComponents } from "@/components/mdx-components";
+import { MdxRenderer } from "@/components/mdx-renderer";
 import Link from "next/link";
 
 export function generateStaticParams() {
@@ -61,7 +60,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         [&_td]:py-2.5 [&_td]:pr-4 [&_td]:text-secondary [&_td]:border-b [&_td]:border-border-subtle
         [&_img]:rounded-xl [&_img]:my-6 [&_img]:border [&_img]:border-border
       ">
-        <MDXRemote source={post.content} components={mdxComponents} />
+        <MdxRenderer source={post.content} />
       </div>
 
       <div className="mt-16 pt-8 border-t border-border flex items-center justify-between">
