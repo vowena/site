@@ -3,7 +3,7 @@ import { VowenaSymbol } from "@/components/vowena-logo";
 import { CopyButton } from "@/components/copy-button";
 import { CodeBlock } from "@/components/code-block";
 import { Marquee } from "@/components/marquee";
-import { DashboardPreview, SubscriberPreview } from "@/components/dashboard-preview";
+import { HeroVisual, DashboardFeatureCards } from "@/components/dashboard-preview";
 import { StellarLogo, USDCLogo, CircleLogo, MoneyGramLogo, FreighterLogo, SorobanLogo, LobstrLogo, BeansLogo } from "@/components/partner-logos";
 
 const devCode = `import { VowenaClient, toStroops, NETWORKS } from "vowena"
@@ -35,13 +35,13 @@ export default function Home() {
             <div>
               <p className="text-xs font-medium text-accent mb-6 tracking-wide uppercase">Recurring payments on Stellar</p>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-semibold text-foreground leading-[1.08] tracking-tight" style={{ letterSpacing: "-0.03em" }}>
-                Subscription billing<br />
-                <span className="text-accent">your customers trust.</span>
+              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-semibold text-foreground leading-[1.08] tracking-tight whitespace-nowrap" style={{ letterSpacing: "-0.03em" }}>
+                Subscription billing,<br />
+                <span className="text-accent">built on trust.</span>
               </h1>
 
               <p className="mt-6 text-base sm:text-lg text-secondary leading-relaxed max-w-xl">
-                Add recurring USDC payments to your product. Your customers subscribe once, and billing runs automatically on Stellar. No chargebacks, no payment processors, no hidden fees.
+                Add recurring USDC payments to your product. Customers subscribe once, billing runs on autopilot. No chargebacks, no payment processors, no hidden fees.
               </p>
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-8">
@@ -71,12 +71,9 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Hero visual: dashboard preview */}
-            <div className="relative">
-              <div className="absolute -inset-4 bg-accent/[0.03] rounded-3xl blur-[2px]" />
-              <div className="relative">
-                <DashboardPreview />
-              </div>
+            {/* Hero visual: overlapping dashboard cards */}
+            <div className="relative h-[320px] sm:h-[360px]">
+              <HeroVisual />
             </div>
           </div>
         </div>
@@ -141,7 +138,7 @@ export default function Home() {
               {
                 step: "02",
                 title: "Share with customers",
-                desc: "Send a payment link or integrate into your app with 3 lines of code. Customers subscribe with their Stellar wallet.",
+                desc: "Send a payment link or integrate into your app with the SDK. Customers subscribe with their Stellar wallet.",
                 visual: (
                   <div className="rounded-lg border border-border bg-surface p-4 space-y-3">
                     <p className="text-[10px] font-medium text-foreground">Share your plan</p>
@@ -218,24 +215,24 @@ export default function Home() {
               </div>
             </div>
             <div className="rounded-xl border border-border bg-elevated p-6">
-              <h3 className="text-sm font-semibold text-foreground mb-2">Transaction fees that disappear</h3>
-              <p className="text-sm text-muted leading-relaxed mb-3">Each charge costs $0.00001. Not 2.9% + 30 cents. On a $29.99 subscription, Stripe takes $1.17. Vowena takes $0.00001.</p>
+              <h3 className="text-sm font-semibold text-foreground mb-2">Fees that disappear</h3>
+              <p className="text-sm text-muted leading-relaxed mb-3">Each charge costs $0.00001. Not 2.9% + 30 cents. On $29.99, Stripe takes $1.17. Vowena takes a fraction of a cent.</p>
               <div className="flex items-baseline gap-1">
                 <span className="text-2xl font-semibold text-foreground">99.99%</span>
                 <span className="text-xs text-muted">of revenue is yours</span>
               </div>
             </div>
             <div className="rounded-xl border border-border bg-elevated p-6">
-              <h3 className="text-sm font-semibold text-foreground mb-2">Built-in subscriber protection</h3>
-              <p className="text-sm text-muted leading-relaxed">Your customers see exactly what they are approving. Price increases require their explicit consent. Builds trust, reduces churn.</p>
+              <h3 className="text-sm font-semibold text-foreground mb-2">Transparent pricing builds trust</h3>
+              <p className="text-sm text-muted leading-relaxed">Customers see exactly what they approve in their wallet. Price changes require their consent. Trust means lower churn.</p>
             </div>
             <div className="rounded-xl border border-border bg-elevated p-6">
-              <h3 className="text-sm font-semibold text-foreground mb-2">Automated billing</h3>
-              <p className="text-sm text-muted leading-relaxed">Enable auto-billing and never think about it again. Charges run on schedule with automatic retries during grace periods.</p>
+              <h3 className="text-sm font-semibold text-foreground mb-2">Billing on autopilot</h3>
+              <p className="text-sm text-muted leading-relaxed">Enable auto-billing and charges run on schedule. Failed payments get automatic retries during a grace window.</p>
             </div>
             <div className="rounded-xl border border-border bg-elevated p-6">
-              <h3 className="text-sm font-semibold text-foreground mb-2">Global from day one</h3>
-              <p className="text-sm text-muted leading-relaxed">USDC is available in 180+ countries. No international card fees, no currency conversion. A subscriber in Lagos pays the same as one in London.</p>
+              <h3 className="text-sm font-semibold text-foreground mb-2">Accept payments globally</h3>
+              <p className="text-sm text-muted leading-relaxed">USDC works in 180+ countries. No international card fees, no FX conversion. Same experience everywhere.</p>
             </div>
           </div>
         </div>
@@ -272,35 +269,13 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="space-y-4">
-              <SubscriberPreview />
-              <p className="text-[10px] text-muted text-center">What your subscribers see - clean, transparent billing</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Social proof numbers */}
-      <section className="border-t border-border bg-surface">
-        <div className="max-w-6xl mx-auto px-6 py-16 sm:py-20">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
-            {[
-              { value: "$0.00001", label: "per transaction" },
-              { value: "5 sec", label: "settlement time" },
-              { value: "17", label: "contract functions" },
-              { value: "0%", label: "chargeback rate" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <p className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight">{stat.value}</p>
-                <p className="text-xs text-muted mt-1">{stat.label}</p>
-              </div>
-            ))}
+            <DashboardFeatureCards />
           </div>
         </div>
       </section>
 
       {/* For developers - compact */}
-      <section className="border-t border-border">
+      <section className="border-t border-border bg-surface">
         <div className="max-w-6xl mx-auto px-6 py-16 sm:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
@@ -309,7 +284,7 @@ export default function Home() {
                 Or build it into your app
               </h2>
               <p className="text-secondary leading-relaxed mb-6">
-                The dashboard is optional. Install the SDK and integrate subscription billing directly into your product. Full TypeScript types, event polling, and a standalone keeper bot.
+                The dashboard is optional. Install the SDK and integrate subscription billing directly into your product. Full TypeScript support, event polling, and a standalone keeper bot.
               </p>
 
               <div className="flex items-center gap-3 mb-6">
@@ -343,21 +318,39 @@ export default function Home() {
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(var(--border-default) 1px, transparent 1px), linear-gradient(90deg, var(--border-default) 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
         </div>
-        <div className="max-w-6xl mx-auto px-6 py-20 sm:py-28 text-center relative">
-          <VowenaSymbol className="w-12 h-12 text-accent mx-auto mb-6" />
-          <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
-            Start billing today
-          </h2>
-          <p className="text-secondary max-w-md mx-auto mb-8">
-            Free during beta. No credit card required. Connect your Stellar wallet and create your first plan in under a minute.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link href="https://app.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
-              Start free
-            </Link>
-            <Link href="/pricing" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
-              View pricing
-            </Link>
+        <div className="max-w-6xl mx-auto px-6 py-20 sm:py-28 relative">
+          <div className="max-w-3xl mx-auto text-center">
+            <VowenaSymbol className="w-10 h-10 text-accent mx-auto mb-6" />
+            <h2 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.03em" }}>
+              Your first subscriber is one<br className="hidden sm:block" /> plan away
+            </h2>
+            <p className="text-lg text-secondary max-w-lg mx-auto mb-10">
+              Free during beta. No credit card. No KYC. Connect your Stellar wallet and create your first subscription plan in under 60 seconds.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
+              <Link href="https://app.vowena.xyz" className="inline-flex items-center h-12 px-8 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+                Create your first plan
+              </Link>
+              <Link href="/pricing" className="inline-flex items-center h-12 px-8 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
+                View pricing
+              </Link>
+            </div>
+
+            {/* Trust signals */}
+            <div className="grid grid-cols-3 gap-6 max-w-md mx-auto">
+              <div className="text-center">
+                <p className="text-lg font-semibold text-foreground">60s</p>
+                <p className="text-[10px] text-muted">to first plan</p>
+              </div>
+              <div className="text-center">
+                <p className="text-lg font-semibold text-foreground">$0</p>
+                <p className="text-[10px] text-muted">during beta</p>
+              </div>
+              <div className="text-center">
+                <p className="text-lg font-semibold text-foreground">USDC</p>
+                <p className="text-[10px] text-muted">instant settlement</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
