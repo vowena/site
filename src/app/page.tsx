@@ -4,7 +4,7 @@ import { CopyButton } from "@/components/copy-button";
 import { CodeBlock } from "@/components/code-block";
 import { Marquee } from "@/components/marquee";
 import { HeroVisual, DashboardFeatureCards } from "@/components/dashboard-preview";
-import { StripeLogo, LinearLogo, NotionLogo, SlackLogo, SpotifyLogo, DropboxLogo } from "@/components/partner-logos";
+import { LinearLogo, NotionLogo, SlackLogo, SpotifyLogo, DropboxLogo, DiscordLogo } from "@/components/partner-logos";
 
 const devCode = `import { VowenaClient, toStroops, NETWORKS } from "vowena"
 
@@ -90,18 +90,12 @@ export default function Home() {
         {/* Client marquee */}
         <div className="border-t border-border py-6">
           <Marquee>
-            <StripeLogo className="h-6 w-auto text-muted/30" />
-            <LinearLogo className="h-5 w-auto text-muted/30" />
-            <NotionLogo className="h-6 w-auto text-muted/30" />
-            <SlackLogo className="h-5 w-auto text-muted/30" />
-            <SpotifyLogo className="h-5 w-auto text-muted/30" />
-            <DropboxLogo className="h-5 w-auto text-muted/30" />
-            <StripeLogo className="h-6 w-auto text-muted/30" />
-            <LinearLogo className="h-5 w-auto text-muted/30" />
-            <NotionLogo className="h-6 w-auto text-muted/30" />
-            <SlackLogo className="h-5 w-auto text-muted/30" />
-            <SpotifyLogo className="h-5 w-auto text-muted/30" />
-            <DropboxLogo className="h-5 w-auto text-muted/30" />
+            <LinearLogo className="text-muted/30" />
+            <NotionLogo className="text-muted/30" />
+            <SlackLogo className="text-muted/30" />
+            <SpotifyLogo className="text-muted/30" />
+            <DropboxLogo className="text-muted/30" />
+            <DiscordLogo className="text-muted/30" />
           </Marquee>
         </div>
       </section>
