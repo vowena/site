@@ -63,6 +63,10 @@ pub struct Subscription {
 }
 ```
 
+<Callout type="tip">
+Every struct field maps directly to a storage key in Soroban's persistent storage. Each plan and subscription is its own entry, which works well with Soroban's parallelism model.
+</Callout>
+
 **The hardest problem** was handling failed charges. In Soroban, if `transfer_from()` fails, the entire transaction reverts. The contract cannot record that a failure happened. My first instinct was to use a try/catch pattern. Soroban does not have one.
 
 The solution: pre-check `balance()` and `allowance()` before attempting the transfer. If they are insufficient, record `failed_at`, emit a `ChargeFailed` event, and return false. Graceful degradation instead of silent failure. This single decision shaped the entire grace period system.
@@ -146,6 +150,8 @@ The tech stack:
 | Charts | Recharts |
 | Wallet | Freighter |
 | Theme | Light-first, DM Sans + Space Mono |
+
+![Vowena dashboard showing revenue analytics and subscriber management](https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop)
 
 The managed keeper runs as a cron job on the backend. Every interval, it iterates subscriptions that are due for billing and calls `charge()` for each one. The merchant enables it with a toggle. No DevOps knowledge required.
 

@@ -98,10 +98,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             [&_strong]:text-foreground [&_strong]:font-semibold
             [&_blockquote]:border-l-2 [&_blockquote]:border-accent [&_blockquote]:pl-5 [&_blockquote]:my-6 [&_blockquote]:italic
             [&_hr]:border-border [&_hr]:my-10
-            [&_table]:w-full [&_table]:my-6 [&_table]:text-sm [&_table]:border-collapse
-            [&_th]:text-left [&_th]:text-foreground [&_th]:font-semibold [&_th]:pb-3 [&_th]:border-b [&_th]:border-border [&_th]:pr-4
-            [&_td]:py-2.5 [&_td]:pr-4 [&_td]:text-secondary [&_td]:border-b [&_td]:border-border-subtle
+            [&_table]:w-full [&_table]:my-6 [&_table]:text-sm [&_table]:border [&_table]:border-border [&_table]:rounded-lg [&_table]:overflow-hidden
+            [&_thead]:bg-surface
+            [&_th]:text-left [&_th]:text-foreground [&_th]:font-semibold [&_th]:py-3 [&_th]:px-4 [&_th]:border-b [&_th]:border-border
+            [&_td]:py-3 [&_td]:px-4 [&_td]:text-secondary [&_td]:border-b [&_td]:border-border/50
+            [&_tr]:last:[&_td]:border-0
             [&_img]:rounded-xl [&_img]:my-6 [&_img]:border [&_img]:border-border
+            [&_iframe]:w-full [&_iframe]:my-6 [&_iframe]:rounded-xl [&_iframe]:border [&_iframe]:border-border [&_iframe]:aspect-video
           ">
             <MdxRenderer source={post.content} />
           </div>

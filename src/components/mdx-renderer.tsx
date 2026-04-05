@@ -27,7 +27,7 @@ function MdxCode({ children, className }: { children?: string; className?: strin
 
   if (!className) {
     return (
-      <code className="text-accent bg-accent-subtle px-1.5 py-0.5 rounded text-sm font-mono">
+      <code className="text-accent bg-accent-subtle px-1 rounded text-sm font-mono">
         {children}
       </code>
     );
@@ -53,10 +53,40 @@ function MdxPre({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+function Video({ src, title }: { src?: string; title?: string }) {
+  if (!src) return null;
+  return (
+    <div className="my-6 rounded-xl border border-border overflow-hidden aspect-video">
+      <iframe
+        src={src}
+        title={title || "Video"}
+        className="w-full h-full"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
+    </div>
+  );
+}
+
+function Callout({ children, type = "info" }: { children?: React.ReactNode; type?: string }) {
+  const styles: Record<string, string> = {
+    info: "border-info/30 bg-info/5 text-info",
+    warning: "border-warning/30 bg-warning/5 text-warning",
+    tip: "border-success/30 bg-success/5 text-success",
+  };
+  return (
+    <div className={`my-6 rounded-lg border-l-4 p-4 ${styles[type] || styles.info}`}>
+      <div className="text-sm [&_p]:mb-0 [&_p]:text-secondary">{children}</div>
+    </div>
+  );
+}
+
 const components = {
   code: MdxCode as React.ComponentType<Record<string, unknown>>,
   pre: MdxPre as React.ComponentType<Record<string, unknown>>,
   InstallTabs: InstallTabs as React.ComponentType<Record<string, unknown>>,
+  Video: Video as React.ComponentType<Record<string, unknown>>,
+  Callout: Callout as React.ComponentType<Record<string, unknown>>,
 };
 
 export function MdxRenderer({ source }: { source: string }) {
