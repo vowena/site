@@ -64,10 +64,10 @@ export default function PricingPage() {
     <div className="max-w-6xl mx-auto px-6 py-24">
       <div className="text-center mb-16">
         <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3">Pricing</p>
-        <h1 className="text-4xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.03em" }}>
+        <h1 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.03em" }}>
           The protocol is free. The infrastructure is not.
         </h1>
-        <p className="text-lg text-secondary max-w-2xl mx-auto">
+        <p className="text-secondary max-w-2xl mx-auto">
           Vowena the smart contract costs nothing to use. You are paying for managed billing automation, analytics, and the dashboard that saves you from building infrastructure.
         </p>
       </div>
@@ -86,7 +86,7 @@ export default function PricingPage() {
               <div className="flex items-center gap-2 mb-3">
                 <h3 className="text-sm font-semibold text-foreground">{tier.name}</h3>
                 {"badge" in tier && tier.badge && (
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-success bg-success-subtle px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-success bg-success-subtle px-2 py-0.5 rounded-full">
                     {tier.badge as string}
                   </span>
                 )}

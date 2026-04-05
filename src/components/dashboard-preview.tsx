@@ -99,7 +99,7 @@ export function DashboardFeatureCards() {
   return (
     <div className="space-y-4">
       <div className="rounded-xl border border-border bg-elevated p-5">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted mb-4">What your subscribers see</p>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted mb-4">What your subscribers see</p>
         <div className="rounded-lg border border-border bg-background p-4">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
@@ -125,7 +125,7 @@ export function DashboardFeatureCards() {
       </div>
 
       <div className="rounded-xl border border-border bg-elevated p-5">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted mb-3">Billing history</p>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted mb-3">Billing history</p>
         <div className="space-y-2">
           {[
             { date: "Apr 15", amount: "$29.99", status: "Paid" },
@@ -143,7 +143,7 @@ export function DashboardFeatureCards() {
       </div>
 
       <div className="rounded-xl border border-border bg-elevated p-5">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted mb-3">Subscriber controls</p>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted mb-3">Subscriber controls</p>
         <p className="text-xs text-secondary leading-relaxed mb-3">
           Subscribers can view history, manage their subscription, or cancel anytime. No emails, no phone calls. Direct on-chain.
         </p>

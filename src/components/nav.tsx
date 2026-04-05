@@ -61,7 +61,7 @@ export function Nav() {
           <div className="pt-3 flex items-center gap-3">
             <Link
               href="https://app.vowena.xyz"
-              className="inline-flex items-center h-9 px-5 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors"
+              className="inline-flex items-center h-9 px-5 text-xs font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors"
             >
               Launch app
             </Link>

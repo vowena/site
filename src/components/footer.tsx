@@ -19,7 +19,7 @@ export function Footer() {
 
           {/* Product */}
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted mb-4">Product</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted mb-4">Product</p>
             <ul className="space-y-2.5">
               <li><Link href="/pricing" className="text-sm text-secondary hover:text-foreground transition-colors">Pricing</Link></li>
               <li><Link href="/docs" className="text-sm text-secondary hover:text-foreground transition-colors">Documentation</Link></li>
@@ -29,7 +29,7 @@ export function Footer() {
 
           {/* Developers */}
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted mb-4">Developers</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted mb-4">Developers</p>
             <ul className="space-y-2.5">
               <li><Link href="https://github.com/vowena" className="text-sm text-secondary hover:text-foreground transition-colors">GitHub</Link></li>
               <li><Link href="https://www.npmjs.com/package/vowena" className="text-sm text-secondary hover:text-foreground transition-colors">npm</Link></li>
@@ -39,7 +39,7 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted mb-4">Company</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted mb-4">Company</p>
             <ul className="space-y-2.5">
               <li><Link href="/blog" className="text-sm text-secondary hover:text-foreground transition-colors">Blog</Link></li>
               <li><Link href="https://x.com/vowena" className="text-sm text-secondary hover:text-foreground transition-colors">X (Twitter)</Link></li>

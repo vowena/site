@@ -7,7 +7,7 @@ export default function BlogPage() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-24">
       <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3">Blog</p>
-      <h1 className="text-3xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
+      <h1 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
         Building the future of payments
       </h1>
       <p className="text-secondary mb-16 max-w-lg">

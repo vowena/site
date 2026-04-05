@@ -89,7 +89,7 @@ export default function Home() {
 
         {/* Logo marquee */}
         <div className="border-t border-border py-6">
-          <p className="text-center text-[10px] uppercase tracking-[0.14em] text-muted mb-4">Powered by the Stellar ecosystem</p>
+          <p className="text-center text-[11px] uppercase tracking-[0.14em] text-muted mb-4">Powered by the Stellar ecosystem</p>
           <Marquee>
             <StellarLogo className="h-7 w-auto text-muted/50" />
             <USDCLogo className="h-7 w-auto" />
@@ -331,17 +331,17 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 py-20 sm:py-28 relative">
           <div className="max-w-3xl mx-auto text-center">
             <VowenaSymbol className="w-10 h-10 text-accent mx-auto mb-6" />
-            <h2 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.03em" }}>
+            <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
               Your first subscriber is one<br className="hidden sm:block" /> plan away
             </h2>
-            <p className="text-lg text-secondary max-w-lg mx-auto mb-10">
+            <p className="text-secondary max-w-lg mx-auto mb-10">
               Free during beta. No credit card. No KYC. Connect your Stellar wallet and create your first subscription plan in under 60 seconds.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-              <Link href="https://app.vowena.xyz" className="inline-flex items-center h-12 px-8 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+              <Link href="https://app.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
                 Create your first plan
               </Link>
-              <Link href="/pricing" className="inline-flex items-center h-12 px-8 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
+              <Link href="/pricing" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
                 View pricing
               </Link>
             </div>
