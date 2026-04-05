@@ -1,0 +1,115 @@
+---
+title: "How Vowena's pull-based billing works under the hood"
+description: "A technical deep dive into the token allowance mechanism, the auth tree model, and why we pre-check balances before calling transfer_from."
+date: "2025-03-25"
+author: "Vowena"
+---
+
+This post is for developers who want to understand exactly how Vowena charges subscribers without requiring a new signature each billing period. If you have worked with Soroban smart contracts or the SEP-41 token standard, you will find this familiar. If not, this will explain the core mechanism that makes trustless subscriptions possible.
+
+## The allowance mechanism
+
+Every SEP-41 token on Stellar (including USDC) implements an `approve()` function. This lets a token holder authorize another address to spend up to a certain amount of their tokens, with an expiration ledger.
+
+```
+token.approve(from, spender, amount, expiration_ledger)
+```
+
+When a subscriber calls Vowena's `subscribe()` function, the contract internally calls `token.approve()` with:
+
+- **from**: the subscriber's address
+- **spender**: the Vowena contract address
+- **amount**: `price_ceiling * periods` (the maximum the contract could ever charge)
+- **expiration_ledger**: calculated based on the subscription duration, capped at ~347 days
+
+The subscriber's wallet (Freighter, xBull, etc.) displays this approval clearly: "Allow contract X to spend up to Y USDC until ledger Z." The subscriber sees exactly what they are authorizing before they sign.
+
+## The auth tree
+
+Here is the part that confuses most developers: how does one signature cover both the `subscribe()` call and the nested `token.approve()` call?
+
+Soroban uses an **auth tree** model. When Contract A calls Contract B, and both require authorization from the same address, the wallet bundles them into a single signature. The tree looks like:
+
+```
+subscriber signs:
+  -> vowena.subscribe(subscriber, plan_id)
+    -> token.approve(subscriber, vowena_contract, allowance, expiry)
+```
+
+The subscriber's wallet sees the full tree and signs the root. One signature, two authorizations. This is not a special Vowena feature - it is how Soroban's authorization model works by design.
+
+## How charge() pulls funds
+
+Once the allowance is set, the `charge()` function can transfer tokens without any subscriber involvement:
+
+```rust
+token.transfer_from(
+    &contract_addr,   // spender (Vowena contract)
+    &sub.subscriber,  // from
+    &plan.merchant,   // to
+    &plan.amount,     // amount
+);
+```
+
+`transfer_from()` only requires `spender.require_auth()`. Since the Vowena contract IS the spender, and the contract itself is executing this code, the auth is satisfied automatically. No subscriber signature needed.
+
+## Why we pre-check before transfer_from
+
+This is the most critical design decision in the entire contract. Before calling `transfer_from()`, we check:
+
+```rust
+let balance = token_client.balance(&sub.subscriber);
+let allowance = token_client.allowance(&sub.subscriber, &contract_addr);
+
+if balance < plan.amount || allowance < plan.amount {
+    // Record failure, emit event, return false
+    sub.failed_at = now;
+    return false;
+}
+```
+
+**Why not just call `transfer_from()` and handle the error?**
+
+Because Soroban does not have try/catch. If `transfer_from()` panics (insufficient balance or allowance), the **entire transaction reverts**. Every state change the contract made before the call is rolled back. The contract cannot record `failed_at`. It cannot emit a `ChargeFailed` event. It cannot trigger the grace period state machine.
+
+By pre-checking, we get graceful failure handling:
+
+- The failure timestamp is recorded
+- A `ChargeFailed` event is emitted (indexable by the dashboard)
+- The grace period state machine kicks in
+- The function returns `false` instead of panicking
+
+This is the difference between "the charge failed silently and nobody knows why" and "the charge failed, here is when it failed, and here is how long the subscriber has to fix it."
+
+## The grace period state machine
+
+When a charge fails, the subscription enters a configurable grace window:
+
+1. **First failure**: `failed_at = now`, status stays Active
+2. **During grace period**: each `charge()` call retries. If the subscriber funds their wallet, the next call succeeds and clears `failed_at`.
+3. **Grace expires**: status transitions to Paused
+4. **One more billing period while Paused**: status transitions to Cancelled
+
+This gives subscribers time to fix balance issues without losing their subscription. The merchant configures the grace period at plan creation - typically 30 days.
+
+## Permissionless charging
+
+`charge()` has no `require_auth()`. Anyone can call it. This is intentional.
+
+The function only transfers funds from subscriber to merchant. The caller gains nothing financially. But they provide a service: triggering billing execution. This enables:
+
+- **Keeper bots** that automate billing
+- **Dashboard-managed billing** that runs on a cron schedule
+- **Third-party keeper services** that charge a fee for reliable billing execution
+
+The caller pays the Stellar transaction fee (~$0.00001). The merchant receives the subscription payment. The subscriber is charged exactly the plan amount. No room for exploitation.
+
+## What is next
+
+Read the [full API reference](/docs) for every contract function, or install the SDK and start building:
+
+```bash
+npm install vowena
+```
+
+The source code is on [GitHub](https://github.com/vowena/protocol). PRs welcome.

@@ -1,0 +1,72 @@
+---
+title: "Building Vowena: from idea to testnet in 4 weeks"
+description: "The story of building the first recurring payment protocol on Stellar. From Lagos, with a laptop, a vision, and a lot of late nights."
+date: "2025-04-05"
+author: "Vowena"
+---
+
+Four weeks ago, Vowena was a markdown file. Today it is a deployed Soroban smart contract with 29 passing tests, a TypeScript SDK on npm, a full-stack dashboard, and 40 pages of documentation. This is the story of how it happened.
+
+## The problem was obvious
+
+I was building on Stellar and needed to charge users monthly for an API service. The solution on traditional rails is simple: Stripe, a webhook, done. On Stellar? Nothing. No subscription primitive. No recurring payment standard. No protocol.
+
+I looked at what Ethereum had tried. EIP-1337 and EIP-948 both died because gas fees made micro-billing impractical. Chainlink Automation exists but requires significant infrastructure. Nobody had solved this on any chain in a way that actually works for small amounts.
+
+Then I looked at Stellar's numbers: $0.00001 per transaction, 5-second finality, native USDC, and Soroban's SEP-41 token allowance mechanism. The math worked. On-chain subscriptions were not just possible on Stellar - they were obvious.
+
+## Week 1: The contract
+
+The smart contract is the foundation. Everything depends on it being correct, because it handles real money.
+
+I started with the data model: Plans (billing templates) and Subscriptions (the on-chain record linking a subscriber to a plan). The key design decision was making `charge()` permissionless - anyone can call it, but only the merchant receives funds. This separates billing execution from billing authorization.
+
+The hardest problem was handling failed charges. In Soroban, if `transfer_from()` panics, the entire transaction reverts. You cannot catch the error. So the contract pre-checks `balance()` and `allowance()` before attempting the transfer. If they are insufficient, it records the failure gracefully and enters the grace period state machine.
+
+By the end of week 1: 9 Rust source files, 17 exported functions, 29 tests, and an 18.5KB WASM binary.
+
+## Week 2: The SDK
+
+A smart contract without a developer-friendly SDK is just documentation. I built the TypeScript SDK to make integration dead simple:
+
+```bash
+npm install vowena
+```
+
+The `VowenaClient` class wraps every contract function. Write methods return assembled XDR for wallet signing. Read methods query state directly. The event poller listens for on-chain billing activity in real time.
+
+The amount conversion utilities (`toStroops` and `fromStroops`) handle the 7-decimal USDC precision so developers never have to think about stroops.
+
+By the end of week 2: the SDK was building to ESM + CJS, type-checking clean, and ready for npm.
+
+## Week 3: The dashboard
+
+The dashboard serves two audiences: merchants who want to click buttons instead of writing code, and subscribers who need a universal view of all their subscriptions.
+
+I built it with Next.js 16, Tailwind CSS, and the Vowena brand system (DM Sans typography, violet primary palette, light-first design). The merchant side has plan CRUD, subscriber management, billing analytics, and keeper controls. The subscriber side has the Universal Subscription Manager - connect your wallet and see every Vowena subscription across every merchant.
+
+The backend indexes Soroban events into a Postgres database for fast querying. The managed keeper runs as a cron job, calling `charge()` for all due subscriptions automatically.
+
+## Week 4: Documentation and polish
+
+Documentation is not an afterthought. For a protocol that handles money, every function, every edge case, and every error code needs to be documented precisely.
+
+40 Mintlify pages cover the protocol architecture, SDK reference, every API function, and dashboard guides for both merchants and subscribers. The blog you are reading now is part of the MDX blog system built into the marketing site.
+
+## What I learned
+
+**Ship the protocol first.** The SDK and dashboard are nice, but the smart contract is what makes Vowena a protocol instead of a product. Anyone can use it without my dashboard. That is the point.
+
+**Pre-check everything.** Soroban does not have try/catch. If your contract calls an external function that might fail, check the preconditions yourself before calling. This applies to any token interaction, any cross-contract call.
+
+**Grace periods matter.** If your first instinct is "insufficient balance = cancel the subscription," you are building for your convenience, not the user's. People run low on funds. Give them time. The grace period state machine (Active with failed_at, then Paused, then Cancelled) handles this correctly.
+
+**Permissionless functions are powerful.** Making `charge()` callable by anyone eliminates single points of failure. The merchant does not need to run a server. A keeper bot can do it. A friend can do it. The protocol is resilient because billing execution is decoupled from billing authorization.
+
+## What is next
+
+Mainnet deployment, pilot merchants, and the Stellar Community Fund submission. The protocol works. The SDK works. The dashboard works. Now it is time to put it in front of real users and see what breaks.
+
+If you want to build with Vowena, start with the [documentation](/docs). If you want to contribute, the [source code](https://github.com/vowena) is open. If you want to follow along, the [blog](/blog) will have regular updates.
+
+Let us build the Stripe of Stellar.
