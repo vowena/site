@@ -22,24 +22,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      {/* Cover + header */}
+      {/* Header */}
       <section className="relative overflow-hidden">
-        {/* Cover image as background that fades out */}
-        {post.cover && (
-          <div className="absolute inset-0 -z-10">
-            <Image src={post.cover} alt="" fill className="object-cover" priority />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/[0.85] via-background/[0.92] to-background" />
-            <div className="absolute inset-0 bg-background/[0.4]" />
-          </div>
-        )}
-        {!post.cover && (
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 opacity-[0.04] dark:opacity-[0.025]" style={{ backgroundImage: "linear-gradient(var(--border-default) 1px, transparent 1px), linear-gradient(90deg, var(--border-default) 1px, transparent 1px)", backgroundSize: "64px 64px" }} />
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
-          </div>
-        )}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 opacity-[0.04] dark:opacity-[0.025]" style={{ backgroundImage: "linear-gradient(var(--border-default) 1px, transparent 1px), linear-gradient(90deg, var(--border-default) 1px, transparent 1px)", backgroundSize: "64px 64px" }} />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+        </div>
 
-        <div className="max-w-2xl mx-auto px-6 pt-16 sm:pt-24 pb-12 sm:pb-16">
+        <div className="max-w-2xl mx-auto px-6 pt-16 sm:pt-24 pb-10 sm:pb-12">
           <Link href="/blog" className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-accent transition-colors mb-8">
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
             Back to blog
@@ -64,6 +54,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
       </section>
+
+      {/* Cover image */}
+      {post.cover && (
+        <section className="border-t border-border">
+          <div className="max-w-3xl mx-auto px-6 py-8">
+            <div className="relative w-full aspect-[2.2/1] rounded-xl overflow-hidden border border-border">
+              <Image src={post.cover} alt={post.title} fill className="object-cover" priority />
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Article body */}
       <section className="border-t border-border">

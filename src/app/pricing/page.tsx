@@ -130,22 +130,22 @@ export default function PricingPage() {
 
           {/* Why go Pro? */}
           <div className="mt-12 rounded-xl border border-border bg-elevated overflow-hidden">
-            <div className="grid grid-cols-[1fr_1fr_1fr] text-[11px] font-semibold uppercase tracking-[0.14em] text-muted border-b border-border">
-              <div className="px-5 py-3" />
+            <div className="grid grid-cols-[1.2fr_1fr_1fr] text-[11px] font-semibold uppercase tracking-[0.14em] text-muted border-b border-border">
+              <div className="px-5 py-3 text-accent">Why go Pro?</div>
               <div className="px-5 py-3">Open Source</div>
               <div className="px-5 py-3 text-accent">Pro</div>
             </div>
             <div className="divide-y divide-border">
               {[
-                { thing: "Billing", free: "Run your own keeper", pro: "Automated 24/7" },
-                { thing: "Analytics", free: "Query blockchain directly", pro: "Real-time dashboards" },
-                { thing: "Subscribers", free: "Build your own UI", pro: "Full dashboard + refunds" },
-                { thing: "Support", free: "GitHub issues", pro: "Priority email" },
+                { thing: "Billing automation", free: "You build and maintain a keeper bot that calls charge() on a schedule", pro: "Charges run automatically 24/7 with retries and grace period handling" },
+                { thing: "Revenue insights", free: "Query raw blockchain events and calculate MRR, churn, and growth yourself", pro: "Real-time dashboards with MRR, churn rate, failed charges, and trends" },
+                { thing: "Subscriber tools", free: "Build your own interface for viewing subscribers and processing refunds", pro: "Full management dashboard with billing history and one-click refunds" },
+                { thing: "Support", free: "Community support via GitHub issues and discussions", pro: "Direct access to the Vowena team with priority response times" },
               ].map((row) => (
-                <div key={row.thing} className="grid grid-cols-[1fr_1fr_1fr] text-sm">
-                  <div className="px-5 py-3.5 font-medium text-foreground">{row.thing}</div>
-                  <div className="px-5 py-3.5 text-muted">{row.free}</div>
-                  <div className="px-5 py-3.5 text-foreground font-medium">{row.pro}</div>
+                <div key={row.thing} className="grid grid-cols-[1.2fr_1fr_1fr] text-sm">
+                  <div className="px-5 py-4 font-medium text-foreground">{row.thing}</div>
+                  <div className="px-5 py-4 text-muted leading-relaxed">{row.free}</div>
+                  <div className="px-5 py-4 text-foreground leading-relaxed">{row.pro}</div>
                 </div>
               ))}
             </div>
@@ -162,10 +162,10 @@ export default function PricingPage() {
           </h2>
           <div className="space-y-0">
             {[
-              { q: "Can I use Vowena without paying?", a: "Yes. The protocol and SDK are completely free and open source. Deploy the contract, build your own dashboard, run your own keeper. Pro is for teams who want managed infrastructure." },
-              { q: "What happens after beta ends?", a: "Pro will be $49/month. Everyone who signs up during beta keeps their current pricing for the first 6 months after launch." },
-              { q: "Can I switch plans?", a: "Upgrade or downgrade anytime. Your on-chain data stays the same regardless of which tier you use." },
-              { q: "What if I stop paying?", a: "Your plans and subscriptions remain on-chain. You just lose the managed keeper and analytics. Switch to running your own keeper or use the open source tools." },
+              { q: "Can I use Vowena without paying anything?", a: "Absolutely. The Vowena smart contract and TypeScript SDK are completely free and open source. You can deploy the contract, create plans, subscribe users, and run your own billing keeper without paying us a cent. The Pro tier exists for teams who would rather focus on their product and let us handle the billing infrastructure." },
+              { q: "What happens when beta ends?", a: "Pro will move to $49/month. Everyone who signs up during the beta period keeps their current pricing locked for the first 3 months after we officially launch. We will give you plenty of notice before anything changes." },
+              { q: "Can I switch between plans?", a: "Yes, at any time. Your plans, subscriptions, and all on-chain data are completely independent of which tier you are on. Upgrading gives you access to the dashboard and automation instantly. Downgrading just means you go back to running things yourself." },
+              { q: "What happens if I stop paying for Pro?", a: "Nothing breaks. Your plans and subscriptions stay exactly where they are on the blockchain. Subscribers can still be charged and can still cancel. You just lose access to the managed keeper, analytics dashboards, and priority support. You can always switch to running your own keeper bot using the open source SDK." },
             ].map((item) => (
               <details key={item.q} className="group border-b border-border">
                 <summary className="flex items-center justify-between py-5 cursor-pointer list-none">
