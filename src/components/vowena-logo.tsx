@@ -19,7 +19,7 @@ export function VowenaLogo({ size = "default" }: { size?: "sm" | "default" | "lg
   return (
     <div className="flex items-center gap-2">
       <VowenaSymbol className={`${s.icon} text-accent`} />
-      <span className={`${s.text} font-semibold text-foreground`} style={{ letterSpacing: "-0.03em" }}>vowena</span>
+      <span className={`${s.text} font-semibold text-foreground`} style={{ letterSpacing: "-0.03em" }}>Vowena</span>
     </div>
   );
 }
