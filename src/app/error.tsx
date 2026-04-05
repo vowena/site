@@ -2,15 +2,20 @@
 
 import { VowenaSymbol } from "@/components/vowena-logo";
 
-export default function Error({ reset }: { error: Error; reset: () => void }) {
+export default function Error({
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] px-6 text-center">
-      <VowenaSymbol className="w-12 h-12 text-error/30 mb-8" />
+      <VowenaSymbol className="w-12 h-12 text-error/30 mb-6" />
       <p className="font-mono text-sm text-error mb-2">Error</p>
       <h1 className="text-2xl font-semibold text-foreground tracking-tight mb-3" style={{ letterSpacing: "-0.02em" }}>
         Something went wrong
       </h1>
-      <p className="text-sm text-muted mb-8 max-w-sm">
+      <p className="text-secondary mb-8 max-w-sm">
         An unexpected error occurred. Please try again.
       </p>
       <button

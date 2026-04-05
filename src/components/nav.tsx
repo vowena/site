@@ -1,15 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { VowenaLogo } from "./vowena-logo";
 import { ThemeToggle } from "./theme-toggle";
 
 export function Nav() {
+  const [open, setOpen] = useState(false);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
         <Link href="/"><VowenaLogo /></Link>
-        <div className="flex items-center gap-6">
+
+        {/* Desktop */}
+        <div className="hidden sm:flex items-center gap-6">
           <Link href="/pricing" className="text-sm text-muted hover:text-foreground transition-colors">Pricing</Link>
           <Link href="/blog" className="text-sm text-muted hover:text-foreground transition-colors">Blog</Link>
           <Link href="/docs" className="text-sm text-muted hover:text-foreground transition-colors">Docs</Link>
@@ -24,7 +29,46 @@ export function Nav() {
             Launch app
           </Link>
         </div>
+
+        {/* Mobile hamburger */}
+        <button className="sm:hidden p-2 text-muted" onClick={() => setOpen(!open)} aria-label="Menu">
+          {open ? (
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+          ) : (
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/></svg>
+          )}
+        </button>
       </div>
+
+      {/* Mobile menu */}
+      {open && (
+        <div className="sm:hidden border-t border-border bg-background/95 backdrop-blur-xl px-6 py-4 space-y-1">
+          {[
+            { href: "/pricing", label: "Pricing" },
+            { href: "/blog", label: "Blog" },
+            { href: "/docs", label: "Docs" },
+            { href: "https://github.com/vowena", label: "GitHub" },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className="block py-2.5 text-sm text-secondary hover:text-foreground transition-colors"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <div className="pt-3 flex items-center gap-3">
+            <Link
+              href="https://app.vowena.xyz"
+              className="inline-flex items-center h-9 px-5 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors"
+            >
+              Launch app
+            </Link>
+            <ThemeToggle />
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

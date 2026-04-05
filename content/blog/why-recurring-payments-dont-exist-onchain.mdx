@@ -1,59 +1,71 @@
 ---
 title: "Why recurring payments don't exist on-chain (and how we fixed it)"
-description: "Ethereum tried with EIP-1337 and EIP-948. Both died. Here is why on-chain subscriptions never worked before, and what makes Stellar different."
+description: "Ethereum tried with EIP-1337 and EIP-948. Both died because gas fees killed the economics. Stellar changes everything."
 date: "2025-04-01"
-author: "Vowena"
+author: "Tunde Adebayo"
 ---
 
-Recurring payments are the backbone of the modern internet economy. Every SaaS product, streaming service, and membership platform runs on them. Stripe processes billions in subscription revenue. Yet on the blockchain, this primitive simply does not exist.
+Here is a number that should bother you: **zero.**
 
-Not for lack of trying.
+That is how many blockchains have a working, production-grade subscription billing primitive. Not Ethereum. Not Solana. Not Polygon. Zero.
 
-## The Ethereum attempts
+This is not because nobody tried. It is because every previous attempt ran into the same wall. Let me walk you through what happened, why it failed, and what finally makes it possible.
 
-**EIP-1337** proposed a subscription standard for Ethereum in 2018. The idea was sound: a subscriber pre-authorizes a contract to pull tokens on a schedule. The problem was gas fees. At $2-10 per transaction on Ethereum L1, charging someone $9.99/month for a newsletter subscription costs more in gas than the subscription itself. The economics never worked.
+## The graveyard of Ethereum attempts
 
-**EIP-948** took a different approach, proposing a token standard with built-in subscription support. It never gained traction because it required tokens to implement a new interface. Existing tokens like USDC would need to be redeployed. That is a non-starter.
+In 2018, Kevin Owocki proposed **EIP-1337** - a subscription standard for Ethereum. The concept was elegant: a subscriber pre-authorizes a smart contract to pull tokens on a recurring schedule. The contract calls `transferFrom()` each period. Clean. Simple. Dead on arrival.
 
-**Chainlink Automation** enables cron-like triggers on EVM chains, but it requires significant infrastructure setup, Chainlink token staking, and still faces the gas fee problem for micro-billing.
+The reason? A single Ethereum L1 transaction costs $2-10 in gas. Sometimes $50 during congestion. If you are charging someone $9.99/month for a newsletter, the gas fee alone is more than the subscription. The economics do not work. They never worked. EIP-1337 was abandoned.
 
-Every attempt hit the same wall: **transaction costs make micro-billing impractical on expensive chains.**
+**EIP-948** tried a different angle - baking subscription support directly into the token standard. But this required every token to implement a new interface. Existing tokens like USDC, DAI, and WETH would need to be redeployed. That is a non-starter when billions of dollars sit in contracts that cannot be upgraded.
 
-## What makes Stellar different
+**Chainlink Automation** came later, offering cron-like execution on EVM chains. But it requires LINK staking, keeper network registration, and still faces the gas cost problem on L1. On L2s, gas is cheaper but you lose composability with mainnet liquidity.
 
-Stellar is the first blockchain where the economics of on-chain subscriptions actually work:
+Every attempt hit the same wall: **transaction costs destroy micro-billing economics.**
 
-- **Transaction fees are $0.00001.** That is five zeros after the decimal. You can charge a $1 subscription and the fee is negligible.
-- **Finality is 5 seconds.** No waiting 12 seconds for a block confirmation, no 15-minute finality windows.
-- **USDC is native.** Circle issues USDC directly on Stellar as a Stellar Asset Contract. No wrapped tokens, no bridges, no liquidity fragmentation.
-- **Soroban has token allowances.** The SEP-41 token standard includes `approve()` and `transfer_from()` - the exact primitives needed for pull-based billing.
+## What changed with Stellar
 
-This is not a marginal improvement. This is the difference between "impossible" and "obvious."
+Stellar was not designed to solve this problem specifically. But its properties make on-chain subscriptions not just possible - they make them obvious:
 
-## How Vowena uses this
+**$0.00001 per transaction.** Five zeros after the decimal point. You can bill a $1 subscription and the fee is invisible. You can bill daily. You can bill hourly. The economics always work.
 
-Vowena is a single Soroban smart contract that implements the entire subscription lifecycle:
+**5-second finality.** No waiting for block confirmations. No 12-minute epochs. The subscriber sees the charge confirmed in their wallet within seconds.
 
-1. A merchant creates a plan (token, amount, period, price ceiling)
-2. A subscriber calls `subscribe()`, which sets a token allowance via `approve()`
-3. Anyone calls `charge()` when billing is due, which triggers `transfer_from()`
+**Native USDC.** Circle issues USDC directly on Stellar as a Stellar Asset Contract. No wrapped tokens. No bridges. No liquidity fragmentation. The stablecoin your subscribers hold is the stablecoin your contract charges.
 
-The subscriber signs **once**. The contract executes within that authorization for every subsequent billing period. No new signatures, no wallet popups, no friction.
+**SEP-41 token allowances.** This is the technical key. Every Stellar token implements `approve()` and `transfer_from()`. A wallet holder can authorize another address to spend up to X tokens until ledger Y. A smart contract can then pull funds each billing period without any new wallet interaction.
 
-The key insight: `transfer_from()` only requires the spender (the Vowena contract) to authenticate. Since the subscriber already approved the contract as a spender, the contract can pull funds autonomously. This is the pull model that makes subscriptions work.
+## From "impossible" to "five lines of code"
 
-## What took so long?
+With Vowena, subscribing to a plan looks like this:
 
-Soroban launched in 2024. The allowance mechanism was available from day one. But nobody built a subscription protocol on it because:
+```typescript
+import { VowenaClient, toStroops } from "vowena"
 
-1. The developer ecosystem was still small
-2. Most Stellar builders were focused on payments and DeFi, not recurring billing
-3. The auth model (how `require_auth` works with nested contract calls) required deep understanding of Soroban's auth tree
+const xdr = await client.buildSubscribe(wallet.address, planId)
+// Subscriber signs once. Billing recurs automatically.
+```
 
-Vowena fills this gap. The protocol is open source, the SDK is on npm, and the documentation covers every edge case from grace periods to migrations.
+That one signature covers both the contract call and the token approval. The subscriber's wallet shows exactly what they are authorizing: "Allow this contract to spend up to X USDC until ledger Y." Transparent. Auditable. Trustless.
 
-## What is next
+Every subsequent billing period, a keeper (any automated script, or even a person) calls `charge()`. The contract verifies the conditions are met, calls `transfer_from()`, and moves USDC from subscriber to merchant. No new signatures. No wallet popups. No friction.
 
-The protocol is live on Stellar testnet. We are working toward mainnet deployment, pilot merchants, and submission to the Stellar Community Fund. The goal is simple: make Vowena the standard for recurring payments on Stellar, the way Stripe is the standard on the traditional web.
+## What this enables
 
-The infrastructure is ready. The subscription layer was the missing piece. Now it exists.
+The obvious use cases are SaaS subscriptions and membership billing in USDC. But the primitives are more powerful than that:
+
+- **Micro-subscriptions.** Bill $0.01/day for API access. The fee is negligible.
+- **Creator memberships.** A podcast charges $3/month in USDC with a 7-day free trial.
+- **DeFi management fees.** A yield vault charges 0.1% monthly, pulled directly from deposited assets.
+- **Nonprofit recurring donations.** Automated monthly giving with on-chain receipts.
+- **Cross-border subscriptions.** A user in Lagos subscribes to a service in San Francisco. No currency conversion. No international card fees. Just USDC on Stellar.
+
+## The protocol is live
+
+Vowena is deployed on Stellar testnet today. The smart contract handles the full subscription lifecycle: plan creation, subscriber enrollment, automated billing, grace periods for failed charges, price-protected migrations, and instant refunds.
+
+The [SDK is on npm](https://www.npmjs.com/package/vowena). The [documentation](/docs) covers every function, every edge case, every error code. The source code is [open on GitHub](https://github.com/vowena).
+
+We are building the Stripe of Stellar. The infrastructure is ready. The subscription layer was the missing piece.
+
+Now it exists.
