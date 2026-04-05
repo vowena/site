@@ -59,21 +59,23 @@ export function Nav() {
       {open && (
         <div className="sm:hidden bg-background border-t border-border">
           <div className="px-4 pt-6 pb-8 flex flex-col items-center gap-5">
-            {[
-              { href: "/pricing", label: "Pricing" },
-              { href: "/blog", label: "Blog" },
-              { href: "/docs", label: "Docs" },
-              { href: "https://github.com/vowena", label: "GitHub" },
-            ].map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="text-base font-medium text-secondary hover:text-foreground transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
+            <div className="w-full max-w-[200px] divide-y divide-border/40">
+              {[
+                { href: "/pricing", label: "Pricing" },
+                { href: "/blog", label: "Blog" },
+                { href: "/docs", label: "Docs" },
+                { href: "https://github.com/vowena", label: "GitHub" },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-3 text-center text-sm font-medium text-secondary hover:text-foreground transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
             <Link
               href="https://dashboard.vowena.xyz"
               onClick={() => setOpen(false)}
