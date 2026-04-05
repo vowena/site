@@ -2,6 +2,7 @@ import Link from "next/link";
 import { VowenaLogo } from "@/components/vowena-logo";
 import { CopyButton } from "@/components/copy-button";
 import { CodeBlock } from "@/components/code-block";
+import { InstallTabs } from "@/components/install-tabs";
 import { Marquee } from "@/components/marquee";
 import { HeroVisual, DashboardFeatureCards } from "@/components/dashboard-preview";
 import { LinearLogo, NotionLogo, SlackLogo, SpotifyLogo, DropboxLogo, DiscordLogo } from "@/components/partner-logos";
@@ -294,8 +295,8 @@ export default function Home() {
                 The dashboard is optional. Install the SDK and integrate subscription billing directly into your product. Full TypeScript support, event polling, and a standalone keeper bot.
               </p>
 
-              <div className="flex items-center gap-3 mb-6">
-                <CopyButton text="npm install vowena" />
+              <div className="mb-6">
+                <InstallTabs />
               </div>
 
               <div className="flex flex-wrap gap-3 text-xs text-muted">
