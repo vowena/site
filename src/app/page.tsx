@@ -2,6 +2,7 @@ import Link from "next/link";
 import { VowenaSymbol } from "@/components/vowena-logo";
 import { CopyButton } from "@/components/copy-button";
 import { CodeBlock } from "@/components/code-block";
+import { Marquee } from "@/components/marquee";
 
 const heroCode = `import { VowenaClient, toStroops, NETWORKS } from "vowena"
 
@@ -23,10 +24,10 @@ const sub = await client.buildSubscribe(
   planId
 )`;
 
-// 3 steps - each exactly 4 lines for visual consistency
 const step1Code = `const plan = await client.buildCreatePlan({
   amount: toStroops("9.99"),
   period: SECONDS_PER_MONTH,
+  priceCeiling: toStroops("14.99"),
 })`;
 
 const step2Code = `const sub = await client.buildSubscribe(
@@ -39,25 +40,25 @@ const step3Code = `const tx = await client.buildCharge(
   subId // anyone can call
 )`;
 
+function LogoText({ name }: { name: string }) {
+  return <span className="text-lg font-semibold text-muted/40 whitespace-nowrap tracking-tight">{name}</span>;
+}
+
 export default function Home() {
   return (
     <>
       {/* Hero */}
       <section className="relative overflow-hidden">
+        {/* Background: subtle grid + top highlight line */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-[-20%] left-[20%] w-[600px] h-[600px] bg-violet-300/20 dark:bg-violet-500/10 rounded-full blur-[100px]" />
-          <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-violet-400/10 dark:bg-accent/[0.06] rounded-full blur-[80px]" />
-          <div className="absolute bottom-[-20%] left-[-5%] w-[400px] h-[400px] bg-mint-500/10 dark:bg-mint-500/[0.04] rounded-full blur-[80px]" />
-          <div className="absolute inset-0 opacity-[0.06] dark:opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, var(--neutral-300) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+          <div className="absolute inset-0 opacity-[0.04] dark:opacity-[0.025]" style={{ backgroundImage: "linear-gradient(var(--border-default) 1px, transparent 1px), linear-gradient(90deg, var(--border-default) 1px, transparent 1px)", backgroundSize: "64px 64px" }} />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
         </div>
 
-        <div className="max-w-6xl mx-auto px-6 pt-20 sm:pt-28 pb-16 sm:pb-24">
+        <div className="max-w-6xl mx-auto px-6 pt-20 sm:pt-28 pb-8 sm:pb-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-12 items-start">
             <div className="lg:pt-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-elevated text-xs font-medium text-muted mb-8">
-                <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
-                Live on Stellar Testnet
-              </div>
+              <p className="text-xs font-medium text-accent mb-6 tracking-wide uppercase">Stellar Protocol</p>
 
               <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-semibold text-foreground leading-[1.08] tracking-tight whitespace-nowrap" style={{ letterSpacing: "-0.03em" }}>
                 Subscription billing,<br />
@@ -76,49 +77,54 @@ export default function Home() {
                 <Link href="/docs" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
                   Read docs
                 </Link>
+                <CopyButton text="npm install vowena" />
               </div>
 
               <div className="flex flex-wrap items-center gap-6 sm:gap-8 mt-10 text-sm text-muted">
                 <div className="flex items-center gap-2">
-                  <span className="font-mono text-foreground text-base sm:text-lg font-semibold">$0.00001</span>
+                  <span className="font-mono text-foreground text-base font-semibold">$0.00001</span>
                   <span>per tx</span>
                 </div>
                 <div className="w-px h-4 bg-border hidden sm:block" />
                 <div className="flex items-center gap-2">
-                  <span className="font-mono text-foreground text-base sm:text-lg font-semibold">5s</span>
+                  <span className="font-mono text-foreground text-base font-semibold">5s</span>
                   <span>finality</span>
                 </div>
                 <div className="w-px h-4 bg-border hidden sm:block" />
                 <div className="flex items-center gap-2">
-                  <span className="font-mono text-foreground text-base sm:text-lg font-semibold">USDC</span>
+                  <span className="font-mono text-foreground text-base font-semibold">USDC</span>
                   <span>native</span>
                 </div>
               </div>
-
-              <div className="mt-6">
-                <CopyButton text="npm install vowena" />
-              </div>
             </div>
 
-            {/* Hero right: the full code showcase */}
-            <div className="relative">
-              <div className="absolute inset-0 -z-10 bg-violet-400/10 dark:bg-accent/[0.06] rounded-3xl blur-[50px] scale-95" />
+            {/* Hero code */}
+            <div>
               <CodeBlock code={heroCode} filename="billing.ts" />
             </div>
           </div>
         </div>
+
+        {/* Logo marquee */}
+        <div className="border-t border-border py-8">
+          <Marquee>
+            <LogoText name="Stellar" />
+            <LogoText name="USDC" />
+            <LogoText name="Circle" />
+            <LogoText name="Soroban" />
+            <LogoText name="MoneyGram" />
+            <LogoText name="Freighter" />
+            <LogoText name="Lobstr" />
+            <LogoText name="StellarX" />
+            <LogoText name="Beans App" />
+            <LogoText name="Lumenswap" />
+          </Marquee>
+        </div>
       </section>
 
       {/* How it works */}
-      <section className="relative border-t border-border overflow-hidden">
-        <svg className="absolute top-8 right-[-80px] w-[350px] h-[350px] opacity-[0.08] dark:opacity-[0.05] text-accent" viewBox="0 0 200 200" fill="none">
-          <circle cx="100" cy="100" r="90" stroke="currentColor" strokeWidth="0.5"/>
-          <circle cx="100" cy="100" r="65" stroke="currentColor" strokeWidth="0.5"/>
-          <circle cx="100" cy="100" r="40" stroke="currentColor" strokeWidth="0.5"/>
-          <circle cx="100" cy="100" r="15" stroke="currentColor" strokeWidth="0.5"/>
-        </svg>
-
-        <div className="max-w-6xl mx-auto px-6 py-16 sm:py-24 relative">
+      <section className="border-t border-border">
+        <div className="max-w-6xl mx-auto px-6 py-16 sm:py-24">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3">How it works</p>
           <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
             Three steps to recurring revenue
@@ -144,88 +150,61 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features - bento grid */}
-      <section className="relative border-t border-border bg-surface overflow-hidden">
-        <svg className="absolute left-0 top-0 w-full h-full opacity-[0.06] dark:opacity-[0.03]" preserveAspectRatio="none" viewBox="0 0 1200 800" fill="none">
-          <line x1="0" y1="0" x2="1200" y2="800" stroke="var(--accent)" strokeWidth="1"/>
-          <line x1="200" y1="0" x2="1200" y2="600" stroke="var(--accent)" strokeWidth="0.5"/>
-          <line x1="400" y1="0" x2="1200" y2="400" stroke="var(--accent)" strokeWidth="0.3"/>
-          <line x1="0" y1="200" x2="800" y2="800" stroke="var(--accent)" strokeWidth="0.5"/>
-          <line x1="0" y1="400" x2="600" y2="800" stroke="var(--accent)" strokeWidth="0.3"/>
-        </svg>
-
-        <div className="max-w-6xl mx-auto px-6 py-16 sm:py-24 relative">
+      {/* Features - bento */}
+      <section className="border-t border-border bg-surface">
+        <div className="max-w-6xl mx-auto px-6 py-16 sm:py-24">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3">Built for real billing</p>
           <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-12 sm:mb-16" style={{ letterSpacing: "-0.02em" }}>
             Everything a subscription system needs
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="lg:col-span-2 rounded-xl border border-border bg-elevated p-8 relative overflow-hidden">
-              <div className="absolute top-4 right-4 w-20 h-20 rounded-full bg-accent/5 blur-[20px]" />
+            <div className="lg:col-span-2 rounded-xl border border-border bg-elevated p-8">
               <h3 className="text-lg font-semibold text-foreground mb-2">Price protection</h3>
-              <p className="text-sm text-muted leading-relaxed max-w-md">
+              <p className="text-sm text-muted leading-relaxed max-w-md mb-6">
                 Merchants set a price ceiling at plan creation. Subscribers know the maximum they can ever be charged.
-                Changes beyond the ceiling require explicit migration consent from every subscriber.
+                Changes beyond the ceiling require explicit migration consent.
               </p>
-              <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-muted font-mono">
+              <div className="flex flex-wrap items-center gap-3 text-xs text-muted font-mono">
                 <span className="px-2 py-1 rounded bg-surface border border-border">ceiling: $14.99</span>
                 <span className="text-accent">&#8594;</span>
-                <span className="px-2 py-1 rounded bg-success-subtle border border-success/20 text-success">$9.99 allowed</span>
+                <span className="px-2 py-1 rounded bg-success-subtle border border-success/20 text-success">$9.99 ok</span>
                 <span className="px-2 py-1 rounded bg-error/10 border border-error/20 text-error">$19.99 blocked</span>
               </div>
             </div>
-
             <div className="rounded-xl border border-border bg-elevated p-6">
               <h3 className="text-sm font-semibold text-foreground mb-2">Grace periods</h3>
               <p className="text-sm text-muted leading-relaxed">Failed charges enter a configurable grace window. Billing retries automatically. No immediate cancellation.</p>
             </div>
             <div className="rounded-xl border border-border bg-elevated p-6">
               <h3 className="text-sm font-semibold text-foreground mb-2">Free trials</h3>
-              <p className="text-sm text-muted leading-relaxed">Trial periods advance the counter without transferring tokens. Cancel during trial and you pay nothing.</p>
+              <p className="text-sm text-muted leading-relaxed">Trial periods advance the counter without transferring tokens. Cancel during trial, pay nothing.</p>
             </div>
             <div className="rounded-xl border border-border bg-elevated p-6">
               <h3 className="text-sm font-semibold text-foreground mb-2">Plan migrations</h3>
-              <p className="text-sm text-muted leading-relaxed">Price changes require a new plan. Every subscriber must explicitly accept the new terms in their wallet.</p>
+              <p className="text-sm text-muted leading-relaxed">Price changes require a new plan. Every subscriber must explicitly accept in their wallet.</p>
             </div>
-            <div className="lg:col-span-1 rounded-xl border border-border bg-elevated p-6">
+            <div className="rounded-xl border border-border bg-elevated p-6">
               <h3 className="text-sm font-semibold text-foreground mb-2">Permissionless billing</h3>
               <p className="text-sm text-muted leading-relaxed mb-3">Anyone can call charge(). Only the merchant receives funds.</p>
               <div className="font-mono text-xs text-muted">
-                <span className="text-success">$9.99</span> &#8594; merchant &middot; <span className="text-muted/60">$0.00001</span> &#8594; keeper fee
+                <span className="text-success">$9.99</span> &#8594; merchant &middot; <span className="text-muted/60">$0.00001</span> &#8594; keeper
               </div>
             </div>
-
-            <div className="lg:col-span-2 rounded-xl border border-border bg-elevated p-6 flex flex-col sm:flex-row sm:items-center gap-4">
-              <div>
+            <div className="lg:col-span-3 rounded-xl border border-border bg-elevated p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="flex-1">
                 <h3 className="text-sm font-semibold text-foreground mb-2">Instant refunds</h3>
-                <p className="text-sm text-muted leading-relaxed">Merchants call refund() to send tokens back. On-chain verifiable receipt. Partial refunds supported. No disputes.</p>
+                <p className="text-sm text-muted leading-relaxed">Merchants call refund() to send tokens back. On-chain verifiable receipt. Partial refunds supported.</p>
               </div>
-              <div className="font-mono text-xs text-muted whitespace-nowrap shrink-0 px-3 py-2 rounded-lg bg-surface border border-border">
-                refund(subId, amount)
-              </div>
+              <div className="font-mono text-xs text-muted whitespace-nowrap shrink-0 px-3 py-2 rounded-lg bg-surface border border-border">refund(subId, amount)</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Use it your way */}
-      <section className="relative border-t border-border overflow-hidden">
-        <svg className="absolute left-[5%] top-[10%] w-[300px] h-[400px] opacity-[0.1] dark:opacity-[0.06]" viewBox="0 0 300 400" fill="none">
-          <circle cx="50" cy="60" r="4" fill="var(--accent)"/>
-          <circle cx="200" cy="120" r="6" fill="var(--accent)"/>
-          <circle cx="80" cy="220" r="5" fill="var(--accent)"/>
-          <circle cx="250" cy="300" r="4" fill="var(--accent)"/>
-          <circle cx="150" cy="370" r="3" fill="var(--accent)"/>
-          <line x1="50" y1="60" x2="200" y2="120" stroke="var(--accent)" strokeWidth="1"/>
-          <line x1="200" y1="120" x2="80" y2="220" stroke="var(--accent)" strokeWidth="1"/>
-          <line x1="80" y1="220" x2="250" y2="300" stroke="var(--accent)" strokeWidth="1"/>
-          <line x1="250" y1="300" x2="150" y2="370" stroke="var(--accent)" strokeWidth="0.8"/>
-          <line x1="50" y1="60" x2="80" y2="220" stroke="var(--accent)" strokeWidth="0.4" strokeDasharray="6 4"/>
-          <line x1="200" y1="120" x2="250" y2="300" stroke="var(--accent)" strokeWidth="0.4" strokeDasharray="6 4"/>
-        </svg>
-
-        <div className="max-w-6xl mx-auto px-6 py-16 sm:py-24 relative">
+      <section className="border-t border-border">
+        <div className="max-w-6xl mx-auto px-6 py-16 sm:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3">For every role</p>
@@ -236,8 +215,9 @@ export default function Home() {
                 Vowena is a protocol, not a product. The smart contract is the billing engine. Everything else is optional tooling.
               </p>
 
+              {/* Flow diagram */}
               <div className="rounded-2xl border border-border bg-elevated p-6 sm:p-8 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "linear-gradient(135deg, var(--accent) 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
+                <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(var(--border-default) 1px, transparent 1px), linear-gradient(90deg, var(--border-default) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
                 <div className="relative space-y-3">
                   {[
                     { label: "Merchant", fn: "create_plan()", color: "bg-accent text-white" },
@@ -279,10 +259,10 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="relative border-t border-border overflow-hidden">
+      <section className="border-t border-border relative">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-violet-300/15 dark:bg-accent/[0.05] rounded-full blur-[100px]" />
-          <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.02]" style={{ backgroundImage: "radial-gradient(circle, var(--accent) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(var(--border-default) 1px, transparent 1px), linear-gradient(90deg, var(--border-default) 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
         </div>
         <div className="max-w-6xl mx-auto px-6 py-20 sm:py-28 text-center relative">
           <VowenaSymbol className="w-12 h-12 text-accent mx-auto mb-6" />
