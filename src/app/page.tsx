@@ -71,9 +71,15 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Hero visual: dashboard mockup */}
-            <div>
-              <HeroVisual />
+            {/* Hero visual: cropped dashboard blending off the edge */}
+            <div className="relative lg:-mr-24 xl:-mr-32 lg:-mb-16 overflow-hidden rounded-xl lg:rounded-r-none border border-border lg:border-r-0 shadow-2xl shadow-accent/[0.06] dark:shadow-black/30">
+              <div className="lg:pr-0">
+                <HeroVisual />
+              </div>
+              {/* Fade right edge on desktop */}
+              <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-background to-transparent" />
+              {/* Fade bottom edge */}
+              <div className="absolute left-0 right-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent" />
             </div>
           </div>
         </div>
