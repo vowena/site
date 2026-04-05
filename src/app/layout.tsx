@@ -20,7 +20,7 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://vowena.xyz"),
   title: {
-    default: "Vowena - Recurring Revenue, Fully Automated",
+    default: "Vowena — Recurring Revenue, Fully Automated",
     template: "%s | Vowena",
   },
   description: "The first protocol for on-chain subscription billing on Stellar. Create plans, authorize recurring USDC transfers, and manage subscriptions with one signature.",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Vowena",
-    title: "Vowena - Recurring Revenue, Fully Automated",
+    title: "Vowena — Recurring Revenue, Fully Automated",
     description: "The first protocol for on-chain subscription billing on Stellar. Create plans, authorize recurring USDC transfers, and manage subscriptions.",
     url: "https://vowena.xyz",
   },
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@vowena",
     creator: "@vowena",
-    title: "Vowena - Recurring Revenue, Fully Automated",
+    title: "Vowena — Recurring Revenue, Fully Automated",
     description: "The first protocol for on-chain subscription billing on Stellar.",
   },
   robots: {

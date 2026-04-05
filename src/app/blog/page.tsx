@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Technical deep dives, protocol updates, and the story behind Vowena. Learn about on-chain subscription billing, the Stellar ecosystem, and building in public.",
   alternates: { canonical: "https://vowena.xyz/blog" },
   openGraph: {
-    title: "Blog - Vowena",
+    title: "Blog — Vowena",
     description: "Technical deep dives, protocol updates, and the story behind Vowena.",
     url: "https://vowena.xyz/blog",
   },

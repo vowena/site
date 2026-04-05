@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Simple pricing for Vowena subscription billing. The protocol is free and open source. Pro adds managed billing automation, analytics, and subscriber management.",
   alternates: { canonical: "https://vowena.xyz/pricing" },
   openGraph: {
-    title: "Pricing - Vowena",
+    title: "Pricing — Vowena",
     description: "Simple pricing for Vowena subscription billing. Free during beta.",
     url: "https://vowena.xyz/pricing",
   },
