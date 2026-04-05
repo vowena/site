@@ -3,6 +3,7 @@ import { VowenaSymbol } from "@/components/vowena-logo";
 import { CopyButton } from "@/components/copy-button";
 import { CodeBlock } from "@/components/code-block";
 import { Marquee } from "@/components/marquee";
+import { StellarLogo, USDCLogo, CircleLogo, MoneyGramLogo, FreighterLogo, SorobanLogo, LobstrLogo, BeansLogo } from "@/components/partner-logos";
 
 const heroCode = `import { VowenaClient, toStroops, NETWORKS } from "vowena"
 
@@ -40,39 +41,6 @@ const step3Code = `const tx = await client.buildCharge(
   subId // anyone can call
 )`;
 
-function StellarLogo() {
-  return (
-    <div className="flex items-center gap-2 opacity-40 hover:opacity-60 transition-opacity">
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12.003 1.716c-1.37 0-2.7.27-3.948.78A10.18 10.18 0 0 0 2.66 7.901a10.136 10.136 0 0 0-.797 3.954c0 .258.01.516.027.775a1.942 1.942 0 0 1-1.055 1.88L0 14.934v1.902l2.463-1.26.072-.032v.005l.77-.39.758-.385.066-.039 14.807-7.56 1.666-.847 3.392-1.732V2.694L17.792 5.86 3.744 13.025l-.104.055-.017-.115a8.286 8.286 0 0 1-.071-1.105c0-2.255.88-4.377 2.474-5.977a8.462 8.462 0 0 1 2.71-1.82 8.513 8.513 0 0 1 3.2-.654h.067a8.41 8.41 0 0 1 4.09 1.055l1.628-.83.126-.066a10.11 10.11 0 0 0-5.845-1.853zM24 7.143 5.047 16.808l-1.666.847L0 19.382v1.902l3.282-1.671 2.91-1.485 14.058-7.153.105-.055.016.115c.05.369.072.743.072 1.11 0 2.255-.88 4.383-2.475 5.978a8.461 8.461 0 0 1-2.71 1.82 8.305 8.305 0 0 1-3.2.654h-.06c-1.441 0-2.86-.369-4.102-1.061l-.066.033-1.683.857c.594.418 1.232.776 1.903 1.062a10.11 10.11 0 0 0 3.947.797 10.09 10.09 0 0 0 7.17-2.975 10.136 10.136 0 0 0 2.969-7.18c0-.259-.005-.523-.027-.781a1.942 1.942 0 0 1 1.055-1.88L24 9.044z"/></svg>
-      <span className="text-sm font-semibold tracking-tight">Stellar</span>
-    </div>
-  );
-}
-
-function CircleLogo() {
-  return (
-    <div className="flex items-center gap-2 opacity-40 hover:opacity-60 transition-opacity">
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.788 3.832c-.101-.105-.197-.213-.301-.317-.103-.103-.211-.202-.32-.302A11.903 11.903 0 0 0 12 0a11.926 11.926 0 0 0-8.486 3.514C-1.062 8.09-1.16 15.47 3.213 20.168c.099.108.197.214.3.32.104.103.21.2.317.3A11.92 11.92 0 0 0 12 24c3.206 0 6.22-1.247 8.487-3.512 4.576-4.576 4.673-11.956.301-16.656zm-16.655.301A11.057 11.057 0 0 1 12 .874c2.825 0 5.49 1.048 7.55 2.958l-1.001 1.002A9.646 9.646 0 0 0 12 2.292a9.644 9.644 0 0 0-6.865 2.844A9.644 9.644 0 0 0 2.292 12c0 2.448.9 4.753 2.542 6.549L3.831 19.55C-.201 15.191-.101 8.367 4.133 4.133zm13.798 1.318v.002l-1.015 1.014A7.346 7.346 0 0 0 12 4.589 7.357 7.357 0 0 0 6.761 6.76 7.362 7.362 0 0 0 4.589 12a7.34 7.34 0 0 0 1.877 4.913l-1.014 1.016A8.77 8.77 0 0 1 3.167 12a8.77 8.77 0 0 1 2.588-6.245A8.771 8.771 0 0 1 12 3.167c2.213 0 4.301.809 5.931 2.284zM18.537 12c0 1.745-.681 3.387-1.916 4.622S13.746 18.538 12 18.538a6.491 6.491 0 0 1-4.296-1.621l-.001-.004c-.11-.094-.22-.188-.324-.291a6.027 6.027 0 0 1-.293-.326A6.47 6.47 0 0 1 5.466 12c0-1.746.679-3.387 1.914-4.621A6.488 6.488 0 0 1 12 5.465c1.599 0 3.105.576 4.295 1.62.111.096.224.19.326.295.104.104.2.214.295.324A6.482 6.482 0 0 1 18.537 12zM7.084 17.534h.001A7.349 7.349 0 0 0 12 19.413a7.35 7.35 0 0 0 5.239-2.174A7.354 7.354 0 0 0 19.412 12a7.364 7.364 0 0 0-1.876-4.916l1.013-1.012A8.777 8.777 0 0 1 20.834 12a8.765 8.765 0 0 1-2.589 6.246A8.764 8.764 0 0 1 12 20.834a8.782 8.782 0 0 1-5.93-2.285l1.014-1.015zm12.783 2.333A11.046 11.046 0 0 1 12 23.125a11.042 11.042 0 0 1-7.551-2.957l1.004-1.001a9.64 9.64 0 0 0 6.549 2.542 9.639 9.639 0 0 0 6.865-2.846A9.642 9.642 0 0 0 21.71 12a9.64 9.64 0 0 0-2.543-6.548l1.001-1.002c4.031 4.359 3.935 11.182-.301 15.417z"/></svg>
-      <span className="text-sm font-semibold tracking-tight">Circle</span>
-    </div>
-  );
-}
-
-function MoneyGramLogo() {
-  return (
-    <div className="flex items-center gap-2 opacity-40 hover:opacity-60 transition-opacity">
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12c0 6.6274-5.3726 12-12 12S0 18.6274 0 12c0-1.8257.4071-3.5554 1.1374-5.1051C.6514 8.1257.433 9.3446.433 10.4863c0 5.4334 4.3868 6.2203 6.2537 6.2023 2.8371-.0257 6.1543-1.416 8.9485-3.9909l-.4714 2.6494c-.1054.606.2906 1.1392.8957 1.1426h.2503c.6274 0 1.0732-.5108 1.1863-1.1426l1.0063-5.6622c.12-.6283-.2932-1.14-.9214-1.14h-5.6726c-.6309 0-1.2077.3342-1.32.9677l-.0446.2554c-.09.6026.33 1.0569.9317 1.0569h2.9589a9.48 9.48 0 0 0-.1414.1388c-2.04 1.9312-4.5558 2.988-6.6403 2.988-2.0803 0-4.41-1.3123-4.41-4.2686C3.2426 3.5546 8.9906 0 12 0c6.6137 0 12 5.3726 12 12"/></svg>
-      <span className="text-sm font-semibold tracking-tight">MoneyGram</span>
-    </div>
-  );
-}
-
-function BrandLogo({ name }: { name: string }) {
-  return (
-    <span className="text-sm font-semibold text-foreground/30 whitespace-nowrap tracking-tight opacity-60 hover:opacity-80 transition-opacity">{name}</span>
-  );
-}
-
 export default function Home() {
   return (
     <>
@@ -99,7 +67,7 @@ export default function Home() {
                 Merchants create plans. Subscribers sign once. The contract handles the rest.
               </p>
 
-              <div className="flex items-center justify-between mt-8 gap-4 flex-wrap">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-8">
                 <div className="flex items-center gap-3">
                   <Link href="https://app.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
                     Launch app
@@ -111,18 +79,20 @@ export default function Home() {
                 <CopyButton text="npm install vowena" />
               </div>
 
-              <div className="flex flex-wrap items-center gap-5 mt-10 text-sm">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface border border-border">
-                  <span className="text-success text-xs">&#9679;</span>
-                  <span className="text-secondary">Transactions cost fractions of a cent</span>
+              <div className="flex flex-wrap items-center gap-6 sm:gap-8 mt-10 text-sm text-muted">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-foreground text-base font-semibold">$0.00001</span>
+                  <span>per tx</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface border border-border">
-                  <span className="text-accent text-xs">&#9679;</span>
-                  <span className="text-secondary">5-second finality on Stellar</span>
+                <div className="w-px h-4 bg-border hidden sm:block" />
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-foreground text-base font-semibold">5s</span>
+                  <span>finality</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface border border-border">
-                  <span className="text-info text-xs">&#9679;</span>
-                  <span className="text-secondary">Native USDC support</span>
+                <div className="w-px h-4 bg-border hidden sm:block" />
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-foreground text-base font-semibold">USDC</span>
+                  <span>native</span>
                 </div>
               </div>
             </div>
@@ -137,16 +107,14 @@ export default function Home() {
         {/* Logo marquee */}
         <div className="border-t border-border py-8">
           <Marquee>
-            <StellarLogo />
-            <BrandLogo name="USDC" />
-            <CircleLogo />
-            <BrandLogo name="Soroban" />
-            <MoneyGramLogo />
-            <BrandLogo name="Freighter" />
-            <BrandLogo name="LOBSTR" />
-            <BrandLogo name="StellarX" />
-            <BrandLogo name="Beans App" />
-            <BrandLogo name="Lumenswap" />
+            <StellarLogo className="h-7 w-auto text-muted/50" />
+            <USDCLogo className="h-7 w-auto" />
+            <CircleLogo className="h-7 w-auto" />
+            <SorobanLogo className="h-7 w-auto text-muted/50" />
+            <MoneyGramLogo className="h-7 w-auto" />
+            <FreighterLogo className="h-7 w-auto text-muted/50" />
+            <LobstrLogo className="h-7 w-auto" />
+            <BeansLogo className="h-7 w-auto" />
           </Marquee>
         </div>
       </section>
