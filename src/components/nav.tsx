@@ -30,42 +30,47 @@ export function Nav() {
           </Link>
         </div>
 
-        {/* Mobile hamburger */}
-        <button className="sm:hidden p-2 text-muted" onClick={() => setOpen(!open)} aria-label="Menu">
-          {open ? (
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
-          ) : (
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/></svg>
-          )}
-        </button>
+        {/* Mobile: theme toggle + hamburger */}
+        <div className="flex sm:hidden items-center gap-2">
+          <ThemeToggle />
+          <button className="p-2 text-muted" onClick={() => setOpen(!open)} aria-label="Menu">
+            {open ? (
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+            ) : (
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/></svg>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="sm:hidden border-t border-border bg-background/95 backdrop-blur-xl px-4 py-4 space-y-1">
-          {[
-            { href: "/pricing", label: "Pricing" },
-            { href: "/blog", label: "Blog" },
-            { href: "/docs", label: "Docs" },
-            { href: "https://github.com/vowena", label: "GitHub" },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="block py-2.5 text-sm text-secondary hover:text-foreground transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <div className="pt-3 flex items-center gap-3">
-            <Link
-              href="https://dashboard.vowena.xyz"
-              className="inline-flex items-center h-9 px-5 text-xs font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors"
-            >
-              Launch dashboard
-            </Link>
-            <ThemeToggle />
+        <div className="sm:hidden border-t border-border bg-background backdrop-blur-xl">
+          <div className="max-w-6xl mx-auto px-4 py-3">
+            {[
+              { href: "/pricing", label: "Pricing" },
+              { href: "/blog", label: "Blog" },
+              { href: "/docs", label: "Docs" },
+              { href: "https://github.com/vowena", label: "GitHub" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="flex items-center py-3 text-sm text-secondary hover:text-foreground transition-colors border-b border-border last:border-0"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="pt-4 pb-1">
+              <Link
+                href="https://dashboard.vowena.xyz"
+                onClick={() => setOpen(false)}
+                className="flex items-center justify-center w-full h-11 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors"
+              >
+                Get started free
+              </Link>
+            </div>
           </div>
         </div>
       )}
