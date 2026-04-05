@@ -22,12 +22,12 @@ export function InstallTabs() {
   return (
     <div className="rounded-xl border border-border bg-surface overflow-hidden">
       {/* Tabs */}
-      <div className="flex items-center gap-0 border-b border-border w-fit">
+      <div className="flex items-center border-b border-border">
         {managers.map((m, i) => (
           <button
             key={m.name}
             onClick={() => setActive(i)}
-            className={`px-4 py-2 text-xs font-medium transition-colors ${
+            className={`px-4 py-2 text-xs font-medium transition-colors whitespace-nowrap ${
               active === i
                 ? "text-accent border-b-2 border-accent"
                 : "text-muted hover:text-secondary"
