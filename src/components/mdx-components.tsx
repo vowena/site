@@ -39,7 +39,7 @@ function MdxCode({ children, className }: { children?: string; className?: strin
         )}
       </button>
       <div
-        className="rounded-xl border border-border bg-surface p-5 overflow-x-auto font-mono text-sm leading-[1.8] [&_.sh__token--keyword]:text-accent [&_.sh__token--string]:text-success [&_.sh__token--comment]:text-muted [&_.sh__token--identifier]:text-foreground [&_.sh__token--sign]:text-secondary [&_.sh__token--class]:text-violet-400 [&_.sh__token--number]:text-warning [&_.sh__token--property]:text-info"
+        className="rounded-xl border border-border bg-surface p-5 overflow-x-auto font-mono text-sm leading-[1.8]"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>

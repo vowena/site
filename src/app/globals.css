@@ -45,6 +45,19 @@
   --accent-subtle: #EDE9FF;
   --success: #00DC82;
   --success-subtle: #DBFFF0;
+
+  /* sugar-high syntax highlighting */
+  --sh-class: #6B4EFF;
+  --sh-identifier: #0E0D18;
+  --sh-keyword: #6B4EFF;
+  --sh-string: #00864A;
+  --sh-sign: #48436A;
+  --sh-comment: #9B95B8;
+  --sh-jsxliterals: #6B4EFF;
+  --sh-property: #2563EB;
+  --sh-entity: #6B4EFF;
+  --sh-number: #B45309;
+  --sh-space: inherit;
 }
 
 .dark {
@@ -56,6 +69,18 @@
   --text-primary: #F6F4FA;
   --text-secondary: #9B95B8;
   --text-muted: #6E6894;
+
+  --sh-class: #B5A8FF;
+  --sh-identifier: #E8E5F0;
+  --sh-keyword: #B5A8FF;
+  --sh-string: #34EDAA;
+  --sh-sign: #9B95B8;
+  --sh-comment: #6E6894;
+  --sh-jsxliterals: #B5A8FF;
+  --sh-property: #6B9FFF;
+  --sh-entity: #B5A8FF;
+  --sh-number: #FFBD2E;
+  --sh-space: inherit;
 }
 
 @theme inline {

@@ -40,7 +40,7 @@ export function CodeBlock({
         </div>
       )}
       <div
-        className="p-4 sm:p-5 text-sm leading-[1.8] font-mono overflow-x-auto [&_.sh__line]:block [&_.sh__token--keyword]:text-accent [&_.sh__token--string]:text-success [&_.sh__token--comment]:text-muted [&_.sh__token--identifier]:text-foreground [&_.sh__token--sign]:text-secondary [&_.sh__token--class]:text-violet-400 [&_.sh__token--number]:text-warning [&_.sh__token--property]:text-info"
+        className="p-4 sm:p-5 text-sm leading-[1.8] font-mono overflow-x-auto"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>
