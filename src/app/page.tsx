@@ -71,20 +71,17 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Hero visual: dashboard blending from top-right corner */}
-            <div className="relative lg:-mr-24 xl:-mr-32">
+            {/* Hero visual: dashboard blending into page */}
+            <div className="relative -mt-16 -mb-20 sm:-mt-20 sm:-mb-24">
               <div
-                className="relative"
                 style={{
-                  maskImage: "linear-gradient(to right, transparent 0%, black 15%, black 100%), linear-gradient(to bottom, black 0%, black 70%, transparent 100%)",
+                  maskImage: "linear-gradient(to right, black 0%, black 80%, transparent 98%), linear-gradient(to bottom, black 0%, black 80%, transparent 98%)",
                   maskComposite: "intersect",
-                  WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 15%, black 100%), linear-gradient(to bottom, black 0%, black 70%, transparent 100%)",
+                  WebkitMaskImage: "linear-gradient(to right, black 0%, black 80%, transparent 98%), linear-gradient(to bottom, black 0%, black 80%, transparent 98%)",
                   WebkitMaskComposite: "source-in",
                 }}
               >
-                <div className="transform perspective-[1200px] rotateY-[-2deg] origin-right">
-                  <HeroVisual />
-                </div>
+                <HeroVisual />
               </div>
             </div>
           </div>

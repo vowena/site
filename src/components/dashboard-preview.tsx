@@ -1,6 +1,6 @@
 export function HeroVisual() {
   return (
-    <div className="rounded-l-2xl border border-r-0 border-border bg-elevated overflow-hidden shadow-2xl shadow-accent/[0.06] dark:shadow-black/30">
+    <div className="rounded-2xl border border-border bg-elevated overflow-hidden shadow-2xl shadow-accent/[0.06] dark:shadow-black/30">
       {/* Sidebar + main area layout */}
       <div className="flex">
         {/* Mini sidebar */}
