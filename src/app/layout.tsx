@@ -18,9 +18,39 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vowena - Trustless Recurring Payments on Stellar",
-  description: "The first protocol for on-chain subscription billing. Create plans, authorize recurring USDC transfers, and manage subscriptions with one signature.",
+  metadataBase: new URL("https://vowena.xyz"),
+  title: {
+    default: "Vowena - Recurring Revenue, Fully Automated",
+    template: "%s | Vowena",
+  },
+  description: "The first protocol for on-chain subscription billing on Stellar. Create plans, authorize recurring USDC transfers, and manage subscriptions with one signature.",
+  keywords: ["subscription billing", "recurring payments", "Stellar", "Soroban", "USDC", "on-chain payments", "subscription protocol", "crypto subscriptions", "blockchain billing"],
+  authors: [{ name: "Vowena" }],
+  creator: "Vowena",
   icons: { icon: "/favicon.svg" },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Vowena",
+    title: "Vowena - Recurring Revenue, Fully Automated",
+    description: "The first protocol for on-chain subscription billing on Stellar. Create plans, authorize recurring USDC transfers, and manage subscriptions.",
+    url: "https://vowena.xyz",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@vowena",
+    creator: "@vowena",
+    title: "Vowena - Recurring Revenue, Fully Automated",
+    description: "The first protocol for on-chain subscription billing on Stellar.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 },
+  },
+  alternates: {
+    canonical: "https://vowena.xyz",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

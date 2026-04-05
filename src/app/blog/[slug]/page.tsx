@@ -12,7 +12,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return {};
-  return { title: `${post.title} - Vowena Blog`, description: post.description };
+  return {
+    title: post.title,
+    description: post.description,
+    authors: [{ name: post.author }],
+    alternates: { canonical: `https://vowena.xyz/blog/${slug}` },
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: `https://vowena.xyz/blog/${slug}`,
+      type: "article",
+      publishedTime: post.date,
+      authors: [post.author],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {

@@ -1,6 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts } from "@/lib/blog";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Technical deep dives, protocol updates, and the story behind Vowena. Learn about on-chain subscription billing, the Stellar ecosystem, and building in public.",
+  alternates: { canonical: "https://vowena.xyz/blog" },
+  openGraph: {
+    title: "Blog - Vowena",
+    description: "Technical deep dives, protocol updates, and the story behind Vowena.",
+    url: "https://vowena.xyz/blog",
+  },
+};
 
 export default function BlogPage() {
   const posts = getAllPosts();
