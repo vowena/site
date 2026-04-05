@@ -71,15 +71,21 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Hero visual: cropped dashboard blending off the edge */}
-            <div className="relative lg:-mr-24 xl:-mr-32 lg:-mb-16 overflow-hidden rounded-xl lg:rounded-r-none border border-border lg:border-r-0 shadow-2xl shadow-accent/[0.06] dark:shadow-black/30">
-              <div className="lg:pr-0">
-                <HeroVisual />
+            {/* Hero visual: dashboard blending from top-right corner */}
+            <div className="relative lg:-mr-24 xl:-mr-32">
+              <div
+                className="relative"
+                style={{
+                  maskImage: "linear-gradient(to right, transparent 0%, black 15%, black 100%), linear-gradient(to bottom, black 0%, black 70%, transparent 100%)",
+                  maskComposite: "intersect",
+                  WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 15%, black 100%), linear-gradient(to bottom, black 0%, black 70%, transparent 100%)",
+                  WebkitMaskComposite: "source-in",
+                }}
+              >
+                <div className="transform perspective-[1200px] rotateY-[-2deg] origin-right">
+                  <HeroVisual />
+                </div>
               </div>
-              {/* Fade right edge on desktop */}
-              <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-background to-transparent" />
-              {/* Fade bottom edge */}
-              <div className="absolute left-0 right-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent" />
             </div>
           </div>
         </div>
