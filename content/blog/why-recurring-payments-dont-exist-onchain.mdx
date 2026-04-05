@@ -24,19 +24,38 @@ The reason? A single Ethereum L1 transaction costs $2-10 in gas. Sometimes $50 d
 
 Every attempt hit the same wall: **transaction costs destroy micro-billing economics.**
 
+Here is how the math works on Ethereum vs Stellar for a $9.99/month subscription:
+
+| | Ethereum L1 | Stellar |
+|---|---|---|
+| Transaction fee | $2.00 - $10.00 | $0.00001 |
+| Fee as % of charge | 20% - 100% | 0.0001% |
+| Monthly cost to run keeper | $60 - $300 | $0.0003 |
+| Finality | ~12 minutes | ~5 seconds |
+
+The difference is not incremental. It is the difference between "impossible" and "obvious."
+
 ## What changed with Stellar
 
-Stellar was not designed to solve this problem specifically. But its properties make on-chain subscriptions not just possible. They make them obvious:
+Stellar was not designed to solve this problem specifically. But its properties make on-chain subscriptions not just possible. They make them obvious.
 
-**$0.00001 per transaction.** Five zeros after the decimal point. You can bill a $1 subscription and the fee is invisible. You can bill daily. You can bill hourly. The economics always work.
+### $0.00001 per transaction
 
-**5-second finality.** No waiting for block confirmations. No 12-minute epochs. The subscriber sees the charge confirmed in their wallet within seconds.
+Five zeros after the decimal point. You can bill a $1 subscription and the fee is invisible. You can bill daily. You can bill hourly. The economics always work.
 
-**Native USDC.** Circle issues USDC directly on Stellar as a Stellar Asset Contract. No wrapped tokens. No bridges. No liquidity fragmentation. The stablecoin your subscribers hold is the stablecoin your contract charges.
+### 5-second finality
 
-**SEP-41 token allowances.** This is the technical key. Every Stellar token implements `approve()` and `transfer_from()`. A wallet holder can authorize another address to spend up to X tokens until ledger Y. A smart contract can then pull funds each billing period without any new wallet interaction.
+No waiting for block confirmations. No 12-minute epochs. The subscriber sees the charge confirmed in their wallet within seconds.
 
-## From "impossible" to "five lines of code"
+### Native USDC
+
+Circle issues USDC directly on Stellar as a Stellar Asset Contract. No wrapped tokens. No bridges. No liquidity fragmentation. The stablecoin your subscribers hold is the stablecoin your contract charges.
+
+### SEP-41 token allowances
+
+This is the technical key. Every Stellar token implements `approve()` and `transfer_from()`. A wallet holder can authorize another address to spend up to X tokens until ledger Y. A smart contract can then pull funds each billing period without any new wallet interaction.
+
+## From "impossible" to five lines of code
 
 With Vowena, subscribing to a plan looks like this:
 
@@ -61,12 +80,39 @@ The obvious use cases are SaaS subscriptions and membership billing in USDC. But
 - **Nonprofit recurring donations.** Automated monthly giving with on-chain receipts.
 - **Cross-border subscriptions.** A user in Lagos subscribes to a service in San Francisco. No currency conversion. No international card fees. Just USDC on Stellar.
 
-## The protocol is live
+## Getting started
 
-Vowena is deployed on Stellar testnet today. The smart contract handles the full subscription lifecycle: plan creation, subscriber enrollment, automated billing, grace periods for failed charges, price-protected migrations, and instant refunds.
+The fastest way to try Vowena is to install the SDK and create your first plan:
 
-The [SDK is on npm](https://www.npmjs.com/package/vowena). The [documentation](/docs) covers every function, every edge case, every error code. The source code is [open on GitHub](https://github.com/vowena).
+<InstallTabs />
 
-We are building the Stripe of Stellar. The infrastructure is ready. The subscription layer was the missing piece.
+Then create a client and build your first subscription:
+
+```typescript
+import { VowenaClient, NETWORKS, toStroops } from "vowena"
+
+const client = new VowenaClient(NETWORKS.testnet)
+
+// Create a plan
+const planTx = await client.buildCreatePlan({
+  merchant: wallet.address,
+  token: NETWORKS.testnet.usdcAddress,
+  amount: toStroops("9.99"),
+  period: 2_592_000,        // 30 days
+  priceCeiling: toStroops("14.99"),
+  trialPeriods: 1,
+  gracePeriod: 259_200,      // 3 days
+})
+
+// Subscribe a user
+const subTx = await client.buildSubscribe(
+  subscriber.address,
+  planId
+)
+```
+
+The [documentation](https://vowena.xyz/docs) covers every function, every edge case, every error code. The source code is [open on GitHub](https://github.com/vowena).
+
+We are building the billing layer that Stellar has been missing. The infrastructure is ready. The subscription primitive was the missing piece.
 
 Now it exists.

@@ -24,6 +24,45 @@ The smart contract is the foundation. If it has a bug, people lose money. Every 
 
 **The data model** came together quickly. Two core types: Plans (billing templates created by merchants) and Subscriptions (the on-chain record linking a subscriber to a plan). Plans are immutable after creation. Subscriptions have a state machine: Active, Paused, Cancelled, Expired.
 
+Here is the Plan struct that powers everything:
+
+```rust
+#[contracttype]
+#[derive(Clone, Debug)]
+pub struct Plan {
+    pub id: u64,
+    pub merchant: Address,
+    pub token: Address,
+    pub amount: i128,          // in stroops (7 decimals)
+    pub period: u64,           // seconds between charges
+    pub trial_periods: u32,    // free periods before billing
+    pub max_periods: u32,      // 0 = unlimited
+    pub grace_period: u64,     // seconds before pause on failure
+    pub price_ceiling: i128,   // max adjustable amount
+    pub created_at: u64,
+    pub active: bool,
+}
+```
+
+And the Subscription that tracks each billing relationship:
+
+```rust
+#[contracttype]
+#[derive(Clone, Debug)]
+pub struct Subscription {
+    pub id: u64,
+    pub plan_id: u64,
+    pub subscriber: Address,
+    pub status: SubscriptionStatus,
+    pub created_at: u64,
+    pub periods_billed: u32,
+    pub next_billing_time: u64,
+    pub failed_at: u64,
+    pub migration_target: u64,
+    pub cancelled_at: u64,
+}
+```
+
 **The hardest problem** was handling failed charges. In Soroban, if `transfer_from()` fails, the entire transaction reverts. The contract cannot record that a failure happened. My first instinct was to use a try/catch pattern. Soroban does not have one.
 
 The solution: pre-check `balance()` and `allowance()` before attempting the transfer. If they are insufficient, record `failed_at`, emit a `ChargeFailed` event, and return false. Graceful degradation instead of silent failure. This single decision shaped the entire grace period system.
@@ -31,6 +70,17 @@ The solution: pre-check `balance()` and `allowance()` before attempting the tran
 **Making `charge()` permissionless** was the other key decision. No `require_auth()` on the billing function. Anyone can call it. The caller pays $0.00001 in fees. Only the merchant receives the subscription payment. This eliminates single points of failure in billing execution.
 
 By end of week 1: 9 Rust source files, 17 exported functions, 29 passing tests, 18.5KB WASM binary. The contract was the size of a small JPEG.
+
+```bash
+$ stellar contract build
+✅ Build Complete
+   Wasm Size: 18546 bytes
+   Exported Functions: 17 found
+
+$ cargo test
+running 29 tests
+test result: ok. 29 passed; 0 failed
+```
 
 ## Week 2: The SDK
 
@@ -42,7 +92,36 @@ const xdr = await client.buildSubscribe(wallet.address, planId)
 
 And get back assembled XDR ready for wallet signing.
 
+<InstallTabs />
+
 The `VowenaClient` class wraps every contract function into two categories: write methods (return XDR for signing) and read methods (query state directly through simulation). The naming convention is deliberate: `build*` for writes, `get*` for reads.
+
+Here is how you create a client and interact with the protocol:
+
+```typescript
+import { VowenaClient, NETWORKS, toStroops } from "vowena"
+
+// Initialize
+const client = new VowenaClient({
+  contractId: NETWORKS.testnet.contractId,
+  rpcUrl: NETWORKS.testnet.rpcUrl,
+  networkPassphrase: NETWORKS.testnet.networkPassphrase,
+})
+
+// Create a plan
+const planTx = await client.buildCreatePlan({
+  merchant: wallet.address,
+  token: NETWORKS.testnet.usdcAddress,
+  amount: toStroops("9.99"),
+  period: 2_592_000,
+  priceCeiling: toStroops("14.99"),
+  trialPeriods: 1,
+})
+
+// Read plan data
+const plan = await client.getPlan(1, wallet.address)
+console.log(plan.amount)  // 99900000n
+```
 
 The amount conversion utilities were surprisingly important. USDC on Stellar uses 7 decimal places. `toStroops("9.99")` returns `99900000n`. `fromStroops(99900000n)` returns `"9.99"`. Sounds trivial, but getting decimal arithmetic wrong in a billing system means charging people the wrong amount.
 
@@ -56,17 +135,30 @@ The dashboard serves two fundamentally different users who need the same underly
 
 The insight was that both views come from the same on-chain data. The same event indexer that powers merchant analytics also powers the subscriber's billing history. So the dashboard is one app with a shared sidebar, not two separate experiences.
 
+The tech stack:
+
+| Layer | Technology |
+|-------|------------|
+| Framework | Next.js 16 (App Router) |
+| Styling | Tailwind CSS v4 |
+| Database | Drizzle ORM + Postgres |
+| Data fetching | React Query |
+| Charts | Recharts |
+| Wallet | Freighter |
+| Theme | Light-first, DM Sans + Space Mono |
+
 The managed keeper runs as a cron job on the backend. Every interval, it iterates subscriptions that are due for billing and calls `charge()` for each one. The merchant enables it with a toggle. No DevOps knowledge required.
 
-## Week 4: Documentation and the marketing site
+## Week 4: Documentation and polish
 
 Documentation is the product for an open-source protocol. If a developer cannot understand how to use Vowena from the docs alone, the protocol fails regardless of how good the contract is.
 
 40 Mintlify pages covering:
-- Protocol architecture (storage strategy, data models, TTL management)
-- Every API function with parameters, auth requirements, errors, and examples
-- SDK reference with TypeScript types for every method
-- Dashboard guides for merchants and subscribers
+
+- **Protocol architecture** (storage strategy, data models, TTL management)
+- **Every API function** with parameters, auth requirements, errors, and examples
+- **SDK reference** with TypeScript types for every method
+- **Dashboard guides** for merchants and subscribers
 
 The marketing site uses MDX for blog posts. Each post is a `.mdx` file in a `/content/blog` folder. No CMS, no external tool. Write markdown, push to git, it becomes a page. The simplest possible publishing workflow.
 
@@ -87,8 +179,8 @@ Mainnet deployment is the immediate goal. The contract works on testnet. The SDK
 3. Mainnet deployment and SDK version bump
 4. Stellar Community Fund submission with working demo
 
-If you want to build with Vowena, the [docs](/docs) have everything you need. If you want to run a pilot, reach out on [X](https://x.com/vowena). If you want to contribute, the [protocol source](https://github.com/vowena/protocol) and [SDK source](https://github.com/vowena/sdk) are both open.
+If you want to build with Vowena, the [documentation](https://vowena.xyz/docs) has everything you need. If you want to run a pilot, reach out on [X](https://x.com/vowena). If you want to contribute, the [protocol source](https://github.com/vowena/protocol) and [SDK source](https://github.com/vowena/sdk) are both open.
 
-The Stripe of Stellar is not a pitch deck. It is 18.5KB of WASM on a blockchain that costs a fraction of a cent to use.
+The billing layer that Stellar has been missing is 18.5KB of WASM on a blockchain that costs a fraction of a cent to use.
 
 Let us see where this goes.

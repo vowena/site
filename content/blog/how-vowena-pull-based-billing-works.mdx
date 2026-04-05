@@ -30,6 +30,7 @@ This is the pull model. The subscriber sets the permission once. The contract pu
 When a subscriber calls `subscribe()` on the Vowena contract, the contract does two things in a single transaction:
 
 **1. Sets a token allowance:**
+
 ```rust
 let allowance = plan.price_ceiling * periods_for_approval;
 token.approve(
@@ -41,6 +42,7 @@ token.approve(
 ```
 
 **2. Creates a subscription record:**
+
 ```rust
 let sub = Subscription {
     id: sub_id,
@@ -49,7 +51,6 @@ let sub = Subscription {
     status: SubscriptionStatus::Active,
     next_billing_time: now + plan.period,
     periods_billed: 0,
-    // ...
 };
 ```
 
@@ -96,7 +97,12 @@ pub fn charge(env: Env, sub_id: u64) -> bool {
     }
 
     // Pull the funds
-    token.transfer_from(&contract, &sub.subscriber, &plan.merchant, &plan.amount);
+    token.transfer_from(
+        &contract,
+        &sub.subscriber,
+        &plan.merchant,
+        &plan.amount
+    );
 
     sub.periods_billed += 1;
     sub.next_billing_time += plan.period;
@@ -114,14 +120,14 @@ Why not just call `transfer_from()` and handle the error?
 
 **Because Soroban has no try/catch.**
 
-If `transfer_from()` fails (insufficient balance or allowance), the entire transaction reverts. Every state change the contract made up to that point is rolled back. The contract cannot record when the failure happened. It cannot emit an event. It cannot start the grace period timer.
+If `transfer_from()` fails (insufficient balance or allowance), the **entire transaction reverts**. Every state change the contract made up to that point is rolled back. The contract cannot record when the failure happened. It cannot emit an event. It cannot start the grace period timer.
 
 By checking first:
 
-- We record `failed_at` with the exact timestamp
-- We emit a `ChargeFailed` event (indexable by any observer)
-- We return `false` instead of panicking
-- The grace period state machine begins
+1. We record `failed_at` with the exact timestamp
+2. We emit a `ChargeFailed` event (indexable by any observer)
+3. We return `false` instead of panicking
+4. The grace period state machine begins
 
 Without the pre-check, a failed charge would be completely invisible to the system. The subscriber would not know their payment failed. The merchant would not know revenue was missed. The keeper would not know to retry.
 
@@ -129,7 +135,7 @@ Without the pre-check, a failed charge would be completely invisible to the syst
 
 When a charge fails, the subscription does not immediately cancel. That would be hostile UX. Instead:
 
-**State 1: Active with `failed_at` set.** The charge failed for the first time. The clock starts ticking on the grace period (configurable per plan, typically 30 days). Any subsequent `charge()` call retries the billing.
+**State 1: Active with `failed_at` set.** The charge failed for the first time. The clock starts ticking on the grace period (configurable per plan, typically 3 to 30 days). Any subsequent `charge()` call retries the billing.
 
 **State 2: Paused.** The grace period expired without a successful charge. Billing stops. The subscriber can call `reactivate()` to set a new allowance and resume.
 
@@ -155,4 +161,36 @@ Install the SDK and try it yourself:
 
 <InstallTabs />
 
-Read the [full API reference](/docs) for every contract function. The [source code](https://github.com/vowena/protocol) is open and has 29 passing tests covering every edge case described in this post.
+Then read the [full API reference](https://vowena.xyz/docs) for every contract function. The [source code](https://github.com/vowena/protocol) is open and has 29 passing tests covering every edge case described in this post.
+
+Here is a quick example that creates a plan, subscribes, and charges:
+
+```typescript
+import { VowenaClient, NETWORKS, toStroops } from "vowena"
+
+const client = new VowenaClient(NETWORKS.testnet)
+
+// 1. Create a plan
+const planTx = await client.buildCreatePlan({
+  merchant: "GMERCHANT...ADDR",
+  token: NETWORKS.testnet.usdcAddress,
+  amount: toStroops("9.99"),
+  period: 2_592_000,
+  priceCeiling: toStroops("14.99"),
+  trialPeriods: 1,
+})
+
+// 2. Subscribe
+const subTx = await client.buildSubscribe(
+  "GSUBSCRIBER...ADDR",
+  planId
+)
+
+// 3. Charge (anyone can call this)
+const chargeTx = await client.buildCharge(
+  "GKEEPER...ADDR",
+  subscriptionId
+)
+```
+
+Each of these returns assembled XDR that you sign with your wallet and submit. The contract handles everything else.
