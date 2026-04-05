@@ -72,7 +72,7 @@ export default function Home() {
             </div>
 
             {/* Hero visual: dashboard blending into page */}
-            <div className="relative -mt-40 sm:-mt-52 -mb-20 sm:-mb-24">
+            <div className="relative -mt-28 sm:-mt-36 -mb-32 sm:-mb-40">
               <div
                 style={{
                   maskImage: "linear-gradient(to right, black 0%, black 80%, transparent 98%), linear-gradient(to bottom, black 0%, black 80%, transparent 98%)",
