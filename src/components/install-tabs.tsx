@@ -3,10 +3,10 @@
 import { useState } from "react";
 
 const managers = [
-  { name: "npm", command: "npm install vowena" },
-  { name: "yarn", command: "yarn add vowena" },
-  { name: "pnpm", command: "pnpm add vowena" },
-  { name: "bun", command: "bun add vowena" },
+  { name: "npm", command: "npm install vowena", bin: "npm", args: "install vowena" },
+  { name: "yarn", command: "yarn add vowena", bin: "yarn", args: "add vowena" },
+  { name: "pnpm", command: "pnpm add vowena", bin: "pnpm", args: "add vowena" },
+  { name: "bun", command: "bun add vowena", bin: "bun", args: "add vowena" },
 ];
 
 export function InstallTabs() {
@@ -22,14 +22,14 @@ export function InstallTabs() {
   return (
     <div className="rounded-xl border border-border bg-surface overflow-hidden">
       {/* Tabs */}
-      <div className="flex border-b border-border">
+      <div className="flex items-center gap-0 border-b border-border w-fit">
         {managers.map((m, i) => (
           <button
             key={m.name}
             onClick={() => setActive(i)}
-            className={`flex-1 py-2 text-xs font-medium transition-colors ${
+            className={`px-4 py-2 text-xs font-medium transition-colors ${
               active === i
-                ? "text-accent border-b-2 border-accent bg-background"
+                ? "text-accent border-b-2 border-accent"
                 : "text-muted hover:text-secondary"
             }`}
           >
@@ -38,9 +38,13 @@ export function InstallTabs() {
         ))}
       </div>
 
-      {/* Command */}
+      {/* Command with syntax highlighting */}
       <div className="flex items-center justify-between px-4 py-3">
-        <code className="text-[13px] font-mono text-foreground">{managers[active].command}</code>
+        <code className="text-[13px] font-mono">
+          <span className="hljs-built_in">{managers[active].bin}</span>
+          <span className="text-foreground"> {managers[active].args.split(" ")[0]} </span>
+          <span className="hljs-string">{managers[active].args.split(" ")[1]}</span>
+        </code>
         <button
           onClick={handleCopy}
           className="text-muted hover:text-foreground transition-colors ml-3 shrink-0"
