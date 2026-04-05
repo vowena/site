@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { VowenaSymbol } from "@/components/vowena-logo";
+import { VowenaLogo } from "@/components/vowena-logo";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -76,7 +76,7 @@ export default function PricingPage() {
         </div>
 
         <div className="max-w-6xl mx-auto px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 text-center">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3">Pricing</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent mb-3">Pricing</p>
           <h1 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.03em" }}>
             Simple pricing,<br className="hidden sm:block" /> no surprises
           </h1>
@@ -168,7 +168,7 @@ export default function PricingPage() {
       {/* FAQ */}
       <section className="border-t border-border bg-surface">
         <div className="max-w-2xl mx-auto px-6 py-12 sm:py-16">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3 text-center">FAQ</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent mb-3 text-center">FAQ</p>
           <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-10 text-center" style={{ letterSpacing: "-0.02em" }}>
             Questions? Answered.
           </h2>
@@ -194,7 +194,7 @@ export default function PricingPage() {
       {/* CTA */}
       <section className="border-t border-border">
         <div className="max-w-6xl mx-auto px-6 py-12 sm:py-16 text-center">
-          <VowenaSymbol className="w-8 h-8 text-accent mx-auto mb-4" />
+            <div className="flex justify-center mb-6"><VowenaLogo size="lg" /></div>
           <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-3" style={{ letterSpacing: "-0.02em" }}>
             Ready to get started?
           </h2>

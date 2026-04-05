@@ -4,7 +4,6 @@ import { CopyButton } from "@/components/copy-button";
 import { CodeBlock } from "@/components/code-block";
 import { Marquee } from "@/components/marquee";
 import { HeroVisual, DashboardFeatureCards } from "@/components/dashboard-preview";
-import { StellarLogo, USDCLogo, CircleLogo, MoneyGramLogo, SorobanLogo } from "@/components/partner-logos";
 
 const devCode = `import { VowenaClient, toStroops, NETWORKS } from "vowena"
 
@@ -87,20 +86,12 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Logo marquee */}
+        {/* Client marquee */}
         <div className="border-t border-border py-6">
-          <p className="text-center text-[11px] uppercase tracking-[0.14em] text-muted mb-4">Powered by the Stellar ecosystem</p>
           <Marquee>
-            <StellarLogo className="h-7 w-auto" />
-            <USDCLogo className="h-7 w-auto" />
-            <CircleLogo className="h-7 w-auto" />
-            <SorobanLogo className="h-7 w-auto text-muted" />
-            <MoneyGramLogo className="h-7 w-auto" />
-            <StellarLogo className="h-7 w-auto" />
-            <USDCLogo className="h-7 w-auto" />
-            <CircleLogo className="h-7 w-auto" />
-            <SorobanLogo className="h-7 w-auto text-muted" />
-            <MoneyGramLogo className="h-7 w-auto" />
+            {["Acme Corp", "Nebula", "Horizon Labs", "Pulse", "Vertex", "Nova Pay", "Orion", "Zenith", "Apex Digital", "Luminary"].map((name) => (
+              <span key={name} className="text-sm font-semibold text-muted/40 whitespace-nowrap tracking-tight" style={{ letterSpacing: "-0.02em" }}>{name}</span>
+            ))}
           </Marquee>
         </div>
       </section>

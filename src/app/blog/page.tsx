@@ -28,7 +28,7 @@ export default function BlogPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-6 pt-16 sm:pt-24 pb-12 sm:pb-16">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3">Blog</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent mb-3">Blog</p>
           <h1 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.03em" }}>
             Building the future of payments
           </h1>
