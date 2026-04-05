@@ -71,8 +71,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Hero visual: overlapping dashboard cards */}
-            <div className="relative h-[320px] sm:h-[360px]">
+            {/* Hero visual: dashboard mockup */}
+            <div>
               <HeroVisual />
             </div>
           </div>
@@ -202,9 +202,10 @@ export default function Home() {
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="lg:col-span-2 rounded-xl border border-border bg-elevated p-8">
+            {/* Top row: 2 equal-height cards */}
+            <div className="lg:col-span-2 rounded-xl border border-border bg-elevated p-8 flex flex-col">
               <h3 className="text-lg font-semibold text-foreground mb-2">Zero chargebacks. Zero disputes.</h3>
-              <p className="text-sm text-muted leading-relaxed max-w-md mb-6">
+              <p className="text-sm text-muted leading-relaxed max-w-md mb-6 flex-1">
                 Subscribers authorize a spending limit upfront. The contract can never charge more than they approved. No surprise fees, no card disputes, no revenue clawbacks.
               </p>
               <div className="flex flex-wrap items-center gap-3 text-xs text-muted font-mono">
@@ -214,9 +215,9 @@ export default function Home() {
                 <span className="px-2 py-1 rounded bg-error/10 border border-error/20 text-error">Disputes: 0</span>
               </div>
             </div>
-            <div className="rounded-xl border border-border bg-elevated p-6">
+            <div className="rounded-xl border border-border bg-elevated p-6 flex flex-col">
               <h3 className="text-sm font-semibold text-foreground mb-2">Fees that disappear</h3>
-              <p className="text-sm text-muted leading-relaxed mb-3">Each charge costs $0.00001. Not 2.9% + 30 cents. On $29.99, Stripe takes $1.17. Vowena takes a fraction of a cent.</p>
+              <p className="text-sm text-muted leading-relaxed mb-4 flex-1">Each charge costs $0.00001. Not 2.9% + 30 cents. On $29.99, Stripe takes $1.17. Vowena takes a fraction of a cent.</p>
               <div className="flex items-baseline gap-1">
                 <span className="text-2xl font-semibold text-foreground">99.99%</span>
                 <span className="text-xs text-muted">of revenue is yours</span>
@@ -292,17 +293,17 @@ export default function Home() {
               </div>
 
               <div className="flex flex-wrap gap-3 text-xs text-muted">
-                <Link href="/docs" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border hover:border-accent/30 hover:text-accent transition-colors">
+                <Link href="/docs" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:border-accent/30 hover:text-accent transition-colors">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                   Documentation
-                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                 </Link>
-                <Link href="https://github.com/vowena" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border hover:border-accent/30 hover:text-accent transition-colors">
+                <Link href="https://github.com/vowena" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:border-accent/30 hover:text-accent transition-colors">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
                   GitHub
-                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                 </Link>
-                <Link href="https://www.npmjs.com/package/vowena" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border hover:border-accent/30 hover:text-accent transition-colors">
+                <Link href="https://www.npmjs.com/package/vowena" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:border-accent/30 hover:text-accent transition-colors">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z"/></svg>
                   npm
-                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                 </Link>
               </div>
             </div>

@@ -1,62 +1,94 @@
 export function HeroVisual() {
   return (
-    <div className="relative">
-      {/* Stacked cards with depth - zoomed into dashboard corners */}
-      {/* Back card: revenue chart (offset, slightly tilted) */}
-      <div className="absolute -top-3 -left-3 right-6 rounded-2xl border border-border bg-elevated p-5 shadow-lg shadow-black/[0.04] dark:shadow-black/20 rotate-[-2deg]">
-        <div className="flex items-center justify-between mb-3">
-          <p className="text-[10px] font-medium text-foreground">Monthly recurring revenue</p>
-          <span className="text-[9px] text-success font-medium bg-success-subtle px-1.5 py-0.5 rounded">+18.4%</span>
-        </div>
-        <p className="text-2xl font-semibold text-foreground mb-4">$12,847.00</p>
-        <svg viewBox="0 0 400 60" className="w-full h-12" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="heroChartFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.12" />
-              <stop offset="100%" stopColor="var(--accent)" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          <path d="M0 55 L30 50 L60 48 L90 42 L120 38 L150 35 L180 30 L210 28 L240 22 L270 20 L300 15 L330 12 L360 10 L400 5 L400 60 L0 60Z" fill="url(#heroChartFill)" />
-          <path d="M0 55 L30 50 L60 48 L90 42 L120 38 L150 35 L180 30 L210 28 L240 22 L270 20 L300 15 L330 12 L360 10 L400 5" fill="none" stroke="var(--accent)" strokeWidth="2" />
-        </svg>
-      </div>
-
-      {/* Front card: subscriber notification + stats */}
-      <div className="relative mt-28 ml-8 rounded-2xl border border-border bg-elevated p-5 shadow-2xl shadow-black/[0.08] dark:shadow-black/30 rotate-[1deg]">
-        {/* Notification */}
-        <div className="flex items-center gap-3 p-3 rounded-lg bg-success-subtle/50 border border-success/10 mb-4">
-          <div className="w-7 h-7 rounded-full bg-success/20 flex items-center justify-center shrink-0">
-            <svg className="w-3.5 h-3.5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <div className="rounded-2xl border border-border bg-elevated overflow-hidden shadow-2xl shadow-accent/[0.06] dark:shadow-black/30">
+      {/* Sidebar + main area layout */}
+      <div className="flex">
+        {/* Mini sidebar */}
+        <div className="w-12 bg-surface border-r border-border py-3 flex flex-col items-center gap-3 shrink-0">
+          <div className="w-6 h-6 rounded-lg bg-accent flex items-center justify-center">
+            <svg className="w-3 h-3 text-white" viewBox="0 0 80 80" fill="none"><path d="M44 18C44 18 28 22 24 40C20 58 36 62 36 62" stroke="currentColor" strokeWidth="6" strokeLinecap="round" fill="none"/><circle cx="40" cy="40" r="4" fill="currentColor"/></svg>
           </div>
-          <div>
-            <p className="text-[10px] font-medium text-foreground">New subscriber</p>
-            <p className="text-[9px] text-muted">GCKJ...8FXP subscribed to Pro Monthly - $29.99</p>
-          </div>
+          <div className="w-6 h-1 rounded-full bg-accent/30" />
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="w-5 h-5 rounded-md bg-border/60" />
+          ))}
         </div>
 
-        {/* Mini stats */}
-        <div className="grid grid-cols-3 gap-3">
-          <div className="rounded-lg border border-border bg-background p-3">
-            <p className="text-[8px] text-muted mb-1">Active</p>
-            <p className="text-base font-semibold text-foreground">1,284</p>
+        {/* Main content */}
+        <div className="flex-1 p-4 space-y-3 min-w-0">
+          {/* Top bar */}
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-[8px] text-muted">Overview</p>
+              <p className="text-xs font-semibold text-foreground">Good morning</p>
+            </div>
+            <div className="w-6 h-6 rounded-full bg-accent-subtle flex items-center justify-center text-[8px] text-accent font-bold">T</div>
           </div>
-          <div className="rounded-lg border border-border bg-background p-3">
-            <p className="text-[8px] text-muted mb-1">Success</p>
-            <p className="text-base font-semibold text-success">98.7%</p>
-          </div>
-          <div className="rounded-lg border border-border bg-background p-3">
-            <p className="text-[8px] text-muted mb-1">Churn</p>
-            <p className="text-base font-semibold text-foreground">2.1%</p>
-          </div>
-        </div>
 
-        {/* Recent charge row */}
-        <div className="mt-3 flex items-center justify-between p-2 rounded-lg border border-border bg-background">
-          <div className="flex items-center gap-2">
-            <div className="w-5 h-5 rounded-full bg-accent-subtle flex items-center justify-center text-[7px] text-accent font-bold">T</div>
-            <span className="text-[9px] font-mono text-muted">GBXM...Q4VL</span>
+          {/* Stats row */}
+          <div className="grid grid-cols-3 gap-2">
+            <div className="rounded-lg border border-border bg-background p-2.5">
+              <p className="text-[7px] text-muted">MRR</p>
+              <p className="text-sm font-semibold text-foreground">$12.8k</p>
+              <p className="text-[7px] text-success">+18%</p>
+            </div>
+            <div className="rounded-lg border border-border bg-background p-2.5">
+              <p className="text-[7px] text-muted">Subscribers</p>
+              <p className="text-sm font-semibold text-foreground">1,284</p>
+              <p className="text-[7px] text-success">+24</p>
+            </div>
+            <div className="rounded-lg border border-border bg-background p-2.5">
+              <p className="text-[7px] text-muted">Success rate</p>
+              <p className="text-sm font-semibold text-foreground">98.7%</p>
+              <p className="text-[7px] text-success">+0.3%</p>
+            </div>
           </div>
-          <span className="text-[9px] font-medium text-success">+$29.99</span>
+
+          {/* Chart */}
+          <div className="rounded-lg border border-border bg-background p-3">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-[8px] font-medium text-foreground">Revenue</p>
+              <div className="flex gap-1">
+                <span className="text-[7px] text-muted px-1 py-0.5 rounded bg-surface border border-border">7d</span>
+                <span className="text-[7px] text-white px-1 py-0.5 rounded bg-accent">30d</span>
+              </div>
+            </div>
+            <svg viewBox="0 0 300 50" className="w-full h-10" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="hcf" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.15" />
+                  <stop offset="100%" stopColor="var(--accent)" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <path d="M0 42 L25 38 L50 36 L75 32 L100 28 L125 25 L150 22 L175 20 L200 16 L225 14 L250 10 L275 8 L300 4 L300 50 L0 50Z" fill="url(#hcf)" />
+              <path d="M0 42 L25 38 L50 36 L75 32 L100 28 L125 25 L150 22 L175 20 L200 16 L225 14 L250 10 L275 8 L300 4" fill="none" stroke="var(--accent)" strokeWidth="1.5" />
+              <circle cx="300" cy="4" r="2.5" fill="var(--accent)" />
+            </svg>
+          </div>
+
+          {/* Subscriber rows */}
+          <div className="rounded-lg border border-border bg-background overflow-hidden">
+            <div className="px-2.5 py-1.5 border-b border-border flex items-center justify-between">
+              <p className="text-[8px] font-medium text-foreground">Recent activity</p>
+              <p className="text-[7px] text-accent">View all</p>
+            </div>
+            {[
+              { addr: "GCKJ...8FXP", action: "Subscribed", amount: "+$29.99", color: "text-success" },
+              { addr: "GBXM...Q4VL", action: "Charged", amount: "+$29.99", color: "text-success" },
+              { addr: "GDHR...N7WK", action: "Trial started", amount: "$0.00", color: "text-warning" },
+            ].map((row) => (
+              <div key={row.addr} className="flex items-center justify-between px-2.5 py-1.5 border-b border-border last:border-0">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-4 h-4 rounded-full bg-accent-subtle flex items-center justify-center text-[6px] text-accent font-bold">{row.addr[0]}</div>
+                  <div>
+                    <p className="text-[8px] font-mono text-foreground">{row.addr}</p>
+                    <p className="text-[6px] text-muted">{row.action}</p>
+                  </div>
+                </div>
+                <span className={`text-[8px] font-medium ${row.color}`}>{row.amount}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -66,7 +98,6 @@ export function HeroVisual() {
 export function DashboardFeatureCards() {
   return (
     <div className="space-y-4">
-      {/* Subscriber card */}
       <div className="rounded-xl border border-border bg-elevated p-5">
         <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted mb-4">What your subscribers see</p>
         <div className="rounded-lg border border-border bg-background p-4">
@@ -93,7 +124,6 @@ export function DashboardFeatureCards() {
         </div>
       </div>
 
-      {/* Billing history card */}
       <div className="rounded-xl border border-border bg-elevated p-5">
         <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted mb-3">Billing history</p>
         <div className="space-y-2">
@@ -112,11 +142,10 @@ export function DashboardFeatureCards() {
         </div>
       </div>
 
-      {/* Cancel/manage actions */}
       <div className="rounded-xl border border-border bg-elevated p-5">
         <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted mb-3">Subscriber controls</p>
         <p className="text-xs text-secondary leading-relaxed mb-3">
-          Subscribers can view history, manage their subscription, or cancel anytime with one click. No emails, no phone calls. Direct on-chain.
+          Subscribers can view history, manage their subscription, or cancel anytime. No emails, no phone calls. Direct on-chain.
         </p>
         <div className="flex gap-2">
           <div className="flex-1 text-center py-2 rounded-lg border border-border text-[10px] text-secondary font-medium">View history</div>
