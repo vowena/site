@@ -22,29 +22,37 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      {/* Post header */}
+      {/* Cover + header */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 opacity-[0.04] dark:opacity-[0.025]" style={{ backgroundImage: "linear-gradient(var(--border-default) 1px, transparent 1px), linear-gradient(90deg, var(--border-default) 1px, transparent 1px)", backgroundSize: "64px 64px" }} />
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
-        </div>
+        {/* Cover image as background that fades out */}
+        {post.cover && (
+          <div className="absolute inset-0 -z-10">
+            <Image src={post.cover} alt="" fill className="object-cover" priority />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/90 to-background" />
+          </div>
+        )}
+        {!post.cover && (
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute inset-0 opacity-[0.04] dark:opacity-[0.025]" style={{ backgroundImage: "linear-gradient(var(--border-default) 1px, transparent 1px), linear-gradient(90deg, var(--border-default) 1px, transparent 1px)", backgroundSize: "64px 64px" }} />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+          </div>
+        )}
 
-        <div className="max-w-2xl mx-auto px-6 pt-20 sm:pt-28 pb-12 sm:pb-16">
+        <div className="max-w-2xl mx-auto px-6 pt-16 sm:pt-24 pb-12 sm:pb-16">
           <Link href="/blog" className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-accent transition-colors mb-8">
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
             Back to blog
           </Link>
 
+          <time className="font-mono text-xs text-muted block mb-3">
+            {new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+          </time>
+
           <h1 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight leading-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
             {post.title}
           </h1>
-          <p className="text-secondary mb-8">{post.description}</p>
 
-          {post.cover && (
-            <div className="relative w-full aspect-[2.2/1] rounded-xl overflow-hidden mb-8 border border-border">
-              <Image src={post.cover} alt={post.title} fill className="object-cover" priority />
-            </div>
-          )}
+          <p className="text-secondary mb-6">{post.description}</p>
 
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-accent-subtle flex items-center justify-center text-accent text-sm font-semibold">
@@ -52,17 +60,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
             <div>
               <p className="text-sm font-medium text-foreground">{post.author}</p>
-              <time className="font-mono text-xs text-muted">
-                {new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
-              </time>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Post body */}
+      {/* Article body */}
       <section className="border-t border-border">
-        <article className="max-w-2xl mx-auto px-6 py-12 sm:py-16">
+        <article className="max-w-2xl mx-auto px-6 py-10 sm:py-14">
           <div className="
             [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-foreground [&_h2]:mt-12 [&_h2]:mb-4
             [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-foreground [&_h3]:mt-8 [&_h3]:mb-3
@@ -84,9 +89,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </article>
       </section>
 
-      {/* Post footer */}
+      {/* Footer */}
       <section className="border-t border-border">
-        <div className="max-w-2xl mx-auto px-6 py-10">
+        <div className="max-w-2xl mx-auto px-6 py-8">
           <div className="flex items-center justify-between">
             <Link href="/blog" className="text-sm text-muted hover:text-accent transition-colors inline-flex items-center gap-1.5">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
