@@ -1,15 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { VowenaLogo } from "./vowena-logo";
 import { ThemeToggle } from "./theme-toggle";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    function handleClick(e: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [open]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
+    <nav ref={menuRef} className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
         <Link href="/"><VowenaLogo /></Link>
 
@@ -45,8 +57,8 @@ export function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="sm:hidden border-t border-border bg-background backdrop-blur-xl">
-          <div className="max-w-6xl mx-auto px-4 py-3">
+        <div className="sm:hidden bg-background border-t border-border">
+          <div className="px-4 pt-6 pb-8 flex flex-col items-center gap-5">
             {[
               { href: "/pricing", label: "Pricing" },
               { href: "/blog", label: "Blog" },
@@ -57,20 +69,18 @@ export function Nav() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center py-3 text-sm text-secondary hover:text-foreground transition-colors border-b border-border last:border-0"
+                className="text-base font-medium text-secondary hover:text-foreground transition-colors"
               >
                 {item.label}
               </Link>
             ))}
-            <div className="pt-4 pb-1">
-              <Link
-                href="https://dashboard.vowena.xyz"
-                onClick={() => setOpen(false)}
-                className="flex items-center justify-center w-full h-11 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors"
-              >
-                Get started free
-              </Link>
-            </div>
+            <Link
+              href="https://dashboard.vowena.xyz"
+              onClick={() => setOpen(false)}
+              className="mt-2 inline-flex items-center h-11 px-8 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors"
+            >
+              Get started free
+            </Link>
           </div>
         </div>
       )}
