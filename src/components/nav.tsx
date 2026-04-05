@@ -10,7 +10,7 @@ export function Nav() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
-      <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
         <Link href="/"><VowenaLogo /></Link>
 
         {/* Desktop */}
@@ -42,7 +42,7 @@ export function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="sm:hidden border-t border-border bg-background/95 backdrop-blur-xl px-6 py-4 space-y-1">
+        <div className="sm:hidden border-t border-border bg-background/95 backdrop-blur-xl px-4 py-4 space-y-1">
           {[
             { href: "/pricing", label: "Pricing" },
             { href: "/blog", label: "Blog" },

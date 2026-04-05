@@ -4,7 +4,7 @@ import { VowenaSymbol } from "./vowena-logo";
 export function Footer() {
   return (
     <footer className="border-t border-border">
-      <div className="max-w-6xl mx-auto px-6 py-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-2 sm:col-span-1">

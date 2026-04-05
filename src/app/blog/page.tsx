@@ -27,7 +27,7 @@ export default function BlogPage() {
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
         </div>
 
-        <div className="max-w-4xl mx-auto px-6 pt-16 sm:pt-24 pb-12 sm:pb-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 sm:pb-16">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent mb-3">Blog</p>
           <h1 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.03em" }}>
             Building the future of payments
@@ -41,7 +41,7 @@ export default function BlogPage() {
       {/* Featured post */}
       {featured && (
         <section className="border-t border-border">
-          <div className="max-w-4xl mx-auto px-6 py-10 sm:py-14">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
             <Link href={`/blog/${featured.slug}`} className="group grid grid-cols-1 sm:grid-cols-2 gap-0 rounded-xl border border-border bg-elevated overflow-hidden hover:border-accent/30 transition-colors">
               {featured.cover && (
                 <div className="relative aspect-[16/10] sm:aspect-auto overflow-hidden">
@@ -76,7 +76,7 @@ export default function BlogPage() {
       {/* Rest of posts */}
       {rest.length > 0 && (
         <section className="border-t border-border">
-          <div className="max-w-4xl mx-auto px-6 py-10 sm:py-14">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted mb-6">All posts</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {rest.map((post) => (

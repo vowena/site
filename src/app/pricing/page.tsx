@@ -75,7 +75,7 @@ export default function PricingPage() {
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
         </div>
 
-        <div className="max-w-6xl mx-auto px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 text-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent mb-3">Pricing</p>
           <h1 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.03em" }}>
             Simple pricing,<br className="hidden sm:block" /> no surprises
@@ -88,12 +88,12 @@ export default function PricingPage() {
 
       {/* Pricing cards */}
       <section className="border-t border-border">
-        <div className="max-w-6xl mx-auto px-6 py-12 sm:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {tiers.map((tier) => (
               <div
                 key={tier.name}
-                className={`rounded-xl border p-8 flex flex-col ${
+                className={`rounded-xl border p-6 sm:p-8 flex flex-col ${
                   tier.highlight
                     ? "border-accent bg-accent/[0.02] ring-1 ring-accent/20 relative"
                     : "border-border bg-elevated"
@@ -141,13 +141,13 @@ export default function PricingPage() {
           </div>
 
           {/* Why go Pro? */}
-          <div className="mt-12 rounded-xl border border-border bg-elevated overflow-hidden">
-            <div className="grid grid-cols-[1.2fr_1fr_1fr] text-[11px] font-semibold uppercase tracking-[0.14em] text-muted border-b border-border">
+          <div className="mt-12 rounded-xl border border-border bg-elevated overflow-x-auto">
+            <div className="grid grid-cols-[1.2fr_1fr_1fr] min-w-[600px] text-[11px] font-semibold uppercase tracking-[0.14em] text-muted border-b border-border">
               <div className="px-5 py-3 text-accent">Why go Pro?</div>
               <div className="px-5 py-3">Open Source</div>
               <div className="px-5 py-3 text-accent">Pro</div>
             </div>
-            <div className="divide-y divide-border">
+            <div className="divide-y divide-border min-w-[600px]">
               {[
                 { thing: "Billing automation", free: "You build and maintain a keeper bot that calls charge() on a schedule", pro: "Charges run automatically 24/7 with retries and grace period handling" },
                 { thing: "Revenue insights", free: "Query raw blockchain events and calculate MRR, churn, and growth yourself", pro: "Real-time dashboards with MRR, churn rate, failed charges, and trends" },
@@ -167,7 +167,7 @@ export default function PricingPage() {
 
       {/* FAQ */}
       <section className="border-t border-border bg-surface">
-        <div className="max-w-2xl mx-auto px-6 py-12 sm:py-16">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent mb-3 text-center">FAQ</p>
           <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-10 text-center" style={{ letterSpacing: "-0.02em" }}>
             Questions? Answered.
@@ -193,7 +193,7 @@ export default function PricingPage() {
 
       {/* CTA */}
       <section className="border-t border-border">
-        <div className="max-w-6xl mx-auto px-6 py-12 sm:py-16 text-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center">
             <div className="flex justify-center mb-6"><VowenaLogo size="lg" /></div>
           <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-3" style={{ letterSpacing: "-0.02em" }}>
             Ready to get started?

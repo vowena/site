@@ -30,12 +30,12 @@ export default function Home() {
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
         </div>
 
-        <div className="max-w-6xl mx-auto px-6 pt-16 sm:pt-24 pb-8 sm:pb-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-8 sm:pb-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
               <p className="text-xs font-medium text-accent mb-6 tracking-wide uppercase">Recurring payments on Stellar</p>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-semibold text-foreground leading-[1.08] tracking-tight whitespace-nowrap" style={{ letterSpacing: "-0.03em" }}>
+              <h1 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-semibold text-foreground leading-[1.08] tracking-tight" style={{ letterSpacing: "-0.03em" }}>
                 Recurring revenue,<br />
                 <span className="text-accent">fully automated.</span>
               </h1>
@@ -44,15 +44,13 @@ export default function Home() {
                 Add recurring USDC payments to your product. Customers subscribe once, billing runs on autopilot. No chargebacks, no payment processors, no hidden fees.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-8">
-                <div className="flex items-center gap-3">
-                  <Link href="https://dashboard.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
-                    Get started free
-                  </Link>
-                  <Link href="/docs" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
-                    See how it works
-                  </Link>
-                </div>
+              <div className="flex flex-wrap items-center gap-3 mt-8">
+                <Link href="https://dashboard.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+                  Get started free
+                </Link>
+                <Link href="/docs" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
+                  See how it works
+                </Link>
               </div>
 
               <div className="flex flex-wrap items-center gap-6 sm:gap-8 mt-10 text-sm text-muted">
@@ -72,7 +70,7 @@ export default function Home() {
             </div>
 
             {/* Hero visual: dashboard blending into page */}
-            <div className="relative -mt-28 sm:-mt-36 -mb-32 sm:-mb-40">
+            <div className="relative hidden lg:block -mt-28 sm:-mt-36 -mb-32 sm:-mb-40">
               <div
                 style={{
                   maskImage: "linear-gradient(to right, black 0%, black 80%, transparent 98%), linear-gradient(to bottom, black 0%, black 80%, transparent 98%)",
@@ -102,7 +100,7 @@ export default function Home() {
 
       {/* How it works - business flow */}
       <section className="border-t border-border">
-        <div className="max-w-6xl mx-auto px-6 py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3">How it works</p>
           <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
             Launch subscriptions in minutes
@@ -203,7 +201,7 @@ export default function Home() {
 
       {/* Why Vowena - business benefits */}
       <section className="border-t border-border bg-surface">
-        <div className="max-w-6xl mx-auto px-6 py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3">Why Vowena</p>
           <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-12 sm:mb-16" style={{ letterSpacing: "-0.02em" }}>
             Billing infrastructure that works for you
@@ -249,7 +247,7 @@ export default function Home() {
 
       {/* Dashboard + Subscriber experience */}
       <section className="border-t border-border">
-        <div className="max-w-6xl mx-auto px-6 py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3">Your dashboard</p>
@@ -285,7 +283,7 @@ export default function Home() {
 
       {/* For developers - compact */}
       <section className="border-t border-border">
-        <div className="max-w-6xl mx-auto px-6 py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3">For developers</p>
@@ -327,7 +325,7 @@ export default function Home() {
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(var(--border-default) 1px, transparent 1px), linear-gradient(90deg, var(--border-default) 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
         </div>
-        <div className="max-w-6xl mx-auto px-6 py-20 sm:py-28 relative">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28 relative">
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex justify-center mb-6"><VowenaLogo size="lg" /></div>
             <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>

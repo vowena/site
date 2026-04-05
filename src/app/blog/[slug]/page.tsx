@@ -47,7 +47,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
         </div>
 
-        <div className="max-w-2xl mx-auto px-6 pt-16 sm:pt-24 pb-10 sm:pb-12">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-10 sm:pb-12">
           <Link href="/blog" className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-accent transition-colors mb-8">
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
             Back to blog
@@ -76,7 +76,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       {/* Cover image */}
       {post.cover && (
         <section className="border-t border-border">
-          <div className="max-w-3xl mx-auto px-6 py-8">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
             <div className="relative w-full aspect-[2.2/1] rounded-xl overflow-hidden border border-border">
               <Image src={post.cover} alt={post.title} fill className="object-cover" priority />
             </div>
@@ -86,7 +86,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Article body */}
       <section className="border-t border-border">
-        <article className="max-w-2xl mx-auto px-6 py-10 sm:py-14">
+        <article className="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
           <div className="
             [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-foreground [&_h2]:mt-12 [&_h2]:mb-4
             [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-foreground [&_h3]:mt-8 [&_h3]:mb-3
@@ -110,7 +110,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Footer */}
       <section className="border-t border-border">
-        <div className="max-w-2xl mx-auto px-6 py-8">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8">
           <div className="flex items-center justify-between">
             <Link href="/blog" className="text-sm text-muted hover:text-accent transition-colors inline-flex items-center gap-1.5">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
