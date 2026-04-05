@@ -20,8 +20,10 @@ const tiers = [
   },
   {
     name: "Pro",
-    price: "$49",
+    price: "$0",
+    originalPrice: "$49",
     period: "/month",
+    badge: "Free during beta",
     desc: "Managed infrastructure so you never think about billing again. Dashboard, keeper, analytics, and subscriber management.",
     features: [
       "Everything in Protocol",
@@ -81,8 +83,18 @@ export default function PricingPage() {
             }`}
           >
             <div className="mb-6">
-              <h3 className="text-sm font-semibold text-foreground mb-3">{tier.name}</h3>
-              <div className="flex items-baseline gap-1">
+              <div className="flex items-center gap-2 mb-3">
+                <h3 className="text-sm font-semibold text-foreground">{tier.name}</h3>
+                {"badge" in tier && tier.badge && (
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-success bg-success-subtle px-2 py-0.5 rounded-full">
+                    {tier.badge as string}
+                  </span>
+                )}
+              </div>
+              <div className="flex items-baseline gap-2">
+                {"originalPrice" in tier && tier.originalPrice && (
+                  <span className="text-lg text-muted line-through">{tier.originalPrice as string}</span>
+                )}
                 <span className="text-4xl font-semibold text-foreground tracking-tight">{tier.price}</span>
                 {tier.period && <span className="text-sm text-muted">{tier.period}</span>}
               </div>
