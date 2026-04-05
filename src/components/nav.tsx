@@ -57,7 +57,7 @@ export function Nav() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center py-3 text-sm text-secondary hover:text-foreground transition-colors border-b border-border last:border-0"
+                className="flex items-center justify-center py-3 text-sm text-secondary hover:text-foreground transition-colors border-b border-border last:border-0"
               >
                 {item.label}
               </Link>
