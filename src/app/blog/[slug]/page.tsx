@@ -7,14 +7,16 @@ export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = getPost(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getPost(slug);
   if (!post) return {};
   return { title: `${post.title} - Vowena Blog`, description: post.description };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = getPost(params.slug);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getPost(slug);
   if (!post) notFound();
 
   return (
@@ -36,7 +38,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
       </header>
 
-      <div className="prose prose-neutral max-w-none [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-foreground [&_h2]:mt-10 [&_h2]:mb-4 [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-foreground [&_p]:text-secondary [&_p]:leading-relaxed [&_li]:text-secondary [&_a]:text-accent [&_a]:no-underline hover:[&_a]:underline [&_code]:text-accent [&_code]:bg-accent-subtle [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_pre]:bg-elevated [&_pre]:border [&_pre]:border-border [&_pre]:rounded-xl [&_blockquote]:border-accent [&_blockquote]:text-secondary [&_strong]:text-foreground [&_hr]:border-border">
+      <div className="prose prose-neutral max-w-none [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-foreground [&_h2]:mt-10 [&_h2]:mb-4 [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-foreground [&_p]:text-secondary [&_p]:leading-relaxed [&_li]:text-secondary [&_a]:text-accent [&_a]:no-underline hover:[&_a]:underline [&_code]:text-accent [&_code]:bg-accent-subtle [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_pre]:bg-elevated [&_pre]:border [&_pre]:border-border [&_pre]:rounded-xl [&_pre]:p-5 [&_pre]:overflow-x-auto [&_pre]:text-sm [&_pre]:leading-relaxed [&_pre_code]:text-secondary [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:rounded-none [&_blockquote]:border-accent [&_blockquote]:text-secondary [&_strong]:text-foreground [&_hr]:border-border">
         <MDXRemote source={post.content} />
       </div>
     </article>
