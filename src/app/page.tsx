@@ -36,8 +36,8 @@ export default function Home() {
               <p className="text-xs font-medium text-accent mb-6 tracking-wide uppercase">Recurring payments on Stellar</p>
 
               <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-semibold text-foreground leading-[1.08] tracking-tight whitespace-nowrap" style={{ letterSpacing: "-0.03em" }}>
-                Subscription billing,<br />
-                <span className="text-accent">built on trust.</span>
+                Recurring revenue,<br />
+                <span className="text-accent">fully automated.</span>
               </h1>
 
               <p className="mt-6 text-base sm:text-lg text-secondary leading-relaxed max-w-xl">

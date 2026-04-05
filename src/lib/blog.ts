@@ -10,6 +10,7 @@ export interface BlogPost {
   description: string;
   date: string;
   author: string;
+  cover?: string;
   content: string;
 }
 
@@ -25,6 +26,7 @@ export function getAllPosts(): BlogPost[] {
       description: data.description ?? "",
       date: data.date ?? "",
       author: data.author ?? "Vowena",
+      cover: data.cover ?? undefined,
       content,
     };
   });
@@ -42,6 +44,7 @@ export function getPost(slug: string): BlogPost | null {
     description: data.description ?? "",
     date: data.date ?? "",
     author: data.author ?? "Vowena",
+    cover: data.cover ?? undefined,
     content,
   };
 }

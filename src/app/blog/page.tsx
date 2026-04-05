@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getAllPosts } from "@/lib/blog";
 
 export default function BlogPage() {
@@ -29,22 +30,34 @@ export default function BlogPage() {
       {featured && (
         <section className="border-t border-border">
           <div className="max-w-4xl mx-auto px-6 py-12 sm:py-16">
-            <Link href={`/blog/${featured.slug}`} className="group block rounded-xl border border-border bg-elevated p-8 sm:p-10 hover:border-accent/30 transition-colors">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-accent bg-accent-subtle px-2 py-0.5 rounded-full">Latest</span>
-                <time className="text-xs text-muted font-mono">
-                  {new Date(featured.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
-                </time>
-              </div>
-              <h2 className="text-xl sm:text-2xl font-semibold text-foreground tracking-tight mb-3 group-hover:text-accent transition-colors" style={{ letterSpacing: "-0.02em" }}>
-                {featured.title}
-              </h2>
-              <p className="text-sm text-muted leading-relaxed mb-4 max-w-2xl">{featured.description}</p>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-accent-subtle flex items-center justify-center text-[9px] text-accent font-semibold">
-                  {featured.author.charAt(0)}
+            <Link href={`/blog/${featured.slug}`} className="group block rounded-xl border border-border bg-elevated overflow-hidden hover:border-accent/30 transition-colors">
+              {featured.cover && (
+                <div className="relative w-full aspect-[2.2/1] overflow-hidden">
+                  <Image
+                    src={featured.cover}
+                    alt={featured.title}
+                    fill
+                    className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                  />
                 </div>
-                <span className="text-xs text-secondary">{featured.author}</span>
+              )}
+              <div className="p-8 sm:p-10">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-accent bg-accent-subtle px-2 py-0.5 rounded-full">Latest</span>
+                  <time className="text-xs text-muted font-mono">
+                    {new Date(featured.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                  </time>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-semibold text-foreground tracking-tight mb-3 group-hover:text-accent transition-colors" style={{ letterSpacing: "-0.02em" }}>
+                  {featured.title}
+                </h2>
+                <p className="text-sm text-muted leading-relaxed mb-4 max-w-2xl">{featured.description}</p>
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full bg-accent-subtle flex items-center justify-center text-[9px] text-accent font-semibold">
+                    {featured.author.charAt(0)}
+                  </div>
+                  <span className="text-xs text-secondary">{featured.author}</span>
+                </div>
               </div>
             </Link>
           </div>
@@ -61,20 +74,32 @@ export default function BlogPage() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="group rounded-xl border border-border bg-elevated p-6 hover:border-accent/30 transition-colors flex flex-col"
+                  className="group rounded-xl border border-border bg-elevated overflow-hidden hover:border-accent/30 transition-colors flex flex-col"
                 >
-                  <time className="text-xs text-muted font-mono mb-3">
-                    {new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
-                  </time>
-                  <h2 className="text-sm font-semibold text-foreground mb-2 group-hover:text-accent transition-colors leading-snug">
-                    {post.title}
-                  </h2>
-                  <p className="text-xs text-muted leading-relaxed mb-4 flex-1 line-clamp-2">{post.description}</p>
-                  <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full bg-accent-subtle flex items-center justify-center text-[8px] text-accent font-semibold">
-                      {post.author.charAt(0)}
+                  {post.cover && (
+                    <div className="relative w-full aspect-[2/1] overflow-hidden">
+                      <Image
+                        src={post.cover}
+                        alt={post.title}
+                        fill
+                        className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                      />
                     </div>
-                    <span className="text-xs text-muted">{post.author}</span>
+                  )}
+                  <div className="p-6 flex flex-col flex-1">
+                    <time className="text-xs text-muted font-mono mb-3">
+                      {new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                    </time>
+                    <h2 className="text-sm font-semibold text-foreground mb-2 group-hover:text-accent transition-colors leading-snug">
+                      {post.title}
+                    </h2>
+                    <p className="text-xs text-muted leading-relaxed mb-4 flex-1 line-clamp-2">{post.description}</p>
+                    <div className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-accent-subtle flex items-center justify-center text-[8px] text-accent font-semibold">
+                        {post.author.charAt(0)}
+                      </div>
+                      <span className="text-xs text-muted">{post.author}</span>
+                    </div>
                   </div>
                 </Link>
               ))}

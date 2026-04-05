@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { getAllPosts, getPost } from "@/lib/blog";
 import { MdxRenderer } from "@/components/mdx-renderer";
 import Link from "next/link";
@@ -38,6 +39,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {post.title}
           </h1>
           <p className="text-secondary mb-8">{post.description}</p>
+
+          {post.cover && (
+            <div className="relative w-full aspect-[2.2/1] rounded-xl overflow-hidden mb-8 border border-border">
+              <Image src={post.cover} alt={post.title} fill className="object-cover" priority />
+            </div>
+          )}
 
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-accent-subtle flex items-center justify-center text-accent text-sm font-semibold">

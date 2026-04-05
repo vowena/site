@@ -3,19 +3,17 @@ import { VowenaSymbol } from "@/components/vowena-logo";
 
 const tiers = [
   {
-    name: "Protocol",
+    name: "Open Source",
     price: "Free",
     period: "forever",
-    desc: "The smart contract and SDK are open source. Deploy your own, run your own keeper, build your own dashboard.",
+    desc: "Everything you need to integrate subscription billing into your product.",
     features: [
-      "Full Soroban smart contract",
-      "TypeScript SDK (npm install vowena)",
-      "Unlimited plans and subscriptions",
-      "Permissionless charge() calls",
-      "On-chain event history",
-      "Community support on GitHub",
+      "Soroban smart contract",
+      "TypeScript SDK",
+      "Unlimited plans and subscribers",
+      "Community support",
     ],
-    cta: "Start building",
+    cta: "Get started",
     ctaHref: "/docs",
     highlight: false,
   },
@@ -25,14 +23,11 @@ const tiers = [
     originalPrice: "$49",
     period: "/month",
     badge: "Free during beta",
-    desc: "Managed infrastructure so you never think about billing again. Dashboard, keeper, analytics, and subscriber management.",
+    desc: "Managed billing so you can focus on your product instead of infrastructure.",
     features: [
-      "Everything in Protocol",
-      "Managed keeper (24/7 auto-billing)",
-      "Event indexer with fast queries",
+      "24/7 automated billing",
       "Revenue and churn analytics",
-      "Subscriber management dashboard",
-      "Plan metadata (names, logos)",
+      "Subscriber dashboard",
       "Email notifications",
       "Priority support",
     ],
@@ -44,17 +39,15 @@ const tiers = [
     name: "Enterprise",
     price: "Custom",
     period: "",
-    desc: "For teams processing high volume. Dedicated infrastructure, custom integrations, and SLA guarantees.",
+    desc: "Dedicated infrastructure, custom integrations, and guaranteed uptime for high volume.",
     features: [
-      "Everything in Pro",
-      "Dedicated keeper infrastructure",
-      "Custom webhook integrations",
+      "Dedicated billing infrastructure",
+      "Custom webhooks",
       "White-label dashboard",
-      "Multi-token billing",
       "SLA guarantee",
       "Dedicated support",
     ],
-    cta: "Contact us",
+    cta: "Talk to us",
     ctaHref: "mailto:hello@vowena.xyz",
     highlight: false,
   },
@@ -73,10 +66,10 @@ export default function PricingPage() {
         <div className="max-w-6xl mx-auto px-6 pt-20 sm:pt-28 pb-16 sm:pb-20 text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3">Pricing</p>
           <h1 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.03em" }}>
-            The protocol is free.<br className="hidden sm:block" /> The infrastructure is not.
+            Simple pricing,<br className="hidden sm:block" /> no surprises
           </h1>
-          <p className="text-secondary max-w-xl mx-auto">
-            Vowena the smart contract costs nothing to use. You pay for managed billing automation, analytics, and the dashboard that saves you from building infrastructure.
+          <p className="text-secondary max-w-lg mx-auto">
+            The protocol is open source and always will be. Pay only when you want managed infrastructure that saves you time.
           </p>
         </div>
       </section>
@@ -103,14 +96,7 @@ export default function PricingPage() {
                 )}
 
                 <div className="mb-8">
-                  <div className="flex items-center gap-2 mb-4">
-                    <h3 className="text-sm font-semibold text-foreground">{tier.name}</h3>
-                    {"badge" in tier && tier.badge && (
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-success bg-success-subtle px-2 py-0.5 rounded-full">
-                        {tier.badge as string}
-                      </span>
-                    )}
-                  </div>
+                  <h3 className="text-sm font-semibold text-foreground mb-4">{tier.name}</h3>
                   <div className="flex items-baseline gap-2 mb-4">
                     {"originalPrice" in tier && tier.originalPrice && (
                       <span className="text-lg text-muted line-through">{tier.originalPrice as string}</span>
@@ -118,7 +104,12 @@ export default function PricingPage() {
                     <span className="text-4xl font-semibold text-foreground tracking-tight">{tier.price}</span>
                     {tier.period && <span className="text-sm text-muted">{tier.period}</span>}
                   </div>
-                  <p className="text-sm text-muted leading-relaxed">{tier.desc}</p>
+                  {"badge" in tier && tier.badge && (
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-success bg-success-subtle px-2 py-0.5 rounded-full">
+                      {tier.badge as string}
+                    </span>
+                  )}
+                  <p className="mt-4 text-sm text-muted leading-relaxed">{tier.desc}</p>
                 </div>
 
                 <ul className="space-y-3 mb-8 flex-1">
@@ -148,32 +139,29 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Comparison */}
+      {/* What you save */}
       <section className="border-t border-border bg-surface">
         <div className="max-w-3xl mx-auto px-6 py-16 sm:py-20">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-4 text-center" style={{ letterSpacing: "-0.02em" }}>
-            What you are actually paying for
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3 text-center">What Pro saves you</p>
+          <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-12 text-center" style={{ letterSpacing: "-0.02em" }}>
+            Skip the infrastructure work
           </h2>
-          <p className="text-secondary text-center mb-12 max-w-lg mx-auto">
-            The protocol is permissionless. Anyone can use it. The paid tiers save you from building and maintaining infrastructure.
-          </p>
 
           <div className="space-y-4">
             {[
-              { thing: "Keeper bot (24/7 billing)", diy: "Build, deploy, monitor a cron job + database + error handling", pro: "Toggle on. Done." },
-              { thing: "Event indexing", diy: "Poll Soroban RPC, parse events, store in your own DB", pro: "Indexed automatically. Query via dashboard or API." },
-              { thing: "Revenue analytics", diy: "Build charts, calculate MRR, track churn yourself", pro: "Real-time dashboards with exportable data." },
-              { thing: "Subscriber management", diy: "Build your own UI for viewing/managing subscriptions", pro: "Full dashboard with refunds, history, status." },
+              { thing: "Automated billing", diy: "Build a cron job, manage a database, handle retries and error logging", pro: "Toggle on. Billing runs 24/7." },
+              { thing: "Revenue analytics", diy: "Build charts, calculate MRR, track churn from raw blockchain data", pro: "Real-time dashboards, ready to go." },
+              { thing: "Subscriber management", diy: "Build your own UI for refunds, cancellations, and billing history", pro: "Full dashboard with one-click actions." },
             ].map((row) => (
               <div key={row.thing} className="rounded-xl border border-border bg-elevated p-5">
                 <h3 className="text-sm font-semibold text-foreground mb-3">{row.thing}</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="rounded-lg bg-surface border border-border p-3">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted mb-1.5">DIY</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted mb-1.5">Build it yourself</p>
                     <p className="text-xs text-muted leading-relaxed">{row.diy}</p>
                   </div>
                   <div className="rounded-lg bg-accent-subtle/50 border border-accent/10 p-3">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-accent mb-1.5">Pro</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-accent mb-1.5">With Pro</p>
                     <p className="text-xs text-secondary leading-relaxed">{row.pro}</p>
                   </div>
                 </div>
@@ -188,15 +176,15 @@ export default function PricingPage() {
         <div className="max-w-2xl mx-auto px-6 py-16 sm:py-20">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent mb-3 text-center">FAQ</p>
           <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-12 text-center" style={{ letterSpacing: "-0.02em" }}>
-            Common questions
+            Questions? Answered.
           </h2>
           <div className="space-y-0">
             {[
-              { q: "Can I use Vowena without paying anything?", a: "Yes. The protocol and SDK are completely free and open source. You can deploy the contract, build your own dashboard, run your own keeper, and index your own events. The paid tier is for merchants who want managed infrastructure." },
-              { q: "What does the managed keeper actually do?", a: "It runs 24/7, calling charge() on every due subscription. It handles retries during grace periods, extends TTLs on storage entries to prevent archival, and alerts you when charges fail. Building this yourself is a weekend of work plus ongoing maintenance." },
-              { q: "Can I switch between tiers?", a: "Upgrade or downgrade anytime. Your on-chain data stays the same regardless of which tier you use. The contract does not depend on the dashboard." },
-              { q: "What happens if I stop paying for Pro?", a: "Your plans and subscriptions remain on-chain. Subscribers can still cancel. You just lose the managed keeper and analytics. Switch to running your own keeper or migrate to another tool." },
-            ].map((item, i) => (
+              { q: "Can I use Vowena without paying?", a: "Yes. The protocol and SDK are completely free and open source. Deploy the contract, build your own dashboard, run your own keeper. The paid tier is for teams who want managed infrastructure." },
+              { q: "What happens after beta ends?", a: "Pro will be $49/month. Everyone who signs up during beta keeps their current pricing for the first 6 months after launch." },
+              { q: "Can I switch plans?", a: "Upgrade or downgrade anytime. Your on-chain data stays the same regardless of which tier you use." },
+              { q: "What if I stop paying?", a: "Your plans and subscriptions remain on-chain. You just lose the managed keeper and analytics. Switch to running your own keeper or use the open source tools." },
+            ].map((item) => (
               <details key={item.q} className="group border-b border-border">
                 <summary className="flex items-center justify-between py-5 cursor-pointer list-none">
                   <h3 className="text-sm font-semibold text-foreground pr-4">{item.q}</h3>
@@ -214,16 +202,16 @@ export default function PricingPage() {
         <div className="max-w-6xl mx-auto px-6 py-16 sm:py-20 text-center">
           <VowenaSymbol className="w-8 h-8 text-accent mx-auto mb-4" />
           <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-3" style={{ letterSpacing: "-0.02em" }}>
-            Start building today
+            Ready to get started?
           </h2>
           <p className="text-secondary max-w-md mx-auto mb-8">
-            Free during beta. No credit card required. Create your first plan in under 60 seconds.
+            Create your first subscription plan in under 60 seconds. Free during beta.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link href="https://dashboard.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
               Launch dashboard
             </Link>
-            <Link href="/docs" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border hover:bg-surface hover:text-foreground transition-colors">
+            <Link href="/docs" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border hover:bg-elevated hover:text-foreground transition-colors">
               Read docs
             </Link>
           </div>
