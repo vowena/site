@@ -2,6 +2,7 @@
 
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlightCode } from "./code-block";
+import { InstallTabs } from "./install-tabs";
 import { useState } from "react";
 
 function CopyBtn({ code }: { code: string }) {
@@ -55,6 +56,7 @@ function MdxPre({ children }: { children: React.ReactNode }) {
 const components = {
   code: MdxCode as React.ComponentType<Record<string, unknown>>,
   pre: MdxPre as React.ComponentType<Record<string, unknown>>,
+  InstallTabs: InstallTabs as React.ComponentType<Record<string, unknown>>,
 };
 
 export function MdxRenderer({ source }: { source: string }) {
