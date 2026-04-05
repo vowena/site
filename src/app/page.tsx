@@ -4,6 +4,7 @@ import { CopyButton } from "@/components/copy-button";
 import { CodeBlock } from "@/components/code-block";
 import { Marquee } from "@/components/marquee";
 import { HeroVisual, DashboardFeatureCards } from "@/components/dashboard-preview";
+import { StripeLogo, LinearLogo, NotionLogo, SlackLogo, SpotifyLogo, DropboxLogo } from "@/components/partner-logos";
 
 const devCode = `import { VowenaClient, toStroops, NETWORKS } from "vowena"
 
@@ -89,9 +90,18 @@ export default function Home() {
         {/* Client marquee */}
         <div className="border-t border-border py-6">
           <Marquee>
-            {["Acme Corp", "Nebula", "Horizon Labs", "Pulse", "Vertex", "Nova Pay", "Orion", "Zenith", "Apex Digital", "Luminary"].map((name) => (
-              <span key={name} className="text-sm font-semibold text-muted/40 whitespace-nowrap tracking-tight" style={{ letterSpacing: "-0.02em" }}>{name}</span>
-            ))}
+            <StripeLogo className="h-6 w-auto text-muted/30" />
+            <LinearLogo className="h-5 w-auto text-muted/30" />
+            <NotionLogo className="h-6 w-auto text-muted/30" />
+            <SlackLogo className="h-5 w-auto text-muted/30" />
+            <SpotifyLogo className="h-5 w-auto text-muted/30" />
+            <DropboxLogo className="h-5 w-auto text-muted/30" />
+            <StripeLogo className="h-6 w-auto text-muted/30" />
+            <LinearLogo className="h-5 w-auto text-muted/30" />
+            <NotionLogo className="h-6 w-auto text-muted/30" />
+            <SlackLogo className="h-5 w-auto text-muted/30" />
+            <SpotifyLogo className="h-5 w-auto text-muted/30" />
+            <DropboxLogo className="h-5 w-auto text-muted/30" />
           </Marquee>
         </div>
       </section>
