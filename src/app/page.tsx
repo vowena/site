@@ -47,7 +47,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-8">
                 <div className="flex items-center gap-3">
                   <Link href="https://dashboard.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
-                    Start free
+                    Get started free
                   </Link>
                   <Link href="/docs" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
                     See how it works
@@ -341,7 +341,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
               <Link href="https://dashboard.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
-                Create your first plan
+                Get started free
               </Link>
               <Link href="/pricing" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
                 View pricing
