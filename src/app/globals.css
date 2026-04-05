@@ -20,12 +20,12 @@
 .dark .hljs-built_in { color: #9B85FF; }
 .dark .hljs-string { color: #34EDAA; }
 .dark .hljs-number { color: #FFBD2E; }
-.dark .hljs-comment { color: #6E6894; }
+.dark .hljs-comment { color: #71717A; }
 .dark .hljs-title { color: #6B9FFF; }
 .dark .hljs-attr { color: #B5A8FF; }
 .dark .hljs-property { color: #6B9FFF; }
 .dark .hljs-literal { color: #B5A8FF; }
-.dark .hljs-punctuation { color: #9B95B8; }
+.dark .hljs-punctuation { color: #A1A1AA; }
 
 :root {
   --violet-50: #EDE9FF;
@@ -75,14 +75,16 @@
 }
 
 .dark {
-  --bg-primary: #08070E;
-  --bg-surface: #0E0D18;
-  --bg-elevated: #161423;
-  --border-default: #1F1C30;
-  --border-subtle: #161423;
-  --text-primary: #F6F4FA;
-  --text-secondary: #9B95B8;
-  --text-muted: #6E6894;
+  --bg-primary: #09090B;
+  --bg-surface: #111113;
+  --bg-elevated: #19191C;
+  --border-default: #27272A;
+  --border-subtle: #1C1C1F;
+  --text-primary: #FAFAFA;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+  --accent-subtle: #1E1636;
+  --success-subtle: #052E16;
 }
 
 @theme inline {
