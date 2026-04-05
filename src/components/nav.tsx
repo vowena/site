@@ -59,7 +59,7 @@ export function Nav() {
       {open && (
         <div className="sm:hidden bg-background border-t border-border">
           <div className="px-4 pt-6 pb-8 flex flex-col items-center gap-5">
-            <div className="w-full max-w-[200px] divide-y divide-border/40">
+            <div className="w-full max-w-70 divide-y divide-border/80">
               {[
                 { href: "/pricing", label: "Pricing" },
                 { href: "/blog", label: "Blog" },

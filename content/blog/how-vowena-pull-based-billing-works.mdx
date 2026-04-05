@@ -21,7 +21,7 @@ fn balance(id) -> i128
 
 `approve()` lets a token holder say: "I authorize this address to spend up to X of my tokens, and this authorization expires at ledger Y."
 
-`transfer_from()` lets the authorized spender actually move the tokens. The spender authenticates - not the token holder.
+`transfer_from()` lets the authorized spender actually move the tokens. The spender authenticates, not the token holder.
 
 This is the pull model. The subscriber sets the permission once. The contract pulls funds repeatedly within that permission. No new signatures needed.
 
@@ -55,7 +55,7 @@ let sub = Subscription {
 
 The allowance is calculated as `price_ceiling * max_periods` (or `price_ceiling * 120` for unlimited plans). This is the maximum the contract could ever charge over the subscription lifetime. The subscriber's wallet displays this clearly before they sign.
 
-## The auth tree - one signature for two operations
+## The auth tree: one signature for two operations
 
 This is the part that confuses most Soroban developers.
 
@@ -104,7 +104,7 @@ pub fn charge(env: Env, sub_id: u64) -> bool {
 }
 ```
 
-Notice something critical: **there is no `require_auth()` in `charge()`**. This function is permissionless. Anyone can call it. The caller does not receive the funds - only the merchant does. This is by design.
+Notice something critical: **there is no `require_auth()` in `charge()`**. This function is permissionless. Anyone can call it. The caller does not receive the funds. Only the merchant does. This is by design.
 
 ## The pre-check: why we look before we leap
 
@@ -142,10 +142,10 @@ At any point during States 1 or 2, if the subscriber funds their wallet, the nex
 | | Stripe | Vowena |
 |---|---|---|
 | Who holds the funds? | Stripe holds them temporarily | Funds stay in subscriber's wallet until charge |
-| Can the merchant overcharge? | Possible with saved card | Impossible - contract enforces plan amount |
+| Can the merchant overcharge? | Possible with saved card | Impossible, contract enforces plan amount |
 | What happens on failure? | Automatic retry with backoff | Grace period with permissionless retry |
 | Can the subscriber see the authorization? | Buried in terms | Displayed in wallet approval dialog |
-| Can a third party trigger billing? | No - only Stripe's systems | Yes - charge() is permissionless |
+| Can a third party trigger billing? | No, only Stripe's systems | Yes, charge() is permissionless |
 
 The fundamental difference is transparency. Every authorization, every charge, every failure is on-chain, auditable, and verifiable by anyone.
 

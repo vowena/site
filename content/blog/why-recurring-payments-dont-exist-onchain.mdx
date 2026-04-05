@@ -14,11 +14,11 @@ This is not because nobody tried. It is because every previous attempt ran into 
 
 ## The graveyard of Ethereum attempts
 
-In 2018, Kevin Owocki proposed **EIP-1337** - a subscription standard for Ethereum. The concept was elegant: a subscriber pre-authorizes a smart contract to pull tokens on a recurring schedule. The contract calls `transferFrom()` each period. Clean. Simple. Dead on arrival.
+In 2018, Kevin Owocki proposed **EIP-1337**, a subscription standard for Ethereum. The concept was elegant: a subscriber pre-authorizes a smart contract to pull tokens on a recurring schedule. The contract calls `transferFrom()` each period. Clean. Simple. Dead on arrival.
 
 The reason? A single Ethereum L1 transaction costs $2-10 in gas. Sometimes $50 during congestion. If you are charging someone $9.99/month for a newsletter, the gas fee alone is more than the subscription. The economics do not work. They never worked. EIP-1337 was abandoned.
 
-**EIP-948** tried a different angle - baking subscription support directly into the token standard. But this required every token to implement a new interface. Existing tokens like USDC, DAI, and WETH would need to be redeployed. That is a non-starter when billions of dollars sit in contracts that cannot be upgraded.
+**EIP-948** tried a different angle, baking subscription support directly into the token standard. But this required every token to implement a new interface. Existing tokens like USDC, DAI, and WETH would need to be redeployed. That is a non-starter when billions of dollars sit in contracts that cannot be upgraded.
 
 **Chainlink Automation** came later, offering cron-like execution on EVM chains. But it requires LINK staking, keeper network registration, and still faces the gas cost problem on L1. On L2s, gas is cheaper but you lose composability with mainnet liquidity.
 
@@ -26,7 +26,7 @@ Every attempt hit the same wall: **transaction costs destroy micro-billing econo
 
 ## What changed with Stellar
 
-Stellar was not designed to solve this problem specifically. But its properties make on-chain subscriptions not just possible - they make them obvious:
+Stellar was not designed to solve this problem specifically. But its properties make on-chain subscriptions not just possible. They make them obvious:
 
 **$0.00001 per transaction.** Five zeros after the decimal point. You can bill a $1 subscription and the fee is invisible. You can bill daily. You can bill hourly. The economics always work.
 

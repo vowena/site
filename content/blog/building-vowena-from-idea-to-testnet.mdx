@@ -42,7 +42,7 @@ const xdr = await client.buildSubscribe(wallet.address, planId)
 
 And get back assembled XDR ready for wallet signing.
 
-The `VowenaClient` class wraps every contract function into two categories: write methods (return XDR for signing) and read methods (query state directly through simulation). The naming convention is deliberate - `build*` for writes, `get*` for reads.
+The `VowenaClient` class wraps every contract function into two categories: write methods (return XDR for signing) and read methods (query state directly through simulation). The naming convention is deliberate: `build*` for writes, `get*` for reads.
 
 The amount conversion utilities were surprisingly important. USDC on Stellar uses 7 decimal places. `toStroops("9.99")` returns `99900000n`. `fromStroops(99900000n)` returns `"9.99"`. Sounds trivial, but getting decimal arithmetic wrong in a billing system means charging people the wrong amount.
 
@@ -74,7 +74,7 @@ The marketing site uses MDX for blog posts. Each post is a `.mdx` file in a `/co
 
 **Test the grace period state machine more aggressively.** The transitions between Active (with `failed_at`), Paused, and Cancelled have subtle timing dependencies. I caught edge cases late that should have been in the first test suite.
 
-**Start with the SDK types, not the contract types.** I designed the Rust types first and then mapped them to TypeScript. Going the other direction - starting with the developer-facing types and working backward to storage - would have produced a cleaner API.
+**Start with the SDK types, not the contract types.** I designed the Rust types first and then mapped them to TypeScript. Going the other direction (starting with the developer-facing types and working backward to storage) would have produced a cleaner API.
 
 **Build the event indexer before the dashboard UI.** The dashboard pages were initially built with placeholder data because the indexer was not ready. This meant reworking the data layer twice. In hindsight, indexer first, UI second.
 
