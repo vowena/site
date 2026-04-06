@@ -104,7 +104,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             [&_td]:py-3 [&_td]:px-4 [&_td]:text-secondary [&_td]:border-b [&_td]:border-border/50
             [&_tr]:last:[&_td]:border-0
             [&_figure]:my-6
-            [&_iframe]:w-full [&_iframe]:my-6 [&_iframe]:rounded-xl [&_iframe]:border [&_iframe]:border-border [&_iframe]:aspect-video
+            [&_iframe]:m-0
           ">
             <MdxRenderer source={post.content} />
           </div>
