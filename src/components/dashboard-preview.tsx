@@ -116,7 +116,7 @@ export function DashboardFeatureCards() {
           <div className="flex items-center justify-between pt-3 border-t border-border">
             <div>
               <p className="text-[9px] text-muted">Next billing</p>
-              <p className="text-xs font-medium text-foreground">May 15, 2025</p>
+              <p className="text-xs font-medium text-foreground">May 15, 2026</p>
             </div>
             <div className="text-right">
               <p className="text-[9px] text-muted">Amount</p>

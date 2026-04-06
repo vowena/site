@@ -12,7 +12,7 @@ export default function PrivacyPage() {
       <h1 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-8" style={{ letterSpacing: "-0.02em" }}>
         Privacy Policy
       </h1>
-      <p className="text-xs text-muted mb-10">Last updated: April 6, 2025</p>
+      <p className="text-xs text-muted mb-10">Last updated: April 6, 2026</p>
 
       <div className="space-y-8 text-sm text-secondary leading-[1.8]">
         <section>
