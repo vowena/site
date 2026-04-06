@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { siteConfig } from '@/lib/config';
 import { VowenaLogo } from "@/components/vowena-logo";
 
 export const metadata: Metadata = {
@@ -44,7 +45,7 @@ const tiers = [
       "Priority support",
     ],
     cta: "Get started free",
-    ctaHref: "https://dashboard.vowena.xyz",
+    ctaHref: siteConfig.dashboardUrl,
     highlight: true,
   },
   {
@@ -202,7 +203,7 @@ export default function PricingPage() {
             Create your first subscription plan in under 60 seconds. Free during beta.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link href="https://dashboard.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+            <Link href={siteConfig.dashboardUrl} className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
               Get started free
             </Link>
             <Link href="/docs" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border hover:bg-elevated hover:text-foreground transition-colors">

@@ -4,6 +4,7 @@ import { CopyButton } from "@/components/copy-button";
 import { CodeBlock } from "@/components/code-block";
 import { InstallTabs } from "@/components/install-tabs";
 import { Marquee } from "@/components/marquee";
+import { siteConfig } from '@/lib/config';
 import { HeroVisual, DashboardFeatureCards } from "@/components/dashboard-preview";
 import { LinearLogo, NotionLogo, SlackLogo, SpotifyLogo, DropboxLogo, DiscordLogo } from "@/components/partner-logos";
 
@@ -46,7 +47,7 @@ export default function Home() {
               </p>
 
               <div className="flex flex-wrap items-center gap-3 mt-8">
-                <Link href="https://dashboard.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+                <Link href={siteConfig.dashboardUrl} className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
                   Get started free
                 </Link>
                 <Link href="/docs" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
@@ -304,11 +305,11 @@ export default function Home() {
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                   Documentation
                 </Link>
-                <Link href="https://github.com/vowena" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:border-accent/30 hover:text-accent transition-colors">
+                <Link href={siteConfig.github} className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:border-accent/30 hover:text-accent transition-colors">
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
                   GitHub
                 </Link>
-                <Link href="https://www.npmjs.com/package/vowena" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:border-accent/30 hover:text-accent transition-colors">
+                <Link href={siteConfig.npm} className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:border-accent/30 hover:text-accent transition-colors">
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z"/></svg>
                   npm
                 </Link>
@@ -336,7 +337,7 @@ export default function Home() {
               Free during beta. No credit card. No KYC. Connect your Stellar wallet and create your first subscription plan in under 60 seconds.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-              <Link href="https://dashboard.vowena.xyz" className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+              <Link href={siteConfig.dashboardUrl} className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
                 Get started free
               </Link>
               <Link href="/pricing" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
