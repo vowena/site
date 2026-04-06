@@ -23,7 +23,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-base font-semibold text-foreground mb-3">2. The protocol vs the service</h2>
-          <p>The Vowena smart contract is open-source software deployed on a public blockchain. We do not control, restrict, or gate access to the contract itself. These terms govern your use of the Vowena dashboard, website, documentation, and managed services (the "Service"), not the protocol.</p>
+          <p>The Vowena smart contract is open-source software deployed on a public blockchain. We do not control, restrict, or gate access to the contract itself. These terms govern your use of the Vowena dashboard, website, documentation, and managed services (the &ldquo;Service&rdquo;), not the protocol.</p>
         </section>
 
         <section>
@@ -39,7 +39,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-base font-semibold text-foreground mb-3">5. How billing works</h2>
-          <p>The Vowena contract uses the SEP-41 token allowance mechanism. Subscribers authorize a spending limit and the contract charges within that limit. The contract cannot charge more than the approved amount. Merchants receive payments directly from the subscriber's wallet to theirs. Vowena does not hold, custody, or process any funds at any point.</p>
+          <p>The Vowena contract uses the SEP-41 token allowance mechanism. Subscribers authorize a spending limit and the contract charges within that limit. The contract cannot charge more than the approved amount. Merchants receive payments directly from the subscriber&apos;s wallet to theirs. Vowena does not hold, custody, or process any funds at any point.</p>
         </section>
 
         <section>
@@ -50,7 +50,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-base font-semibold text-foreground mb-3">7. No warranties</h2>
-          <p>The Service is provided "as is" without warranties of any kind. We do not guarantee uptime, accuracy, or completeness of the managed services. The smart contract is open-source and has not been formally audited. You use it at your own risk.</p>
+          <p>The Service is provided &ldquo;as is&rdquo; without warranties of any kind. We do not guarantee uptime, accuracy, or completeness of the managed services. The smart contract is open-source and has not been formally audited. You use it at your own risk.</p>
         </section>
 
         <section>

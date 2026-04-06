@@ -54,7 +54,7 @@ function Video({ src, title }: { src?: string; title?: string }) {
         <iframe
           src={src}
           title={title || "Video"}
-          className="w-full h-full"
+          className="w-full h-full block border-0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />

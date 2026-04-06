@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { VowenaLogo } from "@/components/vowena-logo";
-import { CopyButton } from "@/components/copy-button";
 import { CodeBlock } from "@/components/code-block";
 import { InstallTabs } from "@/components/install-tabs";
 import { Marquee } from "@/components/marquee";

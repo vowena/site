@@ -52,7 +52,6 @@ export default async function Image({ params }: { params: Promise<{ slug: string
             <div style={{ position: "absolute", inset: 0, display: "flex" }}>
               {/* Fade from left */}
               <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to right, #FEFCFF, transparent)", zIndex: 1 }} />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={cover} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
           ) : (
