@@ -103,7 +103,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             [&_th]:text-left [&_th]:text-foreground [&_th]:font-semibold [&_th]:py-3 [&_th]:px-4 [&_th]:border-b [&_th]:border-border
             [&_td]:py-3 [&_td]:px-4 [&_td]:text-secondary [&_td]:border-b [&_td]:border-border/50
             [&_tr]:last:[&_td]:border-0
-            [&_img]:rounded-xl [&_img]:my-6 [&_img]:border [&_img]:border-border
+            [&_figure]:my-6
             [&_iframe]:w-full [&_iframe]:my-6 [&_iframe]:rounded-xl [&_iframe]:border [&_iframe]:border-border [&_iframe]:aspect-video
           ">
             <MdxRenderer source={post.content} />

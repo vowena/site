@@ -35,18 +35,32 @@ function MdxPre({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+function MdxImg({ src, alt }: { src?: string; alt?: string }) {
+  if (!src) return null;
+  return (
+    <figure className="my-6">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt={alt || ""} className="rounded-xl border border-border w-full" />
+      {alt && <figcaption className="text-xs text-muted text-center mt-2">{alt}</figcaption>}
+    </figure>
+  );
+}
+
 function Video({ src, title }: { src?: string; title?: string }) {
   if (!src) return null;
   return (
-    <div className="my-6 rounded-xl border border-border overflow-hidden aspect-video">
-      <iframe
-        src={src}
-        title={title || "Video"}
-        className="w-full h-full"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
-    </div>
+    <figure className="my-6">
+      <div className="rounded-xl border border-border overflow-hidden aspect-video">
+        <iframe
+          src={src}
+          title={title || "Video"}
+          className="w-full h-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+      {title && <figcaption className="text-xs text-muted text-center mt-2">{title}</figcaption>}
+    </figure>
   );
 }
 
@@ -66,6 +80,7 @@ function Callout({ children, type = "info" }: { children?: React.ReactNode; type
 const components = {
   code: MdxCode as React.ComponentType<Record<string, unknown>>,
   pre: MdxPre as React.ComponentType<Record<string, unknown>>,
+  img: MdxImg as React.ComponentType<Record<string, unknown>>,
   InstallTabs: InstallTabs as React.ComponentType<Record<string, unknown>>,
   Video: Video as React.ComponentType<Record<string, unknown>>,
   Callout: Callout as React.ComponentType<Record<string, unknown>>,

@@ -39,7 +39,7 @@ export function InstallTabs() {
       </div>
 
       {/* Command with syntax highlighting */}
-      <div className="flex items-center justify-between px-4 py-3">
+      <div className="flex items-center justify-between px-4 py-3 group">
         <code className="text-[13px] font-mono">
           <span className="hljs-built_in">{managers[active].bin}</span>
           <span className="text-foreground"> {managers[active].args.split(" ")[0]} </span>
@@ -47,7 +47,7 @@ export function InstallTabs() {
         </code>
         <button
           onClick={handleCopy}
-          className="text-muted hover:text-foreground transition-colors ml-3 shrink-0"
+          className="opacity-0 group-hover:opacity-100 text-muted hover:text-foreground transition-all ml-3 shrink-0"
           aria-label="Copy command"
         >
           {copied ? (

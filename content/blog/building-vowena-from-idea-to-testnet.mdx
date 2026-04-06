@@ -76,14 +76,14 @@ The solution: pre-check `balance()` and `allowance()` before attempting the tran
 By end of week 1: 9 Rust source files, 17 exported functions, 29 passing tests, 18.5KB WASM binary. The contract was the size of a small JPEG.
 
 ```bash
-$ stellar contract build
-✅ Build Complete
-   Wasm Size: 18546 bytes
-   Exported Functions: 17 found
+stellar contract build
+# ✅ Build Complete
+# Wasm Size: 18546 bytes
+# Exported Functions: 17 found
 
-$ cargo test
-running 29 tests
-test result: ok. 29 passed; 0 failed
+cargo test
+# running 29 tests
+# test result: ok. 29 passed; 0 failed
 ```
 
 ## Week 2: The SDK
@@ -184,6 +184,10 @@ Mainnet deployment is the immediate goal. The contract works on testnet. The SDK
 2. Testnet pilot with 3-5 merchants
 3. Mainnet deployment and SDK version bump
 4. Stellar Community Fund submission with working demo
+
+Here is a quick look at how Soroban smart contracts work on Stellar:
+
+<Video src="https://www.youtube.com/embed/SoMETHing" title="How Soroban smart contracts work on Stellar" />
 
 If you want to build with Vowena, the [documentation](https://vowena.xyz/docs) has everything you need. If you want to run a pilot, reach out on [X](https://x.com/vowena). If you want to contribute, the [protocol source](https://github.com/vowena/protocol) and [SDK source](https://github.com/vowena/sdk) are both open.
 
