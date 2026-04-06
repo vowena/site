@@ -88,7 +88,7 @@ export default function Home() {
 
         {/* Client marquee */}
         <div className="border-t border-border py-6">
-          <p className="text-center text-[11px] text-muted/50 mb-4 tracking-wide">Billing infrastructure for the next generation of SaaS</p>
+          <p className="text-center text-[11px] text-muted/50 mb-4 tracking-wide">Built for teams like</p>
           <Marquee>
             <LinearLogo className="text-muted/30" />
             <NotionLogo className="text-muted/30" />
