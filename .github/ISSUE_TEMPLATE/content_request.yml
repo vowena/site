@@ -1,0 +1,28 @@
+name: Content request
+description: Suggest a new page, copy improvement, or blog/documentation content change
+title: "content: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is missing or confusing?
+      placeholder: The site explains the protocol well, but it does not show a clear merchant onboarding path.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      placeholder: Add a "How to launch on testnet" section linking to docs and dashboard setup.
+    validations:
+      required: true
+  - type: textarea
+    id: audience
+    attributes:
+      label: Target audience
+      description: Merchants, subscribers, contributors, developers, partners, etc.
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Related pages, screenshots, examples, or links

@@ -1,0 +1,41 @@
+name: Bug report
+description: Report a reproducible issue on the site
+title: "fix: "
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      placeholder: The pricing table overflows on small screens.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the pricing page on a mobile viewport
+        2. Scroll horizontally
+        3. Observe clipped content
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser, device, viewport, screenshots, logs
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I searched existing issues first.
+          required: true
+        - label: This is not a security disclosure.
+          required: true
