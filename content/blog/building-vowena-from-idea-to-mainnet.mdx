@@ -1,5 +1,5 @@
 ---
-title: "Building Vowena: from idea to testnet in 4 weeks"
+title: "Building Vowena: from idea to mainnet in 4 weeks"
 description: "The story of building the first recurring payment protocol on Stellar. The technical decisions, the late nights, and what we learned along the way."
 date: "2026-04-05"
 author: "Tunde Adebayo"
@@ -107,15 +107,15 @@ import { VowenaClient, NETWORKS, toStroops } from "vowena"
 
 // Initialize
 const client = new VowenaClient({
-  contractId: NETWORKS.testnet.contractId,
-  rpcUrl: NETWORKS.testnet.rpcUrl,
-  networkPassphrase: NETWORKS.testnet.networkPassphrase,
+  contractId: NETWORKS.mainnet.contractId,
+  rpcUrl: NETWORKS.mainnet.rpcUrl,
+  networkPassphrase: NETWORKS.mainnet.networkPassphrase,
 })
 
 // Create a plan
 const planTx = await client.buildCreatePlan({
   merchant: wallet.address,
-  token: NETWORKS.testnet.usdcAddress,
+  token: NETWORKS.mainnet.usdcAddress,
   amount: toStroops("9.99"),
   period: 2_592_000,
   priceCeiling: toStroops("14.99"),
@@ -178,12 +178,11 @@ The marketing site uses MDX for blog posts. Each post is a `.mdx` file in a `/co
 
 ## What is next
 
-Mainnet deployment is the immediate goal. The contract works on testnet. The SDK works. The dashboard works. The remaining work is:
+The contract is live on mainnet. The SDK works. The dashboard works. Next steps:
 
-1. Security review of the contract
-2. Testnet pilot with 3-5 merchants
-3. Mainnet deployment and SDK version bump
-4. Stellar Community Fund submission with working demo
+1. Onboard the first wave of merchants
+2. Stellar Community Fund submission with working demo
+3. Expand SDK with webhook support and multi-token billing
 
 Here is a quick look at how Soroban smart contracts work on Stellar:
 

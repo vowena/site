@@ -9,7 +9,7 @@ import { LinearLogo, NotionLogo, SlackLogo, SpotifyLogo, DropboxLogo, DiscordLog
 
 const devCode = `import { VowenaClient, toStroops, NETWORKS } from "vowena"
 
-const client = new VowenaClient(NETWORKS.testnet)
+const client = new VowenaClient(NETWORKS.mainnet)
 
 const plan = await client.buildCreatePlan({
   amount: toStroops("29.99"),
@@ -88,6 +88,7 @@ export default function Home() {
 
         {/* Client marquee */}
         <div className="border-t border-border py-6">
+          <p className="text-center text-[11px] text-muted mb-4 tracking-wide">Built for teams like</p>
           <Marquee>
             <LinearLogo className="text-muted/30" />
             <NotionLogo className="text-muted/30" />

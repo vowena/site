@@ -168,12 +168,12 @@ Here is a quick example that creates a plan, subscribes, and charges:
 ```typescript
 import { VowenaClient, NETWORKS, toStroops } from "vowena"
 
-const client = new VowenaClient(NETWORKS.testnet)
+const client = new VowenaClient(NETWORKS.mainnet)
 
 // 1. Create a plan
 const planTx = await client.buildCreatePlan({
   merchant: "GMERCHANT...ADDR",
-  token: NETWORKS.testnet.usdcAddress,
+  token: NETWORKS.mainnet.usdcAddress,
   amount: toStroops("9.99"),
   period: 2_592_000,
   priceCeiling: toStroops("14.99"),

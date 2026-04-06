@@ -91,12 +91,12 @@ Then create a client and build your first subscription:
 ```typescript
 import { VowenaClient, NETWORKS, toStroops } from "vowena"
 
-const client = new VowenaClient(NETWORKS.testnet)
+const client = new VowenaClient(NETWORKS.mainnet)
 
 // Create a plan
 const planTx = await client.buildCreatePlan({
   merchant: wallet.address,
-  token: NETWORKS.testnet.usdcAddress,
+  token: NETWORKS.mainnet.usdcAddress,
   amount: toStroops("9.99"),
   period: 2_592_000,        // 30 days
   priceCeiling: toStroops("14.99"),
