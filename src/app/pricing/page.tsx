@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from '@/lib/config';
-import { VowenaLogo } from "@/components/vowena-logo";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -76,12 +76,12 @@ export default function PricingPage() {
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent mb-3">Pricing</p>
-          <h1 className="text-4xl sm:text-5xl font-semibold text-foreground tracking-tight mb-5 leading-[1.05]" style={{ letterSpacing: "-0.03em" }}>
-            <span className="font-serif-italic text-accent text-[1.06em]">Simple</span> pricing,<br className="hidden sm:block" /> no surprises.
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-32 pb-16 sm:pb-20 text-center">
+          <SectionEyebrow align="center" className="mb-6">Pricing</SectionEyebrow>
+          <h1 className="text-4xl sm:text-5xl lg:text-[3.75rem] font-semibold text-foreground tracking-tight mb-6 leading-[1.05]" style={{ letterSpacing: "-0.035em" }}>
+            <span className="font-serif-italic text-foreground/40 text-[1.08em]">Simple</span> pricing,<br className="hidden sm:block" /> no surprises.
           </h1>
-          <p className="text-secondary max-w-lg mx-auto">
+          <p className="text-base sm:text-lg text-secondary max-w-xl mx-auto leading-relaxed">
             The protocol is open source and always will be. Pay only when you want managed infrastructure that saves you time.
           </p>
         </div>
@@ -169,10 +169,12 @@ export default function PricingPage() {
       {/* FAQ */}
       <section className="border-t border-border bg-surface">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent mb-3 text-center">FAQ</p>
-          <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-10 text-center" style={{ letterSpacing: "-0.02em" }}>
-            Questions? Answered.
-          </h2>
+          <div className="text-center mb-10">
+            <SectionEyebrow align="center" className="mb-4">FAQ</SectionEyebrow>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight" style={{ letterSpacing: "-0.025em" }}>
+              Questions? <span className="font-serif-italic text-foreground/40 text-[1.08em]">Answered</span>.
+            </h2>
+          </div>
           <div className="space-y-0">
             {[
               { q: "Why Stellar?", a: "Three reasons recurring billing only works on Stellar. First, transactions cost roughly $0.00001 each, so the keeper fee is invisible even on a $1 charge. Second, Soroban's auth tree lets a subscriber approve the contract and authorize the recurring allowance in a single signed transaction, which is impossible on EVM chains without account abstraction. Third, Circle issues USDC natively as a Stellar Asset Contract, so there's no bridging, no wrapping, and no liquidity fragmentation. EIP-1337 and EIP-948 both died because Ethereum gas killed micro-billing economics. Stellar fixes that by construction." },
@@ -193,23 +195,31 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="border-t border-border">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center">
-            <div className="flex justify-center mb-6"><VowenaLogo size="lg" /></div>
-          <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-3" style={{ letterSpacing: "-0.02em" }}>
-            Ready to get started?
-          </h2>
-          <p className="text-secondary max-w-md mx-auto mb-8">
-            Create your first subscription plan in under 60 seconds. Free during beta.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link href={siteConfig.dashboardUrl} className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
-              Get started free
-            </Link>
-            <Link href="/docs" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border hover:bg-elevated hover:text-foreground transition-colors">
-              Read docs
-            </Link>
+      {/* CTA — matches homepage CTA for consistency */}
+      <section className="border-t border-border relative">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(var(--border-default) 1px, transparent 1px), linear-gradient(90deg, var(--border-default) 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
+        </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-28 sm:py-40 relative">
+          <div className="max-w-3xl mx-auto text-center">
+            <SectionEyebrow align="center" className="mb-8">Ready when you are</SectionEyebrow>
+            <h2 className="text-4xl sm:text-5xl lg:text-[3.75rem] font-semibold text-foreground tracking-tight leading-[1.05] mb-8" style={{ letterSpacing: "-0.035em" }}>
+              Your first subscriber<br className="hidden sm:block" />
+              is one <span className="font-serif-italic text-foreground/40 text-[1.08em]">plan</span> away.
+            </h2>
+            <p className="text-base sm:text-lg text-secondary max-w-xl mx-auto mb-12 leading-relaxed">
+              Create a plan, publish the link, and start billing in USDC the same afternoon. Live on Stellar testnet today, mainnet coming soon.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link href={siteConfig.dashboardUrl} className="inline-flex items-center gap-2 h-12 px-7 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+                Launch dashboard
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </Link>
+              <Link href="/docs" className="inline-flex items-center h-12 px-7 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
+                Read the docs
+              </Link>
+            </div>
           </div>
         </div>
       </section>

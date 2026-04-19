@@ -42,8 +42,8 @@ export function Footer() {
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted mb-4">Company</p>
             <ul className="space-y-2.5">
-              <li><Link href="/about" className="text-sm text-secondary hover:text-foreground transition-colors">About</Link></li>
               <li><Link href="/blog" className="text-sm text-secondary hover:text-foreground transition-colors">Blog</Link></li>
+              <li><Link href={siteConfig.vowenaTipUrl} className="text-sm text-secondary hover:text-foreground transition-colors">Vowena Tip</Link></li>
               <li><Link href={siteConfig.stellarExpert} className="text-sm text-secondary hover:text-foreground transition-colors">View on Stellar</Link></li>
               <li><Link href={siteConfig.twitter} className="text-sm text-secondary hover:text-foreground transition-colors">X (Twitter)</Link></li>
             </ul>
