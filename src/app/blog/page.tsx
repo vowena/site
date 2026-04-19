@@ -31,7 +31,7 @@ export default function BlogPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-24 sm:pt-32 pb-16 sm:pb-20">
           <SectionEyebrow className="mb-6">Blog</SectionEyebrow>
           <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-foreground tracking-tight mb-6 leading-[1.05]" style={{ letterSpacing: "-0.035em" }}>
-            <span className="font-serif-italic text-foreground/40 text-[1.08em]">Building</span> the future of payments.
+            <span className="serif-italic text-foreground/40 text-[1.08em]">Building</span> the future of payments.
           </h1>
           <p className="text-base sm:text-lg text-secondary max-w-xl leading-relaxed">
             Technical deep dives, protocol updates, and the story behind Vowena.

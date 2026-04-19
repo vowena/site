@@ -121,11 +121,14 @@
   --font-serif: var(--font-instrument-serif);
 }
 
-.font-serif-italic {
-  font-family: var(--font-instrument-serif), ui-serif, Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+/* Editorial accent: serif italic word inside sans-serif headlines.
+   Use !important to override font-semibold on parent headings and any
+   inherited Tailwind utility cascade. */
+.serif-italic {
+  font-family: var(--font-instrument-serif), ui-serif, Georgia, serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.015em;
 }
 
 html {

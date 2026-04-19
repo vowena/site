@@ -4,6 +4,8 @@ import { InstallTabs } from "@/components/install-tabs";
 import { siteConfig } from '@/lib/config';
 import { HeroVisual, DashboardFeatureCards } from "@/components/dashboard-preview";
 import { SectionEyebrow } from "@/components/section-eyebrow";
+import { SectionOrnament } from "@/components/section-ornament";
+import { VowenaSymbol } from "@/components/vowena-logo";
 
 const devCode = `import { VowenaClient, toStroops, NETWORKS } from "vowena"
 
@@ -36,7 +38,7 @@ export default function Home() {
 
               <h1 className="text-4xl sm:text-5xl lg:text-[3.75rem] font-semibold text-foreground leading-[1.04] tracking-tight" style={{ letterSpacing: "-0.035em" }}>
                 Recurring revenue,<br />
-                <span className="font-serif-italic text-accent text-[1.08em]">fully</span> automated.
+                <span className="serif-italic text-accent text-[1.08em]">fully</span> automated.
               </h1>
 
               <p className="mt-7 text-base sm:text-lg text-secondary leading-relaxed max-w-xl">
@@ -117,11 +119,12 @@ export default function Home() {
       </section>
 
       {/* How it works - business flow */}
-      <section className="border-t border-border">
+      <section className="relative border-t border-border">
+        <SectionOrnament />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
           <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-          <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
-            Launch subscriptions in minutes
+          <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-foreground tracking-tight mb-5 leading-[1.1]" style={{ letterSpacing: "-0.025em" }}>
+            Launch subscriptions in <span className="serif-italic text-accent text-[1.1em]">minutes</span>.
           </h2>
           <p className="text-secondary max-w-lg mb-12 sm:mb-16">
             No payment processor applications. No KYC delays. Connect your wallet, create a plan, and start billing.
@@ -218,11 +221,12 @@ export default function Home() {
       </section>
 
       {/* Why Vowena - business benefits */}
-      <section className="border-t border-border bg-surface">
+      <section className="relative border-t border-border bg-surface">
+        <SectionOrnament />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
           <SectionEyebrow className="mb-4">Why Vowena</SectionEyebrow>
-          <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-12 sm:mb-16" style={{ letterSpacing: "-0.02em" }}>
-            Billing infrastructure that works for you
+          <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-foreground tracking-tight mb-12 sm:mb-16 leading-[1.1]" style={{ letterSpacing: "-0.025em" }}>
+            Billing infrastructure that <span className="serif-italic text-accent text-[1.1em]">works</span> for you.
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -264,13 +268,14 @@ export default function Home() {
       </section>
 
       {/* Dashboard + Subscriber experience */}
-      <section className="border-t border-border">
+      <section className="relative border-t border-border">
+        <SectionOrnament />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
               <SectionEyebrow className="mb-4">Your dashboard</SectionEyebrow>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
-                Everything you need to run subscriptions
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-foreground tracking-tight mb-5 leading-[1.1]" style={{ letterSpacing: "-0.025em" }}>
+                Everything you need to <span className="serif-italic text-accent text-[1.1em]">run</span> subscriptions.
               </h2>
               <p className="text-secondary leading-relaxed mb-8">
                 Create plans, track revenue, manage subscribers, issue refunds, and automate billing. All in one place.
@@ -300,13 +305,14 @@ export default function Home() {
       </section>
 
       {/* For developers - compact */}
-      <section className="border-t border-border">
+      <section className="relative border-t border-border">
+        <SectionOrnament />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
               <SectionEyebrow className="mb-4">For developers</SectionEyebrow>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
-                Or build it into your app
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-foreground tracking-tight mb-5 leading-[1.1]" style={{ letterSpacing: "-0.025em" }}>
+                Or <span className="serif-italic text-accent text-[1.1em]">build</span> it into your app.
               </h2>
               <p className="text-secondary leading-relaxed mb-6">
                 The dashboard is optional. Install the SDK and integrate subscription billing directly into your product. Full TypeScript support, event polling, and a standalone keeper bot.
@@ -338,17 +344,24 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-border relative">
+      <section className="border-t border-border relative overflow-hidden">
+        <SectionOrnament />
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(var(--border-default) 1px, transparent 1px), linear-gradient(90deg, var(--border-default) 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
+          {/* Giant brand watermark */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-[0.025] dark:opacity-[0.04]">
+            <VowenaSymbol className="w-[640px] h-[640px] text-accent" />
+          </div>
+          {/* Soft radial glow behind headline */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-accent/5 blur-3xl" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-28 sm:py-40 relative">
           <div className="max-w-3xl mx-auto text-center">
             <SectionEyebrow align="center" className="mb-8">Ready when you are</SectionEyebrow>
             <h2 className="text-4xl sm:text-5xl lg:text-[3.75rem] font-semibold text-foreground tracking-tight leading-[1.05] mb-8" style={{ letterSpacing: "-0.035em" }}>
               Your first subscriber<br className="hidden sm:block" />
-              is one <span className="font-serif-italic text-foreground/40 text-[1.08em]">plan</span> away.
+              is one <span className="serif-italic text-foreground/40 text-[1.08em]">plan</span> away.
             </h2>
             <p className="text-base sm:text-lg text-secondary max-w-xl mx-auto mb-12 leading-relaxed">
               Create a plan, publish the link, and start billing in USDC the same afternoon. Live on Stellar testnet today, mainnet coming soon.

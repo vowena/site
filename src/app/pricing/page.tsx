@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from '@/lib/config';
 import { SectionEyebrow } from "@/components/section-eyebrow";
+import { SectionOrnament } from "@/components/section-ornament";
+import { VowenaSymbol } from "@/components/vowena-logo";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -79,7 +81,7 @@ export default function PricingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-32 pb-16 sm:pb-20 text-center">
           <SectionEyebrow align="center" className="mb-6">Pricing</SectionEyebrow>
           <h1 className="text-4xl sm:text-5xl lg:text-[3.75rem] font-semibold text-foreground tracking-tight mb-6 leading-[1.05]" style={{ letterSpacing: "-0.035em" }}>
-            <span className="font-serif-italic text-foreground/40 text-[1.08em]">Simple</span> pricing,<br className="hidden sm:block" /> no surprises.
+            <span className="serif-italic text-foreground/40 text-[1.08em]">Simple</span> pricing,<br className="hidden sm:block" /> no surprises.
           </h1>
           <p className="text-base sm:text-lg text-secondary max-w-xl mx-auto leading-relaxed">
             The protocol is open source and always will be. Pay only when you want managed infrastructure that saves you time.
@@ -88,7 +90,8 @@ export default function PricingPage() {
       </section>
 
       {/* Pricing cards */}
-      <section className="border-t border-border">
+      <section className="relative border-t border-border">
+        <SectionOrnament />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {tiers.map((tier) => (
@@ -167,28 +170,55 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-border bg-surface">
+      <section className="relative border-t border-border bg-surface">
+        <SectionOrnament />
         <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="text-center mb-10">
             <SectionEyebrow align="center" className="mb-4">FAQ</SectionEyebrow>
             <h2 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight" style={{ letterSpacing: "-0.025em" }}>
-              Questions? <span className="font-serif-italic text-foreground/40 text-[1.08em]">Answered</span>.
+              Questions? <span className="serif-italic text-foreground/40 text-[1.08em]">Answered</span>.
             </h2>
           </div>
           <div className="space-y-0">
-            {[
-              { q: "Why Stellar?", a: "Three reasons recurring billing only works on Stellar. First, transactions cost roughly $0.00001 each, so the keeper fee is invisible even on a $1 charge. Second, Soroban's auth tree lets a subscriber approve the contract and authorize the recurring allowance in a single signed transaction, which is impossible on EVM chains without account abstraction. Third, Circle issues USDC natively as a Stellar Asset Contract, so there's no bridging, no wrapping, and no liquidity fragmentation. EIP-1337 and EIP-948 both died because Ethereum gas killed micro-billing economics. Stellar fixes that by construction." },
+            {([
+              {
+                q: "Why Stellar?",
+                a: (
+                  <div className="space-y-4 pb-5 pr-8 text-sm text-muted leading-relaxed">
+                    <p>Three things that don't exist anywhere else.</p>
+                    <ul className="space-y-3">
+                      <li className="flex gap-3">
+                        <span className="font-mono text-[10px] text-accent mt-1 shrink-0">01</span>
+                        <span><span className="text-foreground font-medium">$0.00001 per transaction.</span> Recurring micro-billing finally has economics that work. A $1 charge keeps 99.999% of revenue.</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="font-mono text-[10px] text-accent mt-1 shrink-0">02</span>
+                        <span><span className="text-foreground font-medium">Single-signature subscribe.</span> Soroban's auth tree bundles the contract call and the USDC allowance into one click. Impossible on EVM without account abstraction.</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="font-mono text-[10px] text-accent mt-1 shrink-0">03</span>
+                        <span><span className="text-foreground font-medium">Native USDC.</span> Circle issues directly on Stellar. No bridges, no wraps, no liquidity fragmentation.</span>
+                      </li>
+                    </ul>
+                    <p className="text-xs text-muted/70 italic">EIP-1337 and EIP-948 both died because Ethereum gas killed the math. Stellar fixes that by construction.</p>
+                  </div>
+                ),
+              },
               { q: "Can I use Vowena without paying anything?", a: "Absolutely. The Vowena smart contract and TypeScript SDK are completely free and open source. You can deploy the contract, create plans, subscribe users, and run your own billing keeper without paying us a cent. The Pro tier exists for teams who would rather focus on their product and let us handle the billing infrastructure." },
               { q: "What happens when beta ends?", a: "We're keeping Pro free during the entire beta period and we'll publish paid pricing alongside the mainnet launch. Anyone who signed up during beta will get the most generous transition we can offer, with plenty of notice. We're not committing to a number until we have real merchant data to price against." },
               { q: "Can I switch between plans?", a: "Yes, at any time. Your plans, subscriptions, and all on-chain data are completely independent of which tier you are on. Upgrading gives you access to the dashboard and automation instantly. Downgrading just means you go back to running things yourself." },
               { q: "What happens if I stop paying for Pro?", a: "Nothing breaks. Your plans and subscriptions stay exactly where they are on the blockchain. Subscribers can still be charged and can still cancel. You just lose access to the managed keeper, analytics dashboards, and priority support. You can always switch to running your own keeper bot using the open source SDK." },
-            ].map((item) => (
+            ] as { q: string; a: React.ReactNode }[]).map((item) => (
               <details key={item.q} className="group border-b border-border">
-                <summary className="flex items-center justify-between py-5 cursor-pointer list-none">
-                  <h3 className="text-sm font-semibold text-foreground pr-4">{item.q}</h3>
+                <summary className="flex items-center justify-between py-5 cursor-pointer list-none hover:text-accent transition-colors">
+                  <h3 className="text-sm font-semibold text-foreground group-hover:text-accent pr-4 transition-colors">{item.q}</h3>
                   <svg className="w-4 h-4 text-muted shrink-0 transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                 </summary>
-                <p className="text-sm text-muted leading-relaxed pb-5 pr-8">{item.a}</p>
+                {typeof item.a === "string" ? (
+                  <p className="text-sm text-muted leading-relaxed pb-5 pr-8">{item.a}</p>
+                ) : (
+                  item.a
+                )}
               </details>
             ))}
           </div>
@@ -196,17 +226,22 @@ export default function PricingPage() {
       </section>
 
       {/* CTA — matches homepage CTA for consistency */}
-      <section className="border-t border-border relative">
+      <section className="border-t border-border relative overflow-hidden">
+        <SectionOrnament />
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(var(--border-default) 1px, transparent 1px), linear-gradient(90deg, var(--border-default) 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-[0.025] dark:opacity-[0.04]">
+            <VowenaSymbol className="w-[640px] h-[640px] text-accent" />
+          </div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-accent/5 blur-3xl" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-28 sm:py-40 relative">
           <div className="max-w-3xl mx-auto text-center">
             <SectionEyebrow align="center" className="mb-8">Ready when you are</SectionEyebrow>
             <h2 className="text-4xl sm:text-5xl lg:text-[3.75rem] font-semibold text-foreground tracking-tight leading-[1.05] mb-8" style={{ letterSpacing: "-0.035em" }}>
               Your first subscriber<br className="hidden sm:block" />
-              is one <span className="font-serif-italic text-foreground/40 text-[1.08em]">plan</span> away.
+              is one <span className="serif-italic text-foreground/40 text-[1.08em]">plan</span> away.
             </h2>
             <p className="text-base sm:text-lg text-secondary max-w-xl mx-auto mb-12 leading-relaxed">
               Create a plan, publish the link, and start billing in USDC the same afternoon. Live on Stellar testnet today, mainnet coming soon.
