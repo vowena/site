@@ -29,8 +29,8 @@ export default function BlogPage() {
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 sm:pb-16">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent mb-3">Blog</p>
-          <h1 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.03em" }}>
-            Building the future of payments
+          <h1 className="text-4xl sm:text-5xl font-semibold text-foreground tracking-tight mb-5 leading-[1.05]" style={{ letterSpacing: "-0.03em" }}>
+            <span className="font-serif-italic text-accent text-[1.06em]">Building</span> the future of payments.
           </h1>
           <p className="text-secondary max-w-xl">
             Technical deep dives, protocol updates, and the story behind Vowena.

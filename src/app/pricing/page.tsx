@@ -32,10 +32,10 @@ const tiers = [
   },
   {
     name: "Pro",
-    price: "$0",
-    originalPrice: "$49",
-    period: "/month",
-    badge: "Free during beta",
+    price: "Free",
+    period: "during beta",
+    badge: "Beta",
+    note: "Paid plans launching with mainnet.",
     desc: "Managed billing so you can focus on your product instead of infrastructure.",
     features: [
       "24/7 automated billing",
@@ -78,8 +78,8 @@ export default function PricingPage() {
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent mb-3">Pricing</p>
-          <h1 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.03em" }}>
-            Simple pricing,<br className="hidden sm:block" /> no surprises
+          <h1 className="text-4xl sm:text-5xl font-semibold text-foreground tracking-tight mb-5 leading-[1.05]" style={{ letterSpacing: "-0.03em" }}>
+            <span className="font-serif-italic text-accent text-[1.06em]">Simple</span> pricing,<br className="hidden sm:block" /> no surprises.
           </h1>
           <p className="text-secondary max-w-lg mx-auto">
             The protocol is open source and always will be. Pay only when you want managed infrastructure that saves you time.
@@ -113,13 +113,13 @@ export default function PricingPage() {
                     )}
                   </div>
                   <div className="flex items-baseline gap-2 mb-4">
-                    {"originalPrice" in tier && tier.originalPrice && (
-                      <span className="text-lg text-muted line-through">{tier.originalPrice as string}</span>
-                    )}
                     <span className="text-4xl font-semibold text-foreground tracking-tight">{tier.price}</span>
                     {tier.period && <span className="text-sm text-muted">{tier.period}</span>}
                   </div>
                   <p className="text-sm text-muted leading-relaxed">{tier.desc}</p>
+                  {"note" in tier && tier.note && (
+                    <p className="text-[11px] text-accent/80 font-medium mt-3">{tier.note as string}</p>
+                  )}
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   {tier.features.map((f) => (
@@ -175,8 +175,9 @@ export default function PricingPage() {
           </h2>
           <div className="space-y-0">
             {[
+              { q: "Why Stellar?", a: "Three reasons recurring billing only works on Stellar. First, transactions cost roughly $0.00001 each, so the keeper fee is invisible even on a $1 charge. Second, Soroban's auth tree lets a subscriber approve the contract and authorize the recurring allowance in a single signed transaction, which is impossible on EVM chains without account abstraction. Third, Circle issues USDC natively as a Stellar Asset Contract, so there's no bridging, no wrapping, and no liquidity fragmentation. EIP-1337 and EIP-948 both died because Ethereum gas killed micro-billing economics. Stellar fixes that by construction." },
               { q: "Can I use Vowena without paying anything?", a: "Absolutely. The Vowena smart contract and TypeScript SDK are completely free and open source. You can deploy the contract, create plans, subscribe users, and run your own billing keeper without paying us a cent. The Pro tier exists for teams who would rather focus on their product and let us handle the billing infrastructure." },
-              { q: "What happens when beta ends?", a: "Pro will move to $49/month. Everyone who signs up during the beta period keeps their current pricing locked for the first 3 months after we officially launch. We will give you plenty of notice before anything changes." },
+              { q: "What happens when beta ends?", a: "We're keeping Pro free during the entire beta period and we'll publish paid pricing alongside the mainnet launch. Anyone who signed up during beta will get the most generous transition we can offer, with plenty of notice. We're not committing to a number until we have real merchant data to price against." },
               { q: "Can I switch between plans?", a: "Yes, at any time. Your plans, subscriptions, and all on-chain data are completely independent of which tier you are on. Upgrading gives you access to the dashboard and automation instantly. Downgrading just means you go back to running things yourself." },
               { q: "What happens if I stop paying for Pro?", a: "Nothing breaks. Your plans and subscriptions stay exactly where they are on the blockchain. Subscribers can still be charged and can still cancel. You just lose access to the managed keeper, analytics dashboards, and priority support. You can always switch to running your own keeper bot using the open source SDK." },
             ].map((item) => (

@@ -118,6 +118,14 @@
   --color-mint-500: var(--mint-500);
   --font-sans: var(--font-dm-sans);
   --font-mono: var(--font-space-mono);
+  --font-serif: var(--font-instrument-serif);
+}
+
+.font-serif-italic {
+  font-family: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 html {

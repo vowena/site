@@ -2,10 +2,8 @@ import Link from "next/link";
 import { VowenaLogo } from "@/components/vowena-logo";
 import { CodeBlock } from "@/components/code-block";
 import { InstallTabs } from "@/components/install-tabs";
-import { Marquee } from "@/components/marquee";
 import { siteConfig } from '@/lib/config';
 import { HeroVisual, DashboardFeatureCards } from "@/components/dashboard-preview";
-import { LinearLogo, NotionLogo, SlackLogo, SpotifyLogo, DropboxLogo, DiscordLogo } from "@/components/partner-logos";
 
 const devCode = `import { VowenaClient, toStroops, NETWORKS } from "vowena"
 
@@ -36,9 +34,9 @@ export default function Home() {
             <div>
               <p className="text-xs font-medium text-accent mb-6 tracking-wide uppercase">Recurring payments on Stellar</p>
 
-              <h1 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-semibold text-foreground leading-[1.08] tracking-tight" style={{ letterSpacing: "-0.03em" }}>
+              <h1 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-semibold text-foreground leading-[1.05] tracking-tight" style={{ letterSpacing: "-0.03em" }}>
                 Recurring revenue,<br />
-                <span className="text-accent">fully automated.</span>
+                <span className="font-serif-italic text-accent text-[1.08em]">fully</span> automated.
               </h1>
 
               <p className="mt-6 text-base sm:text-lg text-secondary leading-relaxed max-w-xl">
@@ -86,17 +84,35 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Client marquee */}
-        <div className="border-t border-border py-6">
-          <p className="text-center text-[11px] text-muted/50 mb-4 tracking-wide">Built for teams like</p>
-          <Marquee>
-            <LinearLogo className="text-muted/30" />
-            <NotionLogo className="text-muted/30" />
-            <SlackLogo className="text-muted/30" />
-            <SpotifyLogo className="text-muted/30" />
-            <DropboxLogo className="text-muted/30" />
-            <DiscordLogo className="text-muted/30" />
-          </Marquee>
+        {/* Deployment trust strip — real signals, not theater */}
+        <div className="border-t border-border bg-surface/50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-success" />
+                </span>
+                <span className="text-xs font-medium text-foreground">Live on Stellar testnet</span>
+                <span className="hidden sm:inline text-xs text-muted">·</span>
+                <span className="hidden sm:inline text-xs text-muted">Mainnet launch in progress</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs">
+                <Link href={siteConfig.stellarExpert} className="inline-flex items-center gap-1.5 text-secondary hover:text-accent transition-colors font-mono">
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                  View contract
+                </Link>
+                <Link href={siteConfig.github} className="inline-flex items-center gap-1.5 text-secondary hover:text-accent transition-colors font-mono">
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  github.com/vowena
+                </Link>
+                <Link href={siteConfig.npm} className="inline-flex items-center gap-1.5 text-secondary hover:text-accent transition-colors font-mono">
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z"/></svg>
+                  npm i vowena
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -327,24 +343,35 @@ export default function Home() {
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(var(--border-default) 1px, transparent 1px), linear-gradient(90deg, var(--border-default) 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
         </div>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28 relative">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-24 sm:py-32 relative">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="flex justify-center mb-6"><VowenaLogo size="lg" /></div>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
-              Your first subscriber is one<br className="hidden sm:block" /> plan away
-            </h2>
-            <p className="text-secondary max-w-lg mx-auto mb-10">
-              Free during beta. No credit card. No KYC. Connect your Stellar wallet and create your first subscription plan in under 60 seconds.
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent mb-6 inline-flex items-center gap-2">
+              <span className="h-px w-6 bg-accent/40" />
+              Ready when you are
+              <span className="h-px w-6 bg-accent/40" />
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-              <Link href={siteConfig.dashboardUrl} className="inline-flex items-center h-11 px-6 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
-                Get started free
+            <h2 className="text-4xl sm:text-6xl lg:text-[4.5rem] font-semibold text-foreground tracking-tight leading-[1.02] mb-7" style={{ letterSpacing: "-0.035em" }}>
+              Your first subscriber<br className="hidden sm:block" />
+              is one <span className="font-serif-italic text-accent/90 text-[1.05em]">plan</span> away.
+            </h2>
+            <p className="text-base sm:text-lg text-secondary max-w-xl mx-auto mb-10 leading-relaxed">
+              Create a plan, publish the link, and start billing in USDC the same afternoon. Live on Stellar testnet today, mainnet coming soon.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link href={siteConfig.dashboardUrl} className="inline-flex items-center gap-2 h-12 px-7 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+                Launch dashboard
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </Link>
-              <Link href="/pricing" className="inline-flex items-center h-11 px-6 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
-                View pricing
+              <Link href="/docs" className="inline-flex items-center h-12 px-7 text-sm font-medium text-secondary border border-border rounded-lg hover:bg-surface hover:text-foreground transition-colors">
+                Read the docs
               </Link>
             </div>
 
+            {/* Vowena Tip teaser */}
+            <div className="mt-16 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-border bg-elevated/60 backdrop-blur-sm">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-accent bg-accent-subtle px-2 py-0.5 rounded-full">Soon</span>
+              <span className="text-xs text-secondary">First product on Vowena: <span className="text-foreground font-medium">Vowena Tip</span> for creator patronage</span>
+            </div>
           </div>
         </div>
       </section>

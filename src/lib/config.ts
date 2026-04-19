@@ -6,4 +6,7 @@ export const siteConfig = {
   twitter: "https://x.com/vowena",
   youtube: "https://youtube.com/@vowena",
   npm: "https://www.npmjs.com/package/vowena",
+  stellarExpert: "https://stellar.expert/explorer/testnet",
+  contractIdShort: "CAYX…VNQA",
+  vowenaTipUrl: "https://tip.vowena.xyz",
 } as const;

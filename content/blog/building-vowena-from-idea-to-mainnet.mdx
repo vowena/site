@@ -1,14 +1,14 @@
 ---
-title: "Building Vowena: from idea to mainnet in 4 weeks"
-description: "The story of building the first recurring payment protocol on Stellar. The technical decisions, the late nights, and what we learned along the way."
+title: "Building Vowena: why I'm putting recurring payments on Stellar"
+description: "The story behind the first trustless recurring payment protocol on Stellar. The technical decisions, the design constraints, and why Soroban makes this finally possible."
 date: "2026-04-05"
-author: "Tunde Adebayo"
+author: "Destiny Saturday"
 cover: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop"
 ---
 
-Four weeks ago, Vowena was a markdown file called `VOWENA.md`. Today it is a deployed Soroban smart contract with 29 passing tests, a TypeScript SDK on npm, a full-stack dashboard, 40 pages of documentation, and a marketing site with the blog post you are reading right now.
+Vowena started life as a markdown file called `VOWENA.md`. Today it is a deployed Soroban smart contract with 29 passing tests, a TypeScript SDK on npm, a full-stack dashboard, and 40 pages of documentation.
 
-This is how it happened.
+This is the story of how it came together, and why I think Stellar is the only chain where this protocol actually makes sense.
 
 ## The markdown file that started everything
 
@@ -18,7 +18,7 @@ On Stellar? Nothing. No subscription primitive. No recurring payment standard. N
 
 I started writing down what this protocol would need to look like. The result was a 270-line markdown document that described every function, every edge case, every data structure. It was obsessively detailed because the contract would handle real money.
 
-## Week 1: The contract
+## The contract layer
 
 The smart contract is the foundation. If it has a bug, people lose money. Every design decision here propagated through the entire system.
 
@@ -73,7 +73,7 @@ The solution: pre-check `balance()` and `allowance()` before attempting the tran
 
 **Making `charge()` permissionless** was the other key decision. No `require_auth()` on the billing function. Anyone can call it. The caller pays $0.00001 in fees. Only the merchant receives the subscription payment. This eliminates single points of failure in billing execution.
 
-By end of week 1: 9 Rust source files, 17 exported functions, 29 passing tests, 18.5KB WASM binary. The contract was the size of a small JPEG.
+The final shape: 9 Rust source files, 17 exported functions, 29 passing tests, 18.5KB WASM binary. The contract is the size of a small JPEG.
 
 ```bash
 stellar contract build
@@ -86,7 +86,7 @@ cargo test
 # test result: ok. 29 passed; 0 failed
 ```
 
-## Week 2: The SDK
+## The SDK layer
 
 A smart contract without an SDK is just documentation. Developers should not need to think about XDR encoding, Soroban simulation, or auth entry extraction. They should write:
 
@@ -129,7 +129,7 @@ console.log(plan.amount)  // 99900000n
 
 The amount conversion utilities were surprisingly important. USDC on Stellar uses 7 decimal places. `toStroops("9.99")` returns `99900000n`. `fromStroops(99900000n)` returns `"9.99"`. Sounds trivial, but getting decimal arithmetic wrong in a billing system means charging people the wrong amount.
 
-## Week 3: The dashboard
+## The dashboard layer
 
 The dashboard serves two fundamentally different users who need the same underlying data.
 
@@ -155,7 +155,7 @@ The tech stack:
 
 The managed keeper runs as a cron job on the backend. Every interval, it iterates subscriptions that are due for billing and calls `charge()` for each one. The merchant enables it with a toggle. No DevOps knowledge required.
 
-## Week 4: Documentation and polish
+## Documentation and polish
 
 Documentation is the product for an open-source protocol. If a developer cannot understand how to use Vowena from the docs alone, the protocol fails regardless of how good the contract is.
 
