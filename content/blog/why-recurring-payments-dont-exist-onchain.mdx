@@ -60,7 +60,7 @@ This is the technical key. Every Stellar token implements `approve()` and `trans
 With Vowena, subscribing to a plan looks like this:
 
 ```typescript
-import { VowenaClient, toStroops } from "vowena"
+import { VowenaClient, toStroops } from "@vowena/sdk"
 
 const xdr = await client.buildSubscribe(wallet.address, planId)
 // Subscriber signs once. Billing recurs automatically.
@@ -89,7 +89,7 @@ The fastest way to try Vowena is to install the SDK and create your first plan:
 Then create a client and build your first subscription:
 
 ```typescript
-import { VowenaClient, NETWORKS, toStroops } from "vowena"
+import { VowenaClient, NETWORKS, toStroops } from "@vowena/sdk"
 
 const client = new VowenaClient(NETWORKS.mainnet)
 

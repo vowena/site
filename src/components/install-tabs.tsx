@@ -3,10 +3,10 @@
 import { useState } from "react";
 
 const managers = [
-  { name: "npm", command: "npm install vowena", bin: "npm", args: "install vowena" },
-  { name: "yarn", command: "yarn add vowena", bin: "yarn", args: "add vowena" },
-  { name: "pnpm", command: "pnpm add vowena", bin: "pnpm", args: "add vowena" },
-  { name: "bun", command: "bun add vowena", bin: "bun", args: "add vowena" },
+  { name: "npm", command: "npm install @vowena/sdk", bin: "npm", args: "install @vowena/sdk" },
+  { name: "yarn", command: "yarn add @vowena/sdk", bin: "yarn", args: "add @vowena/sdk" },
+  { name: "pnpm", command: "pnpm add @vowena/sdk", bin: "pnpm", args: "add @vowena/sdk" },
+  { name: "bun", command: "bun add @vowena/sdk", bin: "bun", args: "add @vowena/sdk" },
 ];
 
 export function InstallTabs() {

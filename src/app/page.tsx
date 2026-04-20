@@ -7,7 +7,7 @@ import { SectionEyebrow } from "@/components/section-eyebrow";
 import { SectionOrnament } from "@/components/section-ornament";
 import { VowenaSymbol } from "@/components/vowena-logo";
 
-const devCode = `import { VowenaClient, toStroops, NETWORKS } from "vowena"
+const devCode = `import { VowenaClient, toStroops, NETWORKS } from "@vowena/sdk"
 
 const client = new VowenaClient(NETWORKS.mainnet)
 
