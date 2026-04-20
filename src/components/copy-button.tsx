@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 
-export function CopyButton({ text, className }: { text: string; className?: string }) {
+export function CopyButton({
+  text,
+  className,
+}: {
+  text: string;
+  className?: string;
+}) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -18,7 +24,15 @@ export function CopyButton({ text, className }: { text: string; className?: stri
       title="Click to copy"
     >
       <span>{text}</span>
-      <svg className="w-3.5 h-3.5 text-muted group-hover:text-accent transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        className="w-3.5 h-3.5 text-muted group-hover:text-accent transition-colors"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         {copied ? (
           <polyline points="20 6 9 17 4 12" />
         ) : (

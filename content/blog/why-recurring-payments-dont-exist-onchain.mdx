@@ -26,12 +26,12 @@ Every attempt hit the same wall: **transaction costs destroy micro-billing econo
 
 Here is how the math works on Ethereum vs Stellar for a $9.99/month subscription:
 
-| | Ethereum L1 | Stellar |
-|---|---|---|
-| Transaction fee | $2.00 - $10.00 | $0.00001 |
-| Fee as % of charge | 20% - 100% | 0.0001% |
-| Monthly cost to run keeper | $60 - $300 | $0.0003 |
-| Finality | ~12 minutes | ~5 seconds |
+|                            | Ethereum L1    | Stellar    |
+| -------------------------- | -------------- | ---------- |
+| Transaction fee            | $2.00 - $10.00 | $0.00001   |
+| Fee as % of charge         | 20% - 100%     | 0.0001%    |
+| Monthly cost to run keeper | $60 - $300     | $0.0003    |
+| Finality                   | ~12 minutes    | ~5 seconds |
 
 The difference is not incremental. It is the difference between "impossible" and "obvious."
 
@@ -60,9 +60,9 @@ This is the technical key. Every Stellar token implements `approve()` and `trans
 With Vowena, subscribing to a plan looks like this:
 
 ```typescript
-import { VowenaClient, toStroops } from "@vowena/sdk"
+import { VowenaClient, toStroops } from "@vowena/sdk";
 
-const xdr = await client.buildSubscribe(wallet.address, planId)
+const xdr = await client.buildSubscribe(wallet.address, planId);
 // Subscriber signs once. Billing recurs automatically.
 ```
 
@@ -89,26 +89,23 @@ The fastest way to try Vowena is to install the SDK and create your first plan:
 Then create a client and build your first subscription:
 
 ```typescript
-import { VowenaClient, NETWORKS, toStroops } from "@vowena/sdk"
+import { VowenaClient, NETWORKS, toStroops } from "@vowena/sdk";
 
-const client = new VowenaClient(NETWORKS.mainnet)
+const client = new VowenaClient(NETWORKS.mainnet);
 
 // Create a plan
 const planTx = await client.buildCreatePlan({
   merchant: wallet.address,
   token: NETWORKS.mainnet.usdcAddress,
   amount: toStroops("9.99"),
-  period: 2_592_000,        // 30 days
+  period: 2_592_000, // 30 days
   priceCeiling: toStroops("14.99"),
   trialPeriods: 1,
-  gracePeriod: 259_200,      // 3 days
-})
+  gracePeriod: 259_200, // 3 days
+});
 
 // Subscribe a user
-const subTx = await client.buildSubscribe(
-  subscriber.address,
-  planId
-)
+const subTx = await client.buildSubscribe(subscriber.address, planId);
 ```
 
 The [documentation](https://vowena.xyz/docs) covers every function, every edge case, every error code. The source code is [open on GitHub](https://github.com/vowena).

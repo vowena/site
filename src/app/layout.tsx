@@ -30,8 +30,19 @@ export const metadata: Metadata = {
     default: "Vowena — Recurring Revenue, Fully Automated",
     template: "%s | Vowena",
   },
-  description: "The first protocol for on-chain subscription billing on Stellar. Create plans, authorize recurring USDC transfers, and manage subscriptions with one signature.",
-  keywords: ["subscription billing", "recurring payments", "Stellar", "Soroban", "USDC", "on-chain payments", "subscription protocol", "crypto subscriptions", "blockchain billing"],
+  description:
+    "The first protocol for on-chain subscription billing on Stellar. Create plans, authorize recurring USDC transfers, and manage subscriptions with one signature.",
+  keywords: [
+    "subscription billing",
+    "recurring payments",
+    "Stellar",
+    "Soroban",
+    "USDC",
+    "on-chain payments",
+    "subscription protocol",
+    "crypto subscriptions",
+    "blockchain billing",
+  ],
   authors: [{ name: "Vowena" }],
   creator: "Vowena",
   icons: { icon: "/favicon.svg" },
@@ -40,7 +51,8 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "Vowena",
     title: "Vowena — Recurring Revenue, Fully Automated",
-    description: "The first protocol for on-chain subscription billing on Stellar. Create plans, authorize recurring USDC transfers, and manage subscriptions.",
+    description:
+      "The first protocol for on-chain subscription billing on Stellar. Create plans, authorize recurring USDC transfers, and manage subscriptions.",
     url: "https://vowena.xyz",
   },
   twitter: {
@@ -48,26 +60,44 @@ export const metadata: Metadata = {
     site: "@vowena",
     creator: "@vowena",
     title: "Vowena — Recurring Revenue, Fully Automated",
-    description: "The first protocol for on-chain subscription billing on Stellar.",
+    description:
+      "The first protocol for on-chain subscription billing on Stellar.",
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   alternates: {
     canonical: "https://vowena.xyz",
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${spaceMono.variable} ${instrumentSerif.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${dmSans.variable} ${spaceMono.variable} ${instrumentSerif.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
           <script
             defer
-            src={process.env.NEXT_PUBLIC_UMAMI_SRC || "https://cloud.umami.is/script.js"}
+            src={
+              process.env.NEXT_PUBLIC_UMAMI_SRC ||
+              "https://cloud.umami.is/script.js"
+            }
             data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
           />
         )}

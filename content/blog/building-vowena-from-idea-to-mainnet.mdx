@@ -64,7 +64,9 @@ pub struct Subscription {
 ```
 
 <Callout type="tip">
-Every struct field maps directly to a storage key in Soroban's persistent storage. Each plan and subscription is its own entry, which works well with Soroban's parallelism model.
+  Every struct field maps directly to a storage key in Soroban's persistent
+  storage. Each plan and subscription is its own entry, which works well with
+  Soroban's parallelism model.
 </Callout>
 
 **The hardest problem** was handling failed charges. In Soroban, if `transfer_from()` fails, the entire transaction reverts. The contract cannot record that a failure happened. My first instinct was to use a try/catch pattern. Soroban does not have one.
@@ -91,7 +93,7 @@ cargo test
 A smart contract without an SDK is just documentation. Developers should not need to think about XDR encoding, Soroban simulation, or auth entry extraction. They should write:
 
 ```typescript
-const xdr = await client.buildSubscribe(wallet.address, planId)
+const xdr = await client.buildSubscribe(wallet.address, planId);
 ```
 
 And get back assembled XDR ready for wallet signing.
@@ -103,14 +105,14 @@ The `VowenaClient` class wraps every contract function into two categories: writ
 Here is how you create a client and interact with the protocol:
 
 ```typescript
-import { VowenaClient, NETWORKS, toStroops } from "@vowena/sdk"
+import { VowenaClient, NETWORKS, toStroops } from "@vowena/sdk";
 
 // Initialize
 const client = new VowenaClient({
   contractId: NETWORKS.mainnet.contractId,
   rpcUrl: NETWORKS.mainnet.rpcUrl,
   networkPassphrase: NETWORKS.mainnet.networkPassphrase,
-})
+});
 
 // Create a plan
 const planTx = await client.buildCreatePlan({
@@ -120,11 +122,11 @@ const planTx = await client.buildCreatePlan({
   period: 2_592_000,
   priceCeiling: toStroops("14.99"),
   trialPeriods: 1,
-})
+});
 
 // Read plan data
-const plan = await client.getPlan(1, wallet.address)
-console.log(plan.amount)  // 99900000n
+const plan = await client.getPlan(1, wallet.address);
+console.log(plan.amount); // 99900000n
 ```
 
 The amount conversion utilities were surprisingly important. USDC on Stellar uses 7 decimal places. `toStroops("9.99")` returns `99900000n`. `fromStroops(99900000n)` returns `"9.99"`. Sounds trivial, but getting decimal arithmetic wrong in a billing system means charging people the wrong amount.
@@ -141,15 +143,15 @@ The insight was that both views come from the same on-chain data. The same event
 
 The tech stack:
 
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js 16 (App Router) |
-| Styling | Tailwind CSS v4 |
-| Database | Drizzle ORM + Postgres |
-| Data fetching | React Query |
-| Charts | Recharts |
-| Wallet | Freighter |
-| Theme | Light-first, DM Sans + Space Mono |
+| Layer         | Technology                        |
+| ------------- | --------------------------------- |
+| Framework     | Next.js 16 (App Router)           |
+| Styling       | Tailwind CSS v4                   |
+| Database      | Drizzle ORM + Postgres            |
+| Data fetching | React Query                       |
+| Charts        | Recharts                          |
+| Wallet        | Freighter                         |
+| Theme         | Light-first, DM Sans + Space Mono |
 
 ![Vowena dashboard showing revenue analytics and subscriber management](https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop)
 
@@ -186,7 +188,10 @@ The contract is live on mainnet. The SDK works. The dashboard works. Next steps:
 
 Here is a quick look at how Soroban smart contracts work on Stellar:
 
-<Video src="https://www.youtube.com/embed/iIMgaUyiEho" title="The Power of Stellar" />
+<Video
+  src="https://www.youtube.com/embed/iIMgaUyiEho"
+  title="The Power of Stellar"
+/>
 
 If you want to build with Vowena, the [documentation](https://vowena.xyz/docs) has everything you need. If you want to run a pilot, reach out on [X](https://x.com/vowena). If you want to contribute, the [protocol source](https://github.com/vowena/protocol) and [SDK source](https://github.com/vowena/sdk) are both open.
 

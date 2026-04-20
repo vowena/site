@@ -68,12 +68,12 @@ These components are available in any blog post without importing them:
 
 ## Related repositories
 
-| Repository | Description |
-|---|---|
-| [protocol](https://github.com/vowena/protocol) | Soroban smart contracts |
-| [sdk](https://github.com/vowena/sdk) | TypeScript SDK |
+| Repository                                       | Description                       |
+| ------------------------------------------------ | --------------------------------- |
+| [protocol](https://github.com/vowena/protocol)   | Soroban smart contracts           |
+| [sdk](https://github.com/vowena/sdk)             | TypeScript SDK                    |
 | [dashboard](https://github.com/vowena/dashboard) | Merchant and subscriber dashboard |
-| [docs](https://github.com/vowena/docs) | Documentation site |
+| [docs](https://github.com/vowena/docs)           | Documentation site                |
 
 ## Contributing
 

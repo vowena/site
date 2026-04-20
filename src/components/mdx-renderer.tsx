@@ -4,7 +4,13 @@ import { highlightCode } from "@/lib/highlight";
 import { CopyBtn } from "./mdx-copy-btn";
 import { InstallTabs } from "./install-tabs";
 
-function MdxCode({ children, className }: { children?: string; className?: string }) {
+function MdxCode({
+  children,
+  className,
+}: {
+  children?: string;
+  className?: string;
+}) {
   const code = typeof children === "string" ? children.trim() : "";
 
   if (!className) {
@@ -40,8 +46,16 @@ function MdxImg({ src, alt }: { src?: string; alt?: string }) {
   return (
     <figure className="my-6">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt || ""} className="rounded-xl border border-border w-full" />
-      {alt && <figcaption className="text-xs text-muted text-center mt-2">{alt}</figcaption>}
+      <img
+        src={src}
+        alt={alt || ""}
+        className="rounded-xl border border-border w-full"
+      />
+      {alt && (
+        <figcaption className="text-xs text-muted text-center mt-2">
+          {alt}
+        </figcaption>
+      )}
     </figure>
   );
 }
@@ -59,19 +73,31 @@ function Video({ src, title }: { src?: string; title?: string }) {
           allowFullScreen
         />
       </div>
-      {title && <figcaption className="text-xs text-muted text-center mt-2">{title}</figcaption>}
+      {title && (
+        <figcaption className="text-xs text-muted text-center mt-2">
+          {title}
+        </figcaption>
+      )}
     </figure>
   );
 }
 
-function Callout({ children, type = "info" }: { children?: React.ReactNode; type?: string }) {
+function Callout({
+  children,
+  type = "info",
+}: {
+  children?: React.ReactNode;
+  type?: string;
+}) {
   const styles: Record<string, string> = {
     info: "border-info/30 bg-info/5",
     warning: "border-warning/30 bg-warning/5",
     tip: "border-success/30 bg-success/5",
   };
   return (
-    <div className={`my-6 rounded-lg border-l-4 p-4 ${styles[type] || styles.info}`}>
+    <div
+      className={`my-6 rounded-lg border-l-4 p-4 ${styles[type] || styles.info}`}
+    >
       <div className="text-sm [&_p]:mb-0 [&_p]:text-secondary">{children}</div>
     </div>
   );

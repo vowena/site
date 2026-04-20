@@ -5,7 +5,10 @@
  */
 export function SectionOrnament() {
   return (
-    <div aria-hidden className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
+    <div
+      aria-hidden
+      className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none"
+    >
       <div className="flex items-center gap-1.5">
         <span className="block h-px w-3 bg-border" />
         <span className="block w-1.5 h-1.5 rotate-45 bg-background border border-accent/60" />

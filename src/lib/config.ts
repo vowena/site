@@ -1,6 +1,7 @@
 export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://vowena.xyz",
-  dashboardUrl: process.env.NEXT_PUBLIC_DASHBOARD_URL || "https://dashboard.vowena.xyz",
+  dashboardUrl:
+    process.env.NEXT_PUBLIC_DASHBOARD_URL || "https://dashboard.vowena.xyz",
   docsUrl: process.env.NEXT_PUBLIC_DOCS_URL || "https://vowena.xyz/docs",
   github: "https://github.com/vowena",
   twitter: "https://x.com/vowena",

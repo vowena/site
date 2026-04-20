@@ -145,13 +145,13 @@ At any point during States 1 or 2, if the subscriber funds their wallet, the nex
 
 ## What makes this different from traditional billing
 
-| | Stripe | Vowena |
-|---|---|---|
-| Who holds the funds? | Stripe holds them temporarily | Funds stay in subscriber's wallet until charge |
-| Can the merchant overcharge? | Possible with saved card | Impossible, contract enforces plan amount |
-| What happens on failure? | Automatic retry with backoff | Grace period with permissionless retry |
-| Can the subscriber see the authorization? | Buried in terms | Displayed in wallet approval dialog |
-| Can a third party trigger billing? | No, only Stripe's systems | Yes, charge() is permissionless |
+|                                           | Stripe                        | Vowena                                         |
+| ----------------------------------------- | ----------------------------- | ---------------------------------------------- |
+| Who holds the funds?                      | Stripe holds them temporarily | Funds stay in subscriber's wallet until charge |
+| Can the merchant overcharge?              | Possible with saved card      | Impossible, contract enforces plan amount      |
+| What happens on failure?                  | Automatic retry with backoff  | Grace period with permissionless retry         |
+| Can the subscriber see the authorization? | Buried in terms               | Displayed in wallet approval dialog            |
+| Can a third party trigger billing?        | No, only Stripe's systems     | Yes, charge() is permissionless                |
 
 The fundamental difference is transparency. Every authorization, every charge, every failure is on-chain, auditable, and verifiable by anyone.
 
@@ -166,9 +166,9 @@ Then read the [full API reference](https://vowena.xyz/docs) for every contract f
 Here is a quick example that creates a plan, subscribes, and charges:
 
 ```typescript
-import { VowenaClient, NETWORKS, toStroops } from "@vowena/sdk"
+import { VowenaClient, NETWORKS, toStroops } from "@vowena/sdk";
 
-const client = new VowenaClient(NETWORKS.mainnet)
+const client = new VowenaClient(NETWORKS.mainnet);
 
 // 1. Create a plan
 const planTx = await client.buildCreatePlan({
@@ -178,19 +178,13 @@ const planTx = await client.buildCreatePlan({
   period: 2_592_000,
   priceCeiling: toStroops("14.99"),
   trialPeriods: 1,
-})
+});
 
 // 2. Subscribe
-const subTx = await client.buildSubscribe(
-  "GSUBSCRIBER...ADDR",
-  planId
-)
+const subTx = await client.buildSubscribe("GSUBSCRIBER...ADDR", planId);
 
 // 3. Charge (anyone can call this)
-const chargeTx = await client.buildCharge(
-  "GKEEPER...ADDR",
-  subscriptionId
-)
+const chargeTx = await client.buildCharge("GKEEPER...ADDR", subscriptionId);
 ```
 
 Each of these returns assembled XDR that you sign with your wallet and submit. The contract handles everything else.

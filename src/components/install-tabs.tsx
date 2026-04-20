@@ -3,10 +3,30 @@
 import { useState } from "react";
 
 const managers = [
-  { name: "npm", command: "npm install @vowena/sdk", bin: "npm", args: "install @vowena/sdk" },
-  { name: "yarn", command: "yarn add @vowena/sdk", bin: "yarn", args: "add @vowena/sdk" },
-  { name: "pnpm", command: "pnpm add @vowena/sdk", bin: "pnpm", args: "add @vowena/sdk" },
-  { name: "bun", command: "bun add @vowena/sdk", bin: "bun", args: "add @vowena/sdk" },
+  {
+    name: "npm",
+    command: "npm install @vowena/sdk",
+    bin: "npm",
+    args: "install @vowena/sdk",
+  },
+  {
+    name: "yarn",
+    command: "yarn add @vowena/sdk",
+    bin: "yarn",
+    args: "add @vowena/sdk",
+  },
+  {
+    name: "pnpm",
+    command: "pnpm add @vowena/sdk",
+    bin: "pnpm",
+    args: "add @vowena/sdk",
+  },
+  {
+    name: "bun",
+    command: "bun add @vowena/sdk",
+    bin: "bun",
+    args: "add @vowena/sdk",
+  },
 ];
 
 export function InstallTabs() {
@@ -42,8 +62,13 @@ export function InstallTabs() {
       <div className="flex items-center justify-between px-4 py-3 group">
         <code className="text-[13px] font-mono">
           <span className="hljs-built_in">{managers[active].bin}</span>
-          <span className="text-foreground"> {managers[active].args.split(" ")[0]} </span>
-          <span className="hljs-string">{managers[active].args.split(" ")[1]}</span>
+          <span className="text-foreground">
+            {" "}
+            {managers[active].args.split(" ")[0]}{" "}
+          </span>
+          <span className="hljs-string">
+            {managers[active].args.split(" ")[1]}
+          </span>
         </code>
         <button
           onClick={handleCopy}
@@ -51,9 +76,28 @@ export function InstallTabs() {
           aria-label="Copy command"
         >
           {copied ? (
-            <svg className="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg
+              className="w-4 h-4 text-success"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
           ) : (
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg
+              className="w-4 h-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <rect x="9" y="9" width="13" height="13" rx="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
           )}
         </button>
       </div>

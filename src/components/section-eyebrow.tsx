@@ -4,7 +4,11 @@ type Props = {
   className?: string;
 };
 
-export function SectionEyebrow({ children, align = "left", className = "" }: Props) {
+export function SectionEyebrow({
+  children,
+  align = "left",
+  className = "",
+}: Props) {
   return (
     <p
       className={`inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent ${align === "center" ? "justify-center" : ""} ${className}`}

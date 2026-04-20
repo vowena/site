@@ -6,7 +6,10 @@ export default function NotFound() {
     <div className="flex flex-col items-center justify-center min-h-[60vh] px-6 text-center">
       <VowenaSymbol className="w-12 h-12 text-accent/30 mb-6" />
       <p className="font-mono text-sm text-accent mb-2">404</p>
-      <h1 className="text-2xl font-semibold text-foreground tracking-tight mb-3" style={{ letterSpacing: "-0.02em" }}>
+      <h1
+        className="text-2xl font-semibold text-foreground tracking-tight mb-3"
+        style={{ letterSpacing: "-0.02em" }}
+      >
         Page not found
       </h1>
       <p className="text-secondary mb-8 max-w-sm">
