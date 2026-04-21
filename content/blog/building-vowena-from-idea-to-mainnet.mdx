@@ -109,19 +109,21 @@ import { VowenaClient, NETWORKS, toStroops } from "@vowena/sdk";
 
 // Initialize
 const client = new VowenaClient({
-  contractId: NETWORKS.mainnet.contractId,
-  rpcUrl: NETWORKS.mainnet.rpcUrl,
-  networkPassphrase: NETWORKS.mainnet.networkPassphrase,
+  contractId: NETWORKS.testnet.contractId,
+  rpcUrl: NETWORKS.testnet.rpcUrl,
+  networkPassphrase: NETWORKS.testnet.networkPassphrase,
 });
 
 // Create a plan
 const planTx = await client.buildCreatePlan({
   merchant: wallet.address,
-  token: NETWORKS.mainnet.usdcAddress,
+  token: NETWORKS.testnet.usdcAddress,
   amount: toStroops("9.99"),
   period: 2_592_000,
   priceCeiling: toStroops("14.99"),
   trialPeriods: 1,
+  name: "Pro",
+  projectId: 1,
 });
 
 // Read plan data
@@ -143,15 +145,14 @@ The insight was that both views come from the same on-chain data. The same event
 
 The tech stack:
 
-| Layer         | Technology                        |
-| ------------- | --------------------------------- |
-| Framework     | Next.js 16 (App Router)           |
-| Styling       | Tailwind CSS v4                   |
-| Database      | Drizzle ORM + Postgres            |
-| Data fetching | React Query                       |
-| Charts        | Recharts                          |
-| Wallet        | Freighter                         |
-| Theme         | Light-first, DM Sans + Space Mono |
+| Layer         | Technology                              |
+| ------------- | --------------------------------------- |
+| Framework     | Next.js 16 (App Router, Turbopack)      |
+| Styling       | Tailwind CSS v4                         |
+| Data fetching | React Query                             |
+| Wallet        | Stellar Wallets Kit (Freighter, Lobstr) |
+| Source of truth | On-chain Soroban state (no database)  |
+| Theme         | Light-first, DM Sans + Space Mono       |
 
 ![Vowena dashboard showing revenue analytics and subscriber management](https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop)
 
@@ -180,11 +181,12 @@ The marketing site uses MDX for blog posts. Each post is a `.mdx` file in a `/co
 
 ## What is next
 
-The contract is live on mainnet. The SDK works. The dashboard works. Next steps:
+The contract is live on Stellar testnet today, with mainnet deployment coming after pilot merchants shake out any remaining edge cases. The SDK works. The dashboard works. Next steps:
 
-1. Onboard the first wave of merchants
-2. Stellar Community Fund submission with working demo
-3. Expand SDK with webhook support and multi-token billing
+1. Onboard the first wave of pilot merchants on testnet
+2. Stellar Community Fund submission with a working demo
+3. Mainnet deployment after real-world usage validates the billing loop
+4. Expand the SDK with webhook support and multi-token billing
 
 Here is a quick look at how Soroban smart contracts work on Stellar:
 
